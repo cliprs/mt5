@@ -143,7 +143,7 @@ const createHistoryDeal = (payload: EntryInput, ticketId: string): HistoryDeal =
     const commission = Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1;
     return {
       id: ticketId,
-      symbol: payload.symbol || 'GOLD',
+      symbol: payload.symbol || 'XAUUSD',
       type: payload.side,
       volume: payload.volume,
       openTime: normalizeDateString(payload.openTime),

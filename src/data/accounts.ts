@@ -1,4 +1,4 @@
-﻿import { HistoryDeal } from './transactions';
+import { HistoryDeal } from './transactions';
 
 export interface AccountProfile {
   id: string;
@@ -50,7 +50,7 @@ export const defaultAccounts: AccountProfile[] = [
       },
       {
         id: '20250511',
-        symbol: 'GOLD',
+        symbol: 'XAUUSD',
         type: 'buy',
         volume: 0.01,
         openTime: '2025.04.03 16:20:11',
@@ -65,7 +65,7 @@ export const defaultAccounts: AccountProfile[] = [
       },
       {
         id: '20250602',
-        symbol: 'GOLD',
+        symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
         openTime: '2025.04.03 17:12:54',
@@ -80,7 +80,7 @@ export const defaultAccounts: AccountProfile[] = [
       },
       {
         id: '20250763',
-        symbol: 'GOLD',
+        symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
         openTime: '2025.04.04 05:12:03',
@@ -95,7 +95,7 @@ export const defaultAccounts: AccountProfile[] = [
       },
       {
         id: '20250854',
-        symbol: 'GOLD',
+        symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
         openTime: '2025.04.04 14:12:00',
@@ -110,7 +110,7 @@ export const defaultAccounts: AccountProfile[] = [
       },
       {
         id: '20250977',
-        symbol: 'GOLD',
+        symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
         openTime: '2025.04.04 16:05:12',
@@ -141,4 +141,3 @@ export const defaultAccounts: AccountProfile[] = [
     ]),
   },
 ];
-

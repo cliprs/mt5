@@ -2,25 +2,66 @@ import React, { useState, useEffect } from 'react';
 import { IoCloseOutline, IoShareOutline } from 'react-icons/io5';
 
 const InstallPrompt: React.FC = () => {
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
-    // Sayfa yüklendiğinde log bas (Geliştirici konsolunda görünür)
-    console.log('InstallPrompt bileşeni yüklendi.');
+    // 1. Zaten yüklü mü kontrol et
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone;
+    if (isStandalone) {
+      console.log('Uygulama zaten yüklü modda çalışıyor.');
+      return;
+    }
 
-    // iOS tespiti
+    // 2. iOS tespiti
     const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
     setIsIOS(isIOSDevice);
 
-    // Her durumda 3 saniye sonra göster
+    // 3. Android/Chrome yükleme olayı
+    const handleBeforeInstallPrompt = (e: Event) => {
+      console.log('beforeinstallprompt olayı tetiklendi');
+      e.preventDefault();
+      setDeferredPrompt(e);
+      // Event gelince görünür yapabiliriz (opsiyonel)
+      setShowPrompt(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    // 4. Her durumda (özellikle iOS için) bir süre sonra göster
     const timer = setTimeout(() => {
       setShowPrompt(true);
-      console.log('Yükleme modalı şimdi gösteriliyor...');
-    }, 3000);
+    }, 4000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      clearTimeout(timer);
+    };
   }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) {
+      // Eğer Chrome ise ama prompt hazır değilse veya iOS ise bilgilendir
+      if (isIOS) {
+        alert('iOS cihazlarda yüklemek için Safari menüsündeki "Paylaş" butonuna tıklayıp "Ana Ekrana Ekle" seçeneğini seçmelisiniz.');
+      } else {
+        alert('Yükleme özelliği tarayıcınız tarafından henüz tetiklenmedi. Lütfen bir süre bekleyin veya tarayıcı menüsünden "Uygulamayı Yükle" seçeneğini arayın.');
+      }
+      return;
+    }
+    
+    // Tarayıcı yükleme penceresini aç
+    deferredPrompt.prompt();
+    
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Kullanıcı seçimi: ${outcome}`);
+    
+    if (outcome === 'accepted') {
+      setShowPrompt(false);
+    }
+    setDeferredPrompt(null);
+  };
 
   const handleClose = () => {
     setShowPrompt(false);
@@ -62,7 +103,7 @@ const InstallPrompt: React.FC = () => {
           </div>
         ) : (
           <button
-            onClick={() => alert('Yükleme özelliğini başlatmak için tarayıcı menüsündeki "Yükle" veya "Ana ekrana ekle" butonunu kullanabilirsiniz.')}
+            onClick={handleInstallClick}
             className="bg-blue-600 text-white px-5 py-2.5 rounded-xl text-[13px] font-black uppercase tracking-wider shadow-lg shadow-blue-200"
           >
             YÜKLE

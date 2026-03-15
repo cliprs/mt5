@@ -33,7 +33,7 @@ const fromDateTimeLocal = (value: string) => {
 };
 
 const createTradeFormState = () => ({
-  symbol: 'GOLD',
+  symbol: 'XAUUSD',
   side: 'sell' as TradeSide,
   volume: '',
   openTime: '',
@@ -184,7 +184,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
         }
         addEntry(selectedAccountId, {
           kind: 'trade',
-          symbol: tradeForm.symbol || 'GOLD',
+          symbol: tradeForm.symbol || 'XAUUSD',
           side: tradeForm.side,
           volume: Number(tradeForm.volume || '0'),
           openTime: tradeForm.openTime || '',
@@ -364,7 +364,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                       className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
                       value={tradeForm.symbol}
                       onChange={(event) => handleTradeChange('symbol', event.target.value.toUpperCase())}
-                      placeholder="GOLD"
+                      placeholder="XAUUSD"
                     />
                   </label>
                   <div className="grid grid-cols-2 gap-2">
