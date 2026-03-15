@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
-import { IoDownloadOutline, IoUploadOutline, IoCopyOutline } from 'react-icons/io5';
+import { IoDownloadOutline, IoCloudUploadOutline, IoCopyOutline } from 'react-icons/io5';
 
 interface AccountManagerProps {
   isOpen: boolean;
@@ -11,7 +11,6 @@ type EntryType = 'trade' | 'deposit' | 'withdraw';
 type TradeSide = 'buy' | 'sell';
 
 const sanitizePositive = (value: string) => value.replace(/-/g, '');
-const sanitizeDigits = (value: string) => value.replace(/[^0-9]/g, '');
 
 const padTimePart = (value: string) => value.padStart(2, '0');
 
@@ -55,14 +54,12 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     selectedAccount,
     selectAccount,
     addEntry,
-    removeEntry,
     updateAccountDetails,
     setAccounts
   } = useAccounts();
 
   const [entryType, setEntryType] = useState<EntryType>('trade');
   const [statusMessage, setStatusMessage] = useState('');
-  const [closeTimeTouched, setCloseTimeTouched] = useState(false);
   const [tradeForm, setTradeForm] = useState(() => createTradeFormState());
   const [balanceForm, setBalanceForm] = useState(() => createBalanceFormState());
   const [accountForm, setAccountForm] = useState({
@@ -71,15 +68,11 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     server: '',
   });
 
-  const [ticketToDelete, setTicketToDelete] = useState('');
-
   useEffect(() => {
     if (!isOpen) return;
     setStatusMessage('');
-    setCloseTimeTouched(false);
     setTradeForm(createTradeFormState());
     setBalanceForm(createBalanceFormState());
-    setTicketToDelete('');
     if (selectedAccount) {
       setAccountForm({
         name: selectedAccount.name,
@@ -87,7 +80,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
         server: selectedAccount.server,
       });
     }
-  }, [isOpen, selectedAccountId]);
+  }, [isOpen, selectedAccountId, selectedAccount]);
 
   const accountDetailsDirty = useMemo(() => {
     if (!selectedAccount) return false;
@@ -165,7 +158,6 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  // YEDEKLEME FONKSİYONLARI
   const downloadBackup = () => {
     const dataStr = JSON.stringify(accounts, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
@@ -209,28 +201,25 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
       <div className="relative z-[130] w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[95vh]">
         
-        {/* Header */}
         <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <div>
             <h2 className="text-lg font-bold text-black">Yönetim Paneli</h2>
-            <p className="text-[11px] text-gray-500 uppercase tracking-wider font-semibold">Hesaplar ve Veri Güvenliği</p>
+            <p className="text-[11px] text-gray-500 uppercase tracking-wider font-semibold">Bulut Senkronizasyonu Aktif</p>
           </div>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full text-gray-600 hover:bg-gray-300 transition-colors">✕</button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          
-          {/* Yedekleme Bölümü */}
           <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100">
             <h3 className="text-[13px] font-bold text-blue-800 mb-3 flex items-center gap-2">
-              <IoDownloadOutline size={18} /> Veri Güvenliği ve Yedekleme
+              <IoCloudUploadOutline size={18} /> Veri Güvenliği ve Yedekleme
             </h3>
             <div className="grid grid-cols-2 gap-2">
               <button onClick={downloadBackup} className="flex items-center justify-center gap-2 bg-white border border-blue-200 text-blue-700 py-2.5 rounded-xl text-[12px] font-bold hover:bg-blue-100 transition-all shadow-sm">
                 <IoDownloadOutline size={16} /> Dosya İndir
               </button>
               <label className="flex items-center justify-center gap-2 bg-white border border-blue-200 text-blue-700 py-2.5 rounded-xl text-[12px] font-bold hover:bg-blue-100 transition-all shadow-sm cursor-pointer">
-                <IoUploadOutline size={16} /> Dosya Yükle
+                <IoCloudUploadOutline size={16} /> Dosya Yükle
                 <input type="file" className="hidden" accept=".json" onChange={uploadBackup} />
               </label>
               <button onClick={copyBackupCode} className="col-span-2 flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl text-[12px] font-bold hover:bg-blue-700 transition-all shadow-md mt-1">
@@ -240,7 +229,6 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Sol Kolon: Hesap Seçimi ve Bilgileri */}
             <div className="space-y-6">
               <div className="space-y-2">
                 <h3 className="text-[12px] font-bold text-gray-400 uppercase">Aktif Hesaplar</h3>
@@ -292,16 +280,15 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Sağ Kolon: Yeni İşlem Ekleme */}
             <div className="space-y-4">
               <h3 className="text-[12px] font-bold text-gray-400 uppercase">Yeni İşlem / Hareket</h3>
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="flex bg-gray-100 p-1 rounded-xl">
-                  {['trade', 'deposit', 'withdraw'].map((type) => (
+                  {(['trade', 'deposit', 'withdraw'] as const).map((type) => (
                     <button
                       key={type}
                       type="button"
-                      onClick={() => setEntryType(type as EntryType)}
+                      onClick={() => setEntryType(type)}
                       className={`flex-1 py-2 rounded-lg text-[11px] font-bold transition-all ${
                         entryType === type ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'
                       }`}
@@ -353,7 +340,6 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Footer Status */}
         {statusMessage && (
           <div className="bg-blue-600 text-white px-6 py-2 text-center text-[12px] font-bold animate-pulse">
             {statusMessage}
