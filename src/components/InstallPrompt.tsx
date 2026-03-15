@@ -7,118 +7,113 @@ const InstallPrompt: React.FC = () => {
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
-    // Check if it's already installed (standalone mode)
+    // 1. Zaten yüklü mü kontrol et
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone;
-    if (isStandalone) return;
+    if (isStandalone) {
+      console.log('Uygulama zaten yüklü modda çalışıyor.');
+      return;
+    }
 
-    // Detect iOS
+    // 2. iOS tespiti
     const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
     setIsIOS(isIOSDevice);
 
-    // Chrome/Android "beforeinstallprompt" event
+    // 3. Android/Chrome yükleme olayı
     const handleBeforeInstallPrompt = (e: Event) => {
+      console.log('beforeinstallprompt olayı tetiklendi');
       e.preventDefault();
       setDeferredPrompt(e);
-      // Show prompt after 3 seconds for better UX
-      setTimeout(() => setShowPrompt(true), 3000);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-    // For iOS, show it after 5 seconds
-    if (isIOSDevice) {
-      setTimeout(() => setShowPrompt(true), 5000);
-    }
+    // 4. EĞER YÜKLÜ DEĞİLSE, HER DURUMDA 4 SANİYE SONRA GÖSTER
+    const timer = setTimeout(() => {
+      setShowPrompt(true);
+      console.log('Yükleme uyarısı gösteriliyor...');
+    }, 4000);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      clearTimeout(timer);
     };
   }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
+    if (!deferredPrompt) {
+      alert('Yükleme özelliği tarayıcınız tarafından henüz hazır değil. Lütfen tarayıcı menüsünden (üç nokta) "Uygulamayı Yükle" veya "Ana Ekrana Ekle" seçeneğini kullanın.');
+      return;
+    }
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
+      setShowPrompt(false);
     }
     setDeferredPrompt(null);
-    setShowPrompt(false);
   };
 
   const handleClose = () => {
     setShowPrompt(false);
-    // Don't show again for 24 hours (saved in session for simplicity)
-    sessionStorage.setItem('installPromptDismissed', 'true');
   };
 
-  // Check if dismissed in this session
-  if (!showPrompt || sessionStorage.getItem('installPromptDismissed')) {
-    return null;
-  }
+  if (!showPrompt) return null;
 
   return (
-    <div className="fixed top-4 left-4 right-4 z-[200] animate-bounce-in">
-      <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 p-4 flex items-center gap-4 relative overflow-hidden">
-        {/* Close Button */}
+    <div className="fixed top-4 left-4 right-4 z-[9999] animate-bounce-in pointer-events-auto">
+      <div className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-blue-100 p-4 flex items-center gap-4 relative">
+        {/* Kapat Butonu */}
         <button 
           onClick={handleClose}
-          className="absolute top-2 right-2 text-gray-400 hover:text-black p-1"
+          className="absolute top-2 right-2 text-gray-400 hover:text-black p-1 bg-gray-50 rounded-full"
         >
           <IoCloseOutline size={20} />
         </button>
 
-        {/* App Icon */}
-        <div className="w-12 h-12 flex-shrink-0 bg-white rounded-xl shadow-sm border border-gray-50 flex items-center justify-center">
+        {/* Logo */}
+        <div className="w-12 h-12 flex-shrink-0 bg-white rounded-xl shadow-inner border border-gray-100 flex items-center justify-center overflow-hidden">
           <img src="/pepperstone.svg" alt="App Icon" className="w-10 h-10 object-contain" />
         </div>
 
-        {/* Text Content */}
+        {/* Metin */}
         <div className="flex-1 pr-4">
-          <h4 className="text-[15px] font-bold text-black leading-tight">Uygulamayı Yükle</h4>
-          <p className="text-[12px] text-gray-500 mt-0.5 leading-snug">
+          <h4 className="text-[15px] font-bold text-black leading-tight">MT5 Uygulamasını Yükle</h4>
+          <p className="text-[11px] text-gray-500 mt-1 leading-snug">
             {isIOS 
               ? 'Hızlı erişim için ana ekrana ekleyin' 
-              : 'Daha hızlı ve tam ekran deneyimi için yükleyin'}
+              : 'Daha akıcı bir deneyim için ana ekrana ekleyin'}
           </p>
         </div>
 
-        {/* Action Button / Instructions */}
+        {/* Aksiyon Alanı */}
         {isIOS ? (
-          <div className="flex flex-col items-center gap-1 text-[#0059b3]">
-            <div className="flex items-center gap-1 bg-blue-50 px-3 py-1.5 rounded-full">
+          <div className="flex flex-col items-center gap-1 text-[#0059b3] min-w-[70px]">
+            <div className="flex items-center gap-1 bg-blue-50 px-2 py-1 rounded-lg">
               <IoShareOutline size={16} />
-              <span className="text-[11px] font-bold">Paylaş</span>
+              <span className="text-[10px] font-bold">Paylaş</span>
             </div>
-            <div className="flex items-center gap-1">
-              <span className="text-[10px] text-gray-400">sonra</span>
-              <div className="flex items-center gap-0.5 text-blue-500">
-                <IoAddSharp size={14} />
-                <span className="text-[10px] font-bold italic">Ana Ekrana Ekle</span>
-              </div>
+            <div className="flex items-center gap-0.5 mt-1">
+              <IoAddSharp size={14} />
+              <span className="text-[9px] font-bold whitespace-nowrap">Ana Ekrana Ekle</span>
             </div>
           </div>
         ) : (
           <button
             onClick={handleInstallClick}
-            className="bg-[#0059b3] text-white px-4 py-2 rounded-xl text-[13px] font-bold whitespace-nowrap active:scale-95 transition-transform"
+            className="bg-[#0059b3] text-white px-5 py-2.5 rounded-xl text-[13px] font-extrabold whitespace-nowrap shadow-lg shadow-blue-200 active:scale-95 transition-all"
           >
             YÜKLE
           </button>
         )}
-
-        {/* Progress Bar (Visual Only) */}
-        <div className="absolute bottom-0 left-0 h-[3px] bg-blue-500/10 w-full" />
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes bounce-in {
-          0% { transform: translateY(-100px); opacity: 0; }
+          0% { transform: translateY(-120%); opacity: 0; }
           70% { transform: translateY(10px); }
           100% { transform: translateY(0); opacity: 1; }
         }
         .animate-bounce-in {
-          animation: bounce-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          animation: bounce-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
       `}} />
     </div>
