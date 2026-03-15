@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
+import { IoTrashOutline } from 'react-icons/io5';
 
-// Helper functions for splitting/joining date and time parts
 const joinDateTime = (parts: { date: string; h: string; m: string; s: string }) => {
   if (!parts.date) return '';
   const [year, month, day] = parts.date.split('-');
-  const h = parts.h.padStart(2, '0');
-  const m = parts.m.padStart(2, '0');
-  const s = parts.s.padStart(2, '0');
-  return `${year}.${month}.${day} ${h}:${m}:${s}`;
+  return `${year}.${month}.${day} ${parts.h.padStart(2, '0')}:${parts.m.padStart(2, '0')}:${parts.s.padStart(2, '0')}`;
 };
 
 const createTradeFormState = () => ({
@@ -34,29 +31,42 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const [tradeForm, setTradeForm] = useState(createTradeFormState);
   const [balanceForm, setBalanceForm] = useState(createBalanceFormState);
   const [accountForm, setAccountForm] = useState({ name: '', accountNo: '', server: '' });
+  const [ticketToDelete, setTicketToDelete] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
     setStatusMessage('');
     setTradeForm(createTradeFormState());
     setBalanceForm(createBalanceFormState());
+    setTicketToDelete('');
     setCloseTimeTouched(false);
     if (selectedAccount) {
       setAccountForm({ name: selectedAccount.name, accountNo: selectedAccount.accountNo, server: selectedAccount.server });
     }
   }, [isOpen, selectedAccountId]);
 
-  const handleTradeChange = (field: keyof typeof tradeForm, value: string | 'buy' | 'sell') => {
+  const handleTradeChange = (field: keyof typeof tradeForm, value: string) => {
     const isTimePart = ['openDate', 'openH', 'openM', 'openS'].includes(field);
     setTradeForm(prev => {
       const nextState = { ...prev, [field]: value };
       if (isTimePart && !closeTimeTouched) {
         const correspondingCloseField = field.replace('open', 'close') as keyof typeof tradeForm;
-        nextState[correspondingCloseField] = value;
+        (nextState as any)[correspondingCloseField] = value;
       }
       return nextState;
     });
     if (field.startsWith('close')) setCloseTimeTouched(true);
+  };
+  
+  const handleDeleteTicket = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!selectedAccountId || !ticketToDelete) return;
+    if (removeEntry(selectedAccountId, ticketToDelete)) {
+      setStatusMessage(`İşlem ${ticketToDelete} silindi.`);
+      setTicketToDelete('');
+    } else {
+      setStatusMessage(`İşlem ${ticketToDelete} bulunamadı.`);
+    }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -117,6 +127,13 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                 <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.server} onChange={e => setAccountForm({...accountForm, server: e.target.value})} placeholder="SUNUCU (BROKER)" />
                 <button onClick={() => updateAccountDetails(selectedAccountId!, accountForm)} className="w-full py-3 rounded-xl text-[13px] font-black bg-black text-white shadow-lg">BİLGİLERİ KAYDET</button>
               </div>
+              <div className="bg-red-50 rounded-2xl p-4 border border-red-100">
+                <h3 className="text-[12px] font-bold text-red-800 mb-3 flex items-center gap-2"><IoTrashOutline size={16} /> İŞLEM SİL</h3>
+                <form onSubmit={handleDeleteTicket} className="space-y-2">
+                  <input className="w-full rounded-xl bg-white border border-red-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={ticketToDelete} onChange={e => setTicketToDelete(sanitizeDigits(e.target.value))} placeholder="TICKET NUMARASI" />
+                  <button type="submit" disabled={!ticketToDelete} className={`w-full py-2.5 rounded-xl text-[11px] font-black transition-all ${ticketToDelete ? 'bg-red-600 text-white shadow-md' : 'bg-gray-200 text-gray-400'}`}>İŞLEMİ KALICI OLARAK SİL</button>
+                </form>
+              </div>
             </div>
             <div className="space-y-4">
               <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Yeni İşlem Ekle</h3>
@@ -133,8 +150,8 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                       <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.volume} onChange={e => handleTradeChange('volume', sanitizePositive(e.target.value))} placeholder="LOT" />
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      <button type="button" onClick={() => handleTradeChange('side', 'buy')} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
-                      <button type="button" onClick={() => handleTradeChange('side', 'sell')} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
+                      <button type="button" onClick={() => setTradeForm(prev => ({...prev, side: 'buy'}))} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
+                      <button type="button" onClick={() => setTradeForm(prev => ({...prev, side: 'sell'}))} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.openPrice} onChange={e => handleTradeChange('openPrice', sanitizePositive(e.target.value))} placeholder="Açılış Fiyatı" />
