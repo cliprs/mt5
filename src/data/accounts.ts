@@ -25,13 +25,14 @@ const withDefaultCommission = (history: HistoryDeal[]): HistoryDeal[] => {
   });
 };
 
+// Default values for new users or if storage is cleared
 export const defaultAccounts: AccountProfile[] = [
   {
     id: 'account-1',
-    name: 'ESMA OZUGUR',
-    broker: 'FxPro',
+    name: 'AD SOYAD', // Daha jenerik bir isimle başlatalım
+    broker: 'Pepperstone',
     accountNo: '514343063',
-    server: 'FxPro-MT5',
+    server: 'Pepperstone-MT5',
     history: withDefaultCommission([
       {
         id: '20250403',

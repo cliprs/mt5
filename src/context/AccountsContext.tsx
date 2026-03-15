@@ -2,10 +2,10 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
 
-const STORAGE_KEY = 'mt5Accounts';
-const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount';
+const STORAGE_KEY = 'mt5Accounts_v2'; // Key'i değiştirerek temiz bir başlangıç yapalım
+const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount_v2';
 const COMMISSION_PER_LOT = 7;
-const TICKET_SEQUENCE_KEY = 'mt5TicketSequence';
+const TICKET_SEQUENCE_KEY = 'mt5TicketSequence_v2';
 const DEFAULT_TICKET_BASE = 20250403;
 
 type EntryInput =
@@ -37,7 +37,6 @@ interface AccountsContextValue {
 
 const AccountsContext = createContext<AccountsContextValue | undefined>(undefined);
 
-// Robust date parsing for "YYYY.MM.DD HH:mm:ss"
 const parseMT5Date = (dateStr: string): Date | null => {
   if (!dateStr) return null;
   try {
@@ -53,15 +52,9 @@ const parseMT5Date = (dateStr: string): Date | null => {
 
 const normalizeDateString = (value: string) => {
   if (!value) return value;
-  // If already in MT5 format, leave it
-  if (/^\d{4}\.\d{2}\.\d{2}\s\d{2}:\d{2}:\d{2}$/.test(value)) {
-    return value;
-  }
-  
+  if (/^\d{4}\.\d{2}\.\d{2}\s\d{2}:\d{2}:\d{2}$/.test(value)) return value;
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) {
-    return value;
-  }
+  if (Number.isNaN(date.getTime())) return value;
   const pad = (num: number) => String(num).padStart(2, '0');
   return `${date.getFullYear()}.${pad(date.getMonth() + 1)}.${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 };
@@ -74,143 +67,21 @@ const sortDeals = (history: HistoryDeal[]) => {
   });
 };
 
-const randomTicketIncrement = () => Math.floor(Math.random() * 900) + 50;
-
-const extractNumericTicket = (rawId: string): number | null => {
-  if (!rawId) return null;
-  const match = rawId.match(/^(\d{5,})/);
-  if (!match) return null;
-  const value = Number(match[1]);
-  return Number.isNaN(value) ? null : value;
-};
-
-const normalizeTicketIds = (accounts: AccountProfile[]): { accounts: AccountProfile[]; lastTicket: number } => {
-  const used = new Set<number>();
-  let lastTicket = DEFAULT_TICKET_BASE;
-
-  const allocateTicket = (rawId: string) => {
-    const candidate = extractNumericTicket(rawId);
-    if (candidate && !used.has(candidate)) {
-      used.add(candidate);
-      if (candidate > lastTicket) {
-        lastTicket = candidate;
-      }
-      return String(candidate);
-    }
-    let generated = lastTicket;
-    do {
-      generated += randomTicketIncrement();
-    } while (used.has(generated));
-    used.add(generated);
-    lastTicket = generated;
-    return String(generated);
-  };
-
-  return {
-    accounts: accounts.map((account) => ({
-      ...account,
-      history: account.history.map((deal) => ({
-        ...deal,
-        id: allocateTicket(deal.id),
-      })),
-    })),
-    lastTicket,
-  };
-};
-
-const hydrateAccounts = (accounts: AccountProfile[]): AccountProfile[] =>
-  accounts.map((account) => ({
-    ...account,
-    history: sortDeals(
-      account.history.map((deal) => {
-        if (deal.type === 'balance') {
-          return deal;
-        }
-        return {
-          ...deal,
-          commission: deal.commission ?? Number((deal.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
-        };
-      }),
-    ),
-  }));
-
-const createHistoryDeal = (payload: EntryInput, ticketId: string): HistoryDeal => {
-  if (payload.kind === 'trade') {
-    const pointDifference = payload.side === 'buy'
-      ? payload.closePrice - payload.openPrice
-      : payload.openPrice - payload.closePrice;
-    const profit = pointDifference * payload.volume * 100;
-    const commission = Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1;
-    return {
-      id: ticketId,
-      symbol: payload.symbol || 'XAUUSD',
-      type: payload.side,
-      volume: payload.volume,
-      openTime: normalizeDateString(payload.openTime),
-      closeTime: normalizeDateString(payload.closeTime),
-      openPrice: payload.openPrice,
-      closePrice: payload.closePrice,
-      sl: 0,
-      tp: 0,
-      commission,
-      swap: 0,
-      profit: Number(profit.toFixed(2)),
-    };
-  }
-
-  const amount = payload.kind === 'deposit' ? Math.abs(payload.amount) : -Math.abs(payload.amount);
-  return {
-    id: ticketId,
-    symbol: payload.kind === 'deposit' ? 'Deposit' : 'Withdrawal',
-    type: 'balance',
-    volume: 0,
-    openTime: normalizeDateString(payload.timestamp),
-    closeTime: normalizeDateString(payload.timestamp),
-    openPrice: 0,
-    closePrice: 0,
-    sl: 0,
-    tp: 0,
-    commission: 0,
-    swap: 0,
-    profit: Number(amount.toFixed(2)),
-  };
-};
-
 export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const highestTicketRef = useRef<number>(DEFAULT_TICKET_BASE);
-
-  const initializeAccounts = () => {
+  const [accounts, setAccounts] = useState<AccountProfile[]>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    let baseAccounts: AccountProfile[] = defaultAccounts;
     if (stored) {
       try {
-        baseAccounts = JSON.parse(stored) as AccountProfile[];
-      } catch (error) {
-        console.error('Failed to parse accounts state, using defaults', error);
-        baseAccounts = defaultAccounts;
+        return JSON.parse(stored);
+      } catch (e) {
+        console.error('Parse error', e);
       }
     }
-    const hydrated = hydrateAccounts(baseAccounts);
-    const { accounts: normalizedAccounts, lastTicket } = normalizeTicketIds(hydrated);
-    highestTicketRef.current = Math.max(lastTicket, DEFAULT_TICKET_BASE);
-    return normalizedAccounts;
-  };
-
-  const [accounts, setAccounts] = useState<AccountProfile[]>(initializeAccounts);
-
-  const computeInitialTicketSequence = () => {
-    const storedValue = Number(localStorage.getItem(TICKET_SEQUENCE_KEY));
-    if (!Number.isNaN(storedValue) && storedValue > highestTicketRef.current) {
-      return storedValue;
-    }
-    return highestTicketRef.current;
-  };
-
-  const [ticketSeed, setTicketSeed] = useState<number>(computeInitialTicketSequence);
-  const ticketSequenceRef = useRef<number>(ticketSeed);
+    return defaultAccounts;
+  });
 
   const [selectedAccountId, setSelectedAccountId] = useState<string>(() => {
-    return localStorage.getItem(SELECTED_ACCOUNT_KEY) || defaultAccounts[0]?.id || '';
+    return localStorage.getItem(SELECTED_ACCOUNT_KEY) || accounts[0]?.id || '';
   });
 
   useEffect(() => {
@@ -218,104 +89,78 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [accounts]);
 
   useEffect(() => {
-    localStorage.setItem(TICKET_SEQUENCE_KEY, String(ticketSeed));
-  }, [ticketSeed]);
-
-  const generateTicketId = () => {
-    const baseValue = Math.max(ticketSequenceRef.current, highestTicketRef.current);
-    const nextValue = baseValue + randomTicketIncrement();
-    ticketSequenceRef.current = nextValue;
-    highestTicketRef.current = nextValue;
-    setTicketSeed(nextValue);
-    return String(nextValue);
-  };
-
-  useEffect(() => {
-    if (selectedAccountId) {
-      localStorage.setItem(SELECTED_ACCOUNT_KEY, selectedAccountId);
-    }
+    localStorage.setItem(SELECTED_ACCOUNT_KEY, selectedAccountId);
   }, [selectedAccountId]);
 
-  const selectAccount = (id: string) => {
-    setSelectedAccountId(id);
-  };
+  const selectAccount = (id: string) => setSelectedAccountId(id);
 
   const addEntry = (accountId: string, payload: EntryInput) => {
-    const nextTicketId = generateTicketId();
+    const ticketId = String(Date.now()); // Basit ticket üretimi
     setAccounts((prev) =>
-      prev.map((account) => {
-        if (account.id !== accountId) return account;
-        const newDeal = createHistoryDeal(payload, nextTicketId);
-        return {
-          ...account,
-          history: sortDeals([...account.history, newDeal]),
-        };
-      }),
+      prev.map((acc) => {
+        if (acc.id !== accountId) return acc;
+        
+        let newDeal: HistoryDeal;
+        if (payload.kind === 'trade') {
+          const pointDiff = payload.side === 'buy' ? payload.closePrice - payload.openPrice : payload.openPrice - payload.closePrice;
+          const profit = pointDiff * payload.volume * 100;
+          newDeal = {
+            id: ticketId,
+            symbol: payload.symbol,
+            type: payload.side,
+            volume: payload.volume,
+            openTime: normalizeDateString(payload.openTime),
+            closeTime: normalizeDateString(payload.closeTime),
+            openPrice: payload.openPrice,
+            closePrice: payload.closePrice,
+            sl: 0, tp: 0, swap: 0,
+            commission: Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
+            profit: Number(profit.toFixed(2))
+          };
+        } else {
+          newDeal = {
+            id: ticketId,
+            symbol: payload.kind === 'deposit' ? 'Deposit' : 'Withdrawal',
+            type: 'balance',
+            volume: 0,
+            openTime: normalizeDateString(payload.timestamp),
+            closeTime: normalizeDateString(payload.timestamp),
+            openPrice: 0, closePrice: 0, sl: 0, tp: 0, commission: 0, swap: 0,
+            profit: payload.kind === 'deposit' ? Math.abs(payload.amount) : -Math.abs(payload.amount)
+          };
+        }
+
+        return { ...acc, history: sortDeals([...acc.history, newDeal]) };
+      })
     );
   };
 
   const removeEntry = (accountId: string, ticketId: string) => {
-    let removed = false;
-    setAccounts((prev) =>
-      prev.map((account) => {
-        if (account.id !== accountId) return account;
-        const filteredHistory = account.history.filter((deal) => {
-          if (deal.id === ticketId) {
-            removed = true;
-            return false;
-          }
-          return true;
-        });
-        return filteredHistory.length === account.history.length
-          ? account
-          : {
-              ...account,
-              history: filteredHistory,
-            };
-      }),
-    );
-    return removed;
+    let found = false;
+    setAccounts((prev) => prev.map(acc => {
+      if (acc.id !== accountId) return acc;
+      const filtered = acc.history.filter(d => d.id !== ticketId);
+      if (filtered.length !== acc.history.length) found = true;
+      return { ...acc, history: filtered };
+    }));
+    return found;
   };
 
-  const updateAccountDetails = (
-    accountId: string,
-    payload: { name?: string; accountNo?: string; server?: string }
-  ) => {
-    setAccounts((prev) =>
-      prev.map((account) => {
-        if (account.id !== accountId) return account;
-        return {
-          ...account,
-          name: payload.name ?? account.name,
-          accountNo: payload.accountNo ?? account.accountNo,
-          server: payload.server ?? account.server,
-        };
-      }),
-    );
+  const updateAccountDetails = (id: string, data: any) => {
+    setAccounts(prev => prev.map(acc => acc.id === id ? { ...acc, ...data } : acc));
   };
 
-  const selectedAccount = useMemo(
-    () => accounts.find((acc) => acc.id === selectedAccountId) || null,
-    [accounts, selectedAccountId],
+  const selectedAccount = useMemo(() => accounts.find(a => a.id === selectedAccountId) || null, [accounts, selectedAccountId]);
+
+  return (
+    <AccountsContext.Provider value={{ accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails }}>
+      {children}
+    </AccountsContext.Provider>
   );
-
-  const value: AccountsContextValue = {
-    accounts,
-    selectedAccountId,
-    selectedAccount,
-    selectAccount,
-    addEntry,
-    removeEntry,
-    updateAccountDetails,
-  };
-
-  return <AccountsContext.Provider value={value}>{children}</AccountsContext.Provider>;
 };
 
 export const useAccounts = () => {
-  const context = useContext(AccountsContext);
-  if (!context) {
-    throw new Error('useAccounts must be used within AccountsProvider');
-  }
-  return context;
+  const c = useContext(AccountsContext);
+  if (!c) throw new Error('useAccounts error');
+  return c;
 };
