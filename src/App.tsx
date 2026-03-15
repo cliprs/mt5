@@ -5,6 +5,7 @@ import HistoryPage from './components/HistoryPage';
 import BottomNav from './components/BottomNav';
 import Sidebar from './components/Sidebar';
 import AccountManager from './components/AccountManager';
+import InstallPrompt from './components/InstallPrompt';
 import CustomCalendar from './components/CustomCalendar';
 import TradePage from './components/TradePage';
 import ChartPage from './components/ChartPage';
@@ -118,6 +119,7 @@ function App() {
         isOpen={isAccountManagerOpen}
         onClose={() => setIsAccountManagerOpen(false)}
       />
+      <InstallPrompt />
     </div>
   );
 }
