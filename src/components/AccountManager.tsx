@@ -1,16 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
-import { IoTrashOutline } from 'react-icons/io5';
 
 // Helper functions for splitting/joining date and time parts
-const splitDateTime = (dateTimeStr: string) => {
-  if (!dateTimeStr) return { date: '', h: '', m: '', s: '' };
-  const [datePart, timePart = '00:00:00'] = dateTimeStr.split(' ');
-  const [year, month, day] = datePart.split('.').map(part => part.padStart(2, '0'));
-  const [h, m, s] = timePart.split(':').map(part => part.padStart(2, '0'));
-  return { date: `${year}-${month}-${day}`, h, m, s };
-};
-
 const joinDateTime = (parts: { date: string; h: string; m: string; s: string }) => {
   if (!parts.date) return '';
   const [year, month, day] = parts.date.split('-');
@@ -43,21 +34,19 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const [tradeForm, setTradeForm] = useState(createTradeFormState);
   const [balanceForm, setBalanceForm] = useState(createBalanceFormState);
   const [accountForm, setAccountForm] = useState({ name: '', accountNo: '', server: '' });
-  const [ticketToDelete, setTicketToDelete] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
     setStatusMessage('');
     setTradeForm(createTradeFormState());
     setBalanceForm(createBalanceFormState());
-    setTicketToDelete('');
     setCloseTimeTouched(false);
     if (selectedAccount) {
       setAccountForm({ name: selectedAccount.name, accountNo: selectedAccount.accountNo, server: selectedAccount.server });
     }
   }, [isOpen, selectedAccountId]);
 
-  const handleTradeChange = (field: keyof typeof tradeForm, value: string) => {
+  const handleTradeChange = (field: keyof typeof tradeForm, value: string | 'buy' | 'sell') => {
     const isTimePart = ['openDate', 'openH', 'openM', 'openS'].includes(field);
     setTradeForm(prev => {
       const nextState = { ...prev, [field]: value };
@@ -142,6 +131,10 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                     <div className="grid grid-cols-2 gap-2">
                       <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.symbol} onChange={e => handleTradeChange('symbol', e.target.value.toUpperCase())} placeholder="XAUUSD" />
                       <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.volume} onChange={e => handleTradeChange('volume', sanitizePositive(e.target.value))} placeholder="LOT" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button type="button" onClick={() => handleTradeChange('side', 'buy')} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
+                      <button type="button" onClick={() => handleTradeChange('side', 'sell')} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.openPrice} onChange={e => handleTradeChange('openPrice', sanitizePositive(e.target.value))} placeholder="Açılış Fiyatı" />
