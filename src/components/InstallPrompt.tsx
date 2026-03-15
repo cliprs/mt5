@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IoCloseOutline, IoShareOutline, IoAddSharp } from 'react-icons/io5';
+import { IoCloseOutline, IoShareOutline } from 'react-icons/io5';
 
 const InstallPrompt: React.FC = () => {
   const [showPrompt, setShowPrompt] = useState(false);
