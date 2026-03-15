@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(express.static('dist'));
-app.get('/:all*', (_, res) => {
+app.get('/:path(.*)', (_, res) => {
   res.sendFile(join(process.cwd(), 'dist', 'index.html'));
 });
 
