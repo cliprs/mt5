@@ -11,8 +11,8 @@ export default defineConfig({
       injectRegister: 'auto',
       includeAssets: ['ikon.png', '**/*.svg'],
       manifest: {
-        name: 'MetaTrader 5 Web',
-        short_name: 'MT5 Web',
+        name: 'MetaTrader 5',
+        short_name: 'MetaTrader 5',
         description: 'MetaTrader 5 Mobile Web Clone',
         theme_color: '#ffffff',
         background_color: '#ffffff',
