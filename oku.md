@@ -1,214 +1,100 @@
-﻿Build ready to start ▶️
->> Cloning github.com/cliprs/mt5.git commit sha f5c40187f3d64c67768ab9bc714424795820ffb8 into /builder/workspace
-Initialized empty Git repository in /builder/workspace/.git/
-From https://github.com/cliprs/mt5
- * branch            f5c40187f3d64c67768ab9bc714424795820ffb8 -> FETCH_HEAD
-HEAD is now at f5c4018 fix: update express 5 catch-all route with regex to avoid PathError3
-Starting Docker daemon...
-Waiting for the Docker daemon to start...
-done
-Timer: Analyzer started at 2026-03-15T17:58:43Z
-Restoring data for SBOM from previous image
-Timer: Analyzer ran for 3.303748656s and ended at 2026-03-15T17:58:46Z
-Timer: Detector started at 2026-03-15T17:58:47Z
-======== Output: heroku/nodejs-corepack@3.6.5 ========
-
-- [1;36mDebug Info:[0m
-  - expected value at line 1 column 1
-
-[0;31m! Error parsing `[0;33m./package.json[0m[0;31m`[0m
-[0;31m![0m
-[0;31m! The Heroku Node.js Corepack reads from `[0;33m./package.json[0m[0;31m` to complete the build but the file isn't valid JSON.[0m
-[0;31m![0m
-[0;31m! Suggestions:[0m
-[0;31m! - Ensure the file follows the JSON format described at [1;4;36mhttps://www.json.org/[0m
-[0;31m![0m
-[0;31m! Use the debug information above to troubleshoot and retry your build.[0m
-
-
-err:  heroku/nodejs-corepack@3.6.5 (1)
-======== Output: heroku/nodejs-corepack@3.6.5 ========
-
-- [1;36mDebug Info:[0m
-  - expected value at line 1 column 1
-
-[0;31m! Error parsing `[0;33m./package.json[0m[0;31m`[0m
-[0;31m![0m
-[0;31m! The Heroku Node.js Corepack reads from `[0;33m./package.json[0m[0;31m` to complete the build but the file isn't valid JSON.[0m
-[0;31m![0m
-[0;31m! Suggestions:[0m
-[0;31m! - Ensure the file follows the JSON format described at [1;4;36mhttps://www.json.org/[0m
-[0;31m![0m
-[0;31m! Use the debug information above to troubleshoot and retry your build.[0m
-
-
-err:  heroku/nodejs-corepack@3.6.5 (1)
-======== Output: heroku/nodejs-corepack@3.6.5 ========
-
-- [1;36mDebug Info:[0m
-  - expected value at line 1 column 1
-
-[0;31m! Error parsing `[0;33m./package.json[0m[0;31m`[0m
-[0;31m![0m
-[0;31m! The Heroku Node.js Corepack reads from `[0;33m./package.json[0m[0;31m` to complete the build but the file isn't valid JSON.[0m
-[0;31m![0m
-[0;31m! Suggestions:[0m
-[0;31m! - Ensure the file follows the JSON format described at [1;4;36mhttps://www.json.org/[0m
-[0;31m![0m
-[0;31m! Use the debug information above to troubleshoot and retry your build.[0m
-
-
-======== Output: heroku/nodejs-npm-engine@3.6.5 ========
-
-- [1;36mDebug Info:[0m
-  - expected value at line 1 column 1
-
-[0;31m! Error parsing `[0;33m./package.json[0m[0;31m`[0m
-[0;31m![0m
-[0;31m! The Heroku Node.js npm Engine reads from `[0;33m./package.json[0m[0;31m` to complete the build but the file isn't valid JSON.[0m
-[0;31m![0m
-[0;31m! Suggestions:[0m
-[0;31m! - Ensure the file follows the JSON format described at [1;4;36mhttps://www.json.org/[0m
-[0;31m![0m
-[0;31m! Use the debug information above to troubleshoot and retry your build.[0m
-
-
-err:  heroku/nodejs-corepack@3.6.5 (1)
-err:  heroku/nodejs-npm-engine@3.6.5 (1)
-2 of 3 buildpacks participating
-koyeb/build-command-nodejs 0.1.0
+﻿koyeb/build-command-nodejs 0.1.0
 heroku/nodejs-engine       3.6.5
-Timer: Detector ran for 112.536262ms and ended at 2026-03-15T17:58:47Z
-Timer: Restorer started at 2026-03-15T17:58:47Z
+heroku/nodejs-npm-install  3.6.5
+Timer: Detector ran for 139.78179ms and ended at 2026-03-15T21:00:02Z
+Timer: Restorer started at 2026-03-15T21:00:03Z
 Restoring metadata for "heroku/nodejs-engine:dist" from app image
 Restoring metadata for "heroku/nodejs-engine:web_env" from app image
+Restoring metadata for "heroku/nodejs-npm-install:npm_runtime_config" from app image
+Restoring metadata for "heroku/nodejs-npm-install:npm_cache" from cache
 Restoring data for "heroku/nodejs-engine:dist" from cache
+Restoring data for "heroku/nodejs-npm-install:npm_cache" from cache
+Timer: Restorer ran for 3.526172852s and ended at 2026-03-15T21:00:06Z
+Timer: Builder started at 2026-03-15T21:00:08Z
+[INFO] Found custom build command: 'npm install && npm run build'
+
+[1;35m## Heroku Node.js Engine[0m
+
+- Checking Node.js version
+  - Node.js version not specified, using `[0;33m22.x[0m`
+  - Resolved Node.js version: `[0;33m22.15.1[0m`
+- Installing Node.js distribution
+  - Reusing Node.js 22.15.1 (linux-amd64)
+- Done (finished in < 0.1s)
+
+[1;35m## Heroku Node.js npm Install[0m
+
+- Installing node modules
+  - Using npm version `[0;33m10.9.2[0m`
+  - Restoring npm cache
+  - Configuring npm cache directory
+  - Running `[0;33m[1;36mnpm ci "--production=false"[0m`
+
+      npm warn config production Use `--omit=dev` instead.
+      npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+      npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+      npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+      npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+      npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+      npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+      npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+      npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+      added 685 packages, and audited 686 packages in 42s
+
+      152 packages are looking for funding
+        run `npm fund` for details
+
+      17 vulnerabilities (4 moderate, 13 high)
+
+      To address issues that do not require attention, run:
+        npm audit fix
+
+      To address all issues (including breaking changes), run:
+        npm audit fix --force
+
+      Run `npm audit` for details.
+
+  - Done (42.0s)
+- Running scripts
+  - Running `[0;33m[1;36mnpm run build[0m`
 
 
-Instance created. Preparing to start...
+      > mt5-web@0.0.3 build
+      > tsc && vite build
 
-added 71 packages, and audited 72 packages in 4s
+      src/components/AccountManager.tsx(3,29): error TS2724: '"react-icons/io5"' has no exported member named 'IoUploadOutline'. Did you mean 'IoPlayOutline'?
+      src/components/AccountManager.tsx(14,7): error TS6133: 'sanitizeDigits' is declared but its value is never read.
+      src/components/AccountManager.tsx(58,5): error TS6133: 'removeEntry' is declared but its value is never read.
+      src/components/AccountManager.tsx(65,10): error TS6133: 'closeTimeTouched' is declared but its value is never read.
+      src/components/AccountManager.tsx(74,10): error TS6133: 'ticketToDelete' is declared but its value is never read.
 
-npm notice
-npm notice New major version of npm available! 10.9.2 -> 11.11.1
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
-npm notice To update run: npm install -g npm@11.11.1
-22 packages are looking for funding
-npm notice
-  run `npm fund` for details
+  - Done (1.6s)
 
-1 low severity vulnerability
+- [1;36mDebug Info:[0m
+  - Command failed `npm run build`
+    exit status: 2
+    stdout: <see above>
+    stderr: <see above>
 
-To address all issues, run:
-  npm audit fix
+[0;31m! Failed to execute build script[0m
+[0;31m![0m
+[0;31m! The Heroku Node.js npm Install buildpack allows customization of the build process by executing the following scripts if they are defined in `[0;33mpackage.json[0m[0;31m`:[0m
+[0;31m! - `[0;33mheroku-prebuild[0m[0;31m` [0m
+[0;31m! - `[0;33mheroku-build[0m[0;31m` or `[0;33mbuild[0m[0;31m` [0m
+[0;31m! - `[0;33mheroku-postbuild[0m[0;31m`[0m
+[0;31m![0m
+[0;31m! An unexpected error occurred while executing `[0;33mnpm run build[0m[0;31m`. See the log output above for more information.[0m
+[0;31m![0m
+[0;31m! Suggestions:[0m
+[0;31m! - Ensure that this command runs locally without error.[0m
+[0;31m![0m
+[0;31m! Use the debug information above to troubleshoot and retry your build.[0m
+[0;31m![0m
+[0;31m! If the issue persists and you think you found a bug in the buildpack, reproduce the issue locally with a minimal example. Open an issue in the buildpack's GitHub repository and include the details here:[0m
+[0;31m! [1;4;36mhttps://github.com/heroku/buildpacks-nodejs/issues[0m
 
-Run `npm audit` for details.
-/workspace/node_modules/path-to-regexp/dist/index.js:96
-            throw new PathError(`Missing parameter name at index ${index}`, str);
-                  ^
 
-> mt5-web@0.0.3 start
-> node server.js
-
-
-PathError [TypeError]: Missing parameter name at index 9: /:path(.*); visit https://git.new/pathToRegexpError for info
-    at name (/workspace/node_modules/path-to-regexp/dist/index.js:96:19)
-    at parse (/workspace/node_modules/path-to-regexp/dist/index.js:113:68)
-    at pathToRegexp (/workspace/node_modules/path-to-regexp/dist/index.js:267:58)
-    at Object.match (/workspace/node_modules/path-to-regexp/dist/index.js:237:30)
-    at matcher (/workspace/node_modules/router/lib/layer.js:86:23)
-    at new Layer (/workspace/node_modules/router/lib/layer.js:93:62)
-    at Function.route (/workspace/node_modules/router/index.js:428:17)
-    at Function.route (/workspace/node_modules/express/lib/application.js:257:22)
-    at app.<computed> [as get] (/workspace/node_modules/express/lib/application.js:478:22)
-    at file:///workspace/server.js:8:5 {
-  originalPath: '/:path(.*)'
-}
-
-Node.js v22.15.1
-Instance is starting... Waiting for health checks to pass.
-Application exited with code 1. This usually indicates an application failure. Check that the command used to launch your application is correct.
-
-added 71 packages, and audited 72 packages in 3s
-
-22 packages are looking for funding
-  run `npm fund` for details
-
-1 low severity vulnerability
-
-To address all issues, run:
-  npm audit fix
-
-Run `npm audit` for details.
-npm notice
-npm notice New major version of npm available! 10.9.2 -> 11.11.1
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
-npm notice To update run: npm install -g npm@11.11.1
-npm notice
-
-> mt5-web@0.0.3 start
-> node server.js
-
-/workspace/node_modules/path-to-regexp/dist/index.js:96
-            throw new PathError(`Missing parameter name at index ${index}`, str);
-                  ^
-
-PathError [TypeError]: Missing parameter name at index 9: /:path(.*); visit https://git.new/pathToRegexpError for info
-    at name (/workspace/node_modules/path-to-regexp/dist/index.js:96:19)
-    at parse (/workspace/node_modules/path-to-regexp/dist/index.js:113:68)
-    at pathToRegexp (/workspace/node_modules/path-to-regexp/dist/index.js:267:58)
-    at Object.match (/workspace/node_modules/path-to-regexp/dist/index.js:237:30)
-    at matcher (/workspace/node_modules/router/lib/layer.js:86:23)
-    at new Layer (/workspace/node_modules/router/lib/layer.js:93:62)
-    at Function.route (/workspace/node_modules/router/index.js:428:17)
-    at Function.route (/workspace/node_modules/express/lib/application.js:257:22)
-    at app.<computed> [as get] (/workspace/node_modules/express/lib/application.js:478:22)
-    at file:///workspace/server.js:8:5 {
-  originalPath: '/:path(.*)'
-}
-
-Node.js v22.15.1
-Application exited with code 1. This usually indicates an application failure. Check that the command used to launch your application is correct.
-Instance stopped.
-Instance created. Preparing to start...
-Instance is starting... Waiting for health checks to pass.
-
-added 71 packages, and audited 72 packages in 2s
-
-22 packages are looking for funding
-  run `npm fund` for details
-
-1 low severity vulnerability
-
-To address all issues, run:
-  npm audit fix
-
-Run `npm audit` for details.
-
-> mt5-web@0.0.3 start
-> node server.js
-
-npm notice
-npm notice New major version of npm available! 10.9.2 -> 11.11.1
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
-npm notice To update run: npm install -g npm@11.11.1
-npm notice
-/workspace/node_modules/path-to-regexp/dist/index.js:96
-            throw new PathError(`Missing parameter name at index ${index}`, str);
-                  ^
-
-PathError [TypeError]: Missing parameter name at index 9: /:path(.*); visit https://git.new/pathToRegexpError for info
-    at name (/workspace/node_modules/path-to-regexp/dist/index.js:96:19)
-    at parse (/workspace/node_modules/path-to-regexp/dist/index.js:113:68)
-    at pathToRegexp (/workspace/node_modules/path-to-regexp/dist/index.js:267:58)
-    at Object.match (/workspace/node_modules/path-to-regexp/dist/index.js:237:30)
-    at matcher (/workspace/node_modules/router/lib/layer.js:86:23)
-    at new Layer (/workspace/node_modules/router/lib/layer.js:93:62)
-    at Function.route (/workspace/node_modules/router/index.js:428:17)
-    at Function.route (/workspace/node_modules/express/lib/application.js:257:22)
-    at app.<computed> [as get] (/workspace/node_modules/express/lib/application.js:478:22)
-    at file:///workspace/server.js:8:5 {
-  originalPath: '/:path(.*)'
-}
-
-Node.js v22.15.1
+Timer: Builder ran for 44.004173937s and ended at 2026-03-15T21:00:52Z
+[31;1mERROR: [0mfailed to build: exit status 1
+Build failed ❌
