@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
       includeAssets: ['ikon.png', '**/*.svg'],
       manifest: {
         name: 'MetaTrader 5 Web',
@@ -35,6 +36,18 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         cleanupOutdatedCaches: true,
+        // Önbelleği agresif bir şekilde temizle ve yenisini al
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === 'document',
+            handler: 'NetworkFirst', // HTML dosyası için önce internete bak
+            options: {
+              cacheName: 'html-cache',
+            },
+          },
+        ],
       }
     })
   ],
