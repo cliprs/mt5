@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .filter-mt5-blue {
+    filter: invert(22%) sepia(84%) saturate(2714%) hue-rotate(204deg) brightness(93%) contrast(106%);
+  }
+}
+
+body {
+
+  background-color: #ffffff;
+
+  color: #000000;
+
+  font-weight: 400;
+
+  letter-spacing: -0.015em;
+
+  -webkit-user-select: none;
+
+  -moz-user-select: none;
+
+  -ms-user-select: none;
+
+  user-select: none;
+
+  -webkit-touch-callout: none;
+
+}
