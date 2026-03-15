@@ -1,9 +1,6 @@
 import React from 'react';
-import { useAccounts } from '../context/AccountsContext';
 
 const ChartPage: React.FC = () => {
-  const { selectedAccount } = useAccounts();
-
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] bg-white relative overflow-hidden">
       {/* Chart Overlay Info */}
