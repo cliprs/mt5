@@ -1,12 +1,10 @@
-import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
 
-const STORAGE_KEY = 'mt5Accounts_v2'; // Key'i değiştirerek temiz bir başlangıç yapalım
+const STORAGE_KEY = 'mt5Accounts_v2';
 const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount_v2';
 const COMMISSION_PER_LOT = 7;
-const TICKET_SEQUENCE_KEY = 'mt5TicketSequence_v2';
-const DEFAULT_TICKET_BASE = 20250403;
 
 type EntryInput =
   | {
@@ -81,7 +79,9 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   });
 
   const [selectedAccountId, setSelectedAccountId] = useState<string>(() => {
-    return localStorage.getItem(SELECTED_ACCOUNT_KEY) || accounts[0]?.id || '';
+    const saved = localStorage.getItem(SELECTED_ACCOUNT_KEY);
+    if (saved && accounts.some(acc => acc.id === saved)) return saved;
+    return accounts[0]?.id || '';
   });
 
   useEffect(() => {
@@ -89,13 +89,15 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [accounts]);
 
   useEffect(() => {
-    localStorage.setItem(SELECTED_ACCOUNT_KEY, selectedAccountId);
+    if (selectedAccountId) {
+      localStorage.setItem(SELECTED_ACCOUNT_KEY, selectedAccountId);
+    }
   }, [selectedAccountId]);
 
   const selectAccount = (id: string) => setSelectedAccountId(id);
 
   const addEntry = (accountId: string, payload: EntryInput) => {
-    const ticketId = String(Date.now()); // Basit ticket üretimi
+    const ticketId = String(Date.now());
     setAccounts((prev) =>
       prev.map((acc) => {
         if (acc.id !== accountId) return acc;
@@ -152,8 +154,18 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const selectedAccount = useMemo(() => accounts.find(a => a.id === selectedAccountId) || null, [accounts, selectedAccountId]);
 
+  const value: AccountsContextValue = {
+    accounts,
+    selectedAccountId,
+    selectedAccount,
+    selectAccount,
+    addEntry,
+    removeEntry,
+    updateAccountDetails,
+  };
+
   return (
-    <AccountsContext.Provider value={{ accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails }}>
+    <AccountsContext.Provider value={value}>
       {children}
     </AccountsContext.Provider>
   );
