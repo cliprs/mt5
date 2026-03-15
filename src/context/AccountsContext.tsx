@@ -3,7 +3,7 @@ import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
 import { supabase } from '../lib/supabase';
 
-const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount_v3';
+const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount_final'; // Anahtarı tekrar güncelleyerek tertemiz bir sayfa açıyoruz
 const COMMISSION_PER_LOT = 7;
 
 type EntryInput =
@@ -73,16 +73,26 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const loadData = async () => {
       try {
+        console.log('Supabase verisi yükleniyor...');
         const { data, error } = await supabase
           .from('app_settings')
           .select('data')
           .eq('id', 'mt5_accounts')
           .single();
 
-        if (error) throw error;
-
-        if (data && Array.isArray(data.data) && data.data.length > 0) {
-          setAccounts(data.data);
+        if (error) {
+            console.log('Supabase verisi bulunamadı veya tablo henüz hazır değil, varsayılanlar kullanılacak.');
+        } else if (data && Array.isArray(data.data) && data.data.length > 0) {
+          // Eski GOLD verilerini XAUUSD'ye dönüştürerek yükle
+          const sanitizedData = data.data.map((acc: AccountProfile) => ({
+            ...acc,
+            history: acc.history.map(deal => ({
+                ...deal,
+                symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
+            }))
+          }));
+          setAccounts(sanitizedData);
+          console.log('Supabase verisi başarıyla yüklendi.');
         }
       } catch (e) {
         console.error('Veri çekme hatası (Supabase):', e);
@@ -135,18 +145,28 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           const pointDiff = payload.side === 'buy' ? payload.closePrice - payload.openPrice : payload.openPrice - payload.closePrice;
           const profit = pointDiff * payload.volume * 100;
           newDeal = {
-            id: ticketId, symbol: payload.symbol, type: payload.side, volume: payload.volume,
-            openTime: normalizeDateString(payload.openTime), closeTime: normalizeDateString(payload.closeTime),
-            openPrice: payload.openPrice, closePrice: payload.closePrice,
-            sl: 0, tp: 0, swap: 0, commission: Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
+            id: ticketId, 
+            symbol: payload.symbol === 'GOLD' ? 'XAUUSD' : payload.symbol, 
+            type: payload.side, 
+            volume: payload.volume,
+            openTime: normalizeDateString(payload.openTime), 
+            closeTime: normalizeDateString(payload.closeTime),
+            openPrice: payload.openPrice, 
+            closePrice: payload.closePrice,
+            sl: 0, tp: 0, swap: 0, 
+            commission: Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
             profit: Number(profit.toFixed(2))
           };
         } else {
           newDeal = {
-            id: ticketId, symbol: payload.kind === 'deposit' ? 'Deposit' : 'Withdrawal',
-            type: 'balance', volume: 0, openTime: normalizeDateString(payload.timestamp),
-            closeTime: normalizeDateString(payload.timestamp), openPrice: 0, closePrice: 0,
-            sl: 0, tp: 0, commission: 0, swap: 0, profit: payload.kind === 'deposit' ? Math.abs(payload.amount) : -Math.abs(payload.amount)
+            id: ticketId, 
+            symbol: payload.kind === 'deposit' ? 'Deposit' : 'Withdrawal',
+            type: 'balance', volume: 0, 
+            openTime: normalizeDateString(payload.timestamp),
+            closeTime: normalizeDateString(payload.timestamp), 
+            openPrice: 0, closePrice: 0,
+            sl: 0, tp: 0, commission: 0, swap: 0, 
+            profit: payload.kind === 'deposit' ? Math.abs(payload.amount) : -Math.abs(payload.amount)
           };
         }
         return { ...acc, history: sortDeals([...acc.history, newDeal]) };
