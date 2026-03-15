@@ -244,14 +244,33 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
 
                 {entryType === 'trade' ? (
                   <>
-                    <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.symbol} onChange={(e) => setTradeForm({ ...tradeForm, symbol: e.target.value.toUpperCase() })} placeholder="XAUUSD" />
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none"
+                        value={tradeForm.symbol}
+                        onChange={(e) => setTradeForm({ ...tradeForm, symbol: e.target.value.toUpperCase() })}
+                        placeholder="XAUUSD"
+                      />
+                      <input 
+                        className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" 
+                        value={tradeForm.volume} 
+                        onChange={(e) => setTradeForm({...tradeForm, volume: sanitizePositive(e.target.value)})} 
+                        placeholder="LOT" 
+                      />
+                    </div>
                     <div className="flex gap-2">
                       <button type="button" onClick={() => setTradeForm({...tradeForm, side: 'buy'})} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
                       <button type="button" onClick={() => setTradeForm({...tradeForm, side: 'sell'})} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.volume} onChange={(e) => setTradeForm({...tradeForm, volume: sanitizePositive(e.target.value)})} placeholder="LOT" />
-                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.openPrice} onChange={(e) => setTradeForm({...tradeForm, openPrice: sanitizePositive(e.target.value)})} placeholder="AÇILIŞ FİYATI" />
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Açılış Fiyatı</span>
+                        <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.openPrice} onChange={(e) => setTradeForm({...tradeForm, openPrice: sanitizePositive(e.target.value)})} placeholder="0.00" />
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Kapanış Fiyatı</span>
+                        <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.closePrice} onChange={(e) => setTradeForm({...tradeForm, closePrice: sanitizePositive(e.target.value)})} placeholder="0.00" />
+                      </div>
                     </div>
                     <div className="space-y-1">
                       <span className="text-[10px] font-bold text-gray-400 ml-2">AÇILIŞ ZAMANI</span>
@@ -261,7 +280,6 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                       <span className="text-[10px] font-bold text-gray-400 ml-2">KAPANIŞ ZAMANI</span>
                       <input type="datetime-local" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(tradeForm.closeTime)} onChange={(e) => setTradeForm({...tradeForm, closeTime: fromDateTimeLocal(e.target.value)})} />
                     </div>
-                    <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.closePrice} onChange={(e) => setTradeForm({...tradeForm, closePrice: sanitizePositive(e.target.value)})} placeholder="KAPANIŞ FİYATI" />
                   </>
                 ) : (
                   <>
