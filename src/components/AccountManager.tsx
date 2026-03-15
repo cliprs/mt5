@@ -19,9 +19,9 @@ const toDateTimeLocal = (value: string) => {
   if (!value) return '';
   const [datePart, timePart = ''] = value.split(' ');
   const [year = '0000', month = '00', day = '00'] = (datePart?.split('.') ?? []);
-  const [hour = '00', minute = '00'] = (timePart ? timePart.split(':') : []);
+  const [hour = '00', minute = '00', second = '00'] = (timePart ? timePart.split(':') : []);
   if (year === '0000' || year === '') return '';
-  return `${year}-${padTimePart(month)}-${padTimePart(day)}T${padTimePart(hour)}:${padTimePart(minute)}`;
+  return `${year}-${padTimePart(month)}-${padTimePart(day)}T${padTimePart(hour)}:${padTimePart(minute)}:${padTimePart(second)}`;
 };
 
 const fromDateTimeLocal = (value: string) => {
@@ -29,8 +29,8 @@ const fromDateTimeLocal = (value: string) => {
   const [datePart, timePart = ''] = value.split('T');
   if (!datePart) return '';
   const [year = '0000', month = '00', day = '00'] = datePart.split('-');
-  const [hour = '00', minute = '00'] = (timePart ? timePart.split(':') : []);
-  return `${year}.${padTimePart(month)}.${padTimePart(day)} ${padTimePart(hour)}:${padTimePart(minute)}:00`;
+  const [hour = '00', minute = '00', second = '00'] = (timePart ? timePart.split(':') : []);
+  return `${year}.${padTimePart(month)}.${padTimePart(day)} ${padTimePart(hour)}:${padTimePart(minute)}:${padTimePart(second)}`;
 };
 
 const createTradeFormState = () => ({
@@ -61,6 +61,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
 
   const [entryType, setEntryType] = useState<EntryType>('trade');
   const [statusMessage, setStatusMessage] = useState('');
+  const [closeTimeTouched, setCloseTimeTouched] = useState(false);
   const [tradeForm, setTradeForm] = useState(() => createTradeFormState());
   const [balanceForm, setBalanceForm] = useState(() => createBalanceFormState());
   const [accountForm, setAccountForm] = useState({
@@ -77,6 +78,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     setTradeForm(createTradeFormState());
     setBalanceForm(createBalanceFormState());
     setTicketToDelete('');
+    setCloseTimeTouched(false);
     if (selectedAccount) {
       setAccountForm({
         name: selectedAccount.name,
@@ -137,6 +139,24 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleTradeChange = (field: keyof typeof tradeForm, value: string) => {
+    setTradeForm((prev) => {
+      const numericFields: (keyof typeof prev)[] = ['volume', 'openPrice', 'closePrice'];
+      const sanitizedValue = numericFields.includes(field) ? sanitizePositive(value) : value;
+      const nextState = { ...prev, [field]: sanitizedValue };
+      
+      // Auto-sync openTime to closeTime if closeTime hasn't been touched
+      if (field === 'openTime' && !closeTimeTouched) {
+        nextState.closeTime = sanitizedValue;
+      }
+      return nextState;
+    });
+    
+    if (field === 'closeTime') {
+      setCloseTimeTouched(true);
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId) return;
@@ -172,6 +192,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
       }
       setTradeForm(createTradeFormState());
       setBalanceForm(createBalanceFormState());
+      setCloseTimeTouched(false);
     } catch (error) {
       setStatusMessage('Hata oluştu.');
     }
@@ -248,45 +269,45 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                       <input
                         className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none"
                         value={tradeForm.symbol}
-                        onChange={(e) => setTradeForm({ ...tradeForm, symbol: e.target.value.toUpperCase() })}
+                        onChange={(e) => handleTradeChange('symbol', e.target.value.toUpperCase())}
                         placeholder="XAUUSD"
                       />
                       <input 
                         className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" 
                         value={tradeForm.volume} 
-                        onChange={(e) => setTradeForm({...tradeForm, volume: sanitizePositive(e.target.value)})} 
+                        onChange={(e) => handleTradeChange('volume', e.target.value)} 
                         placeholder="LOT" 
                       />
                     </div>
                     <div className="flex gap-2">
-                      <button type="button" onClick={() => setTradeForm({...tradeForm, side: 'buy'})} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
-                      <button type="button" onClick={() => setTradeForm({...tradeForm, side: 'sell'})} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
+                      <button type="button" onClick={() => handleTradeChange('side', 'buy')} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
+                      <button type="button" onClick={() => handleTradeChange('side', 'sell')} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <div className="space-y-1">
                         <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Açılış Fiyatı</span>
-                        <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.openPrice} onChange={(e) => setTradeForm({...tradeForm, openPrice: sanitizePositive(e.target.value)})} placeholder="0.00" />
+                        <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.openPrice} onChange={(e) => handleTradeChange('openPrice', e.target.value)} placeholder="0.00" />
                       </div>
                       <div className="space-y-1">
                         <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Kapanış Fiyatı</span>
-                        <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.closePrice} onChange={(e) => setTradeForm({...tradeForm, closePrice: sanitizePositive(e.target.value)})} placeholder="0.00" />
+                        <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.closePrice} onChange={(e) => handleTradeChange('closePrice', e.target.value)} placeholder="0.00" />
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold text-gray-400 ml-2">AÇILIŞ ZAMANI</span>
-                      <input type="datetime-local" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(tradeForm.openTime)} onChange={(e) => setTradeForm({...tradeForm, openTime: fromDateTimeLocal(e.target.value)})} />
+                      <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Açılış Zamanı (Sn Ekli)</span>
+                      <input type="datetime-local" step="1" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(tradeForm.openTime)} onChange={(e) => handleTradeChange('openTime', fromDateTimeLocal(e.target.value))} />
                     </div>
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold text-gray-400 ml-2">KAPANIŞ ZAMANI</span>
-                      <input type="datetime-local" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(tradeForm.closeTime)} onChange={(e) => setTradeForm({...tradeForm, closeTime: fromDateTimeLocal(e.target.value)})} />
+                      <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Kapanış Zamanı (Sn Ekli)</span>
+                      <input type="datetime-local" step="1" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(tradeForm.closeTime)} onChange={(e) => handleTradeChange('closeTime', fromDateTimeLocal(e.target.value))} />
                     </div>
                   </>
                 ) : (
                   <>
                     <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={balanceForm.amount} onChange={(e) => setBalanceForm({...balanceForm, amount: sanitizePositive(e.target.value)})} placeholder="TUTAR ($)" />
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold text-gray-400 ml-2">İŞLEM ZAMANI</span>
-                      <input type="datetime-local" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(balanceForm.timestamp)} onChange={(e) => setBalanceForm({...balanceForm, timestamp: fromDateTimeLocal(e.target.value)})} />
+                      <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">İŞLEM ZAMANI (Sn Ekli)</span>
+                      <input type="datetime-local" step="1" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold outline-none" value={toDateTimeLocal(balanceForm.timestamp)} onChange={(e) => setBalanceForm({...balanceForm, timestamp: fromDateTimeLocal(e.target.value)})} />
                     </div>
                   </>
                 )}
