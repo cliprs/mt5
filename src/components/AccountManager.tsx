@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
 
 interface AccountManagerProps {
@@ -19,6 +19,7 @@ const toDateTimeLocal = (value: string) => {
   const [datePart, timePart = ''] = value.split(' ');
   const [year = '0000', month = '00', day = '00'] = (datePart?.split('.') ?? []);
   const [hour = '00', minute = '00'] = (timePart ? timePart.split(':') : []);
+  if (year === '0000' || year === '') return '';
   return `${year}-${padTimePart(month)}-${padTimePart(day)}T${padTimePart(hour)}:${padTimePart(minute)}`;
 };
 
@@ -31,18 +32,18 @@ const fromDateTimeLocal = (value: string) => {
   return `${year}.${padTimePart(month)}.${padTimePart(day)} ${padTimePart(hour)}:${padTimePart(minute)}:00`;
 };
 
-const createTradeFormState = (lastClose?: string) => ({
+const createTradeFormState = () => ({
   symbol: 'GOLD',
   side: 'sell' as TradeSide,
   volume: '',
-  openTime: lastClose ?? '',
-  closeTime: lastClose ?? '',
+  openTime: '',
+  closeTime: '',
   openPrice: '',
   closePrice: '',
 });
 
-const createBalanceFormState = (lastClose?: string) => ({
-  timestamp: lastClose ?? '',
+const createBalanceFormState = () => ({
+  timestamp: '',
   amount: '',
 });
 
@@ -70,13 +71,13 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
 
   const [ticketToDelete, setTicketToDelete] = useState('');
 
+  // Initial reset and account change reset
   useEffect(() => {
     if (!isOpen) return;
-    const lastClose = selectedAccount?.history[selectedAccount.history.length - 1]?.closeTime;
     setStatusMessage('');
     setCloseTimeTouched(false);
-    setTradeForm(createTradeFormState(lastClose));
-    setBalanceForm(createBalanceFormState(lastClose));
+    setTradeForm(createTradeFormState());
+    setBalanceForm(createBalanceFormState());
     setTicketToDelete('');
     if (selectedAccount) {
       setAccountForm({
@@ -85,7 +86,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
         server: selectedAccount.server,
       });
     }
-  }, [isOpen, selectedAccount]);
+  }, [isOpen, selectedAccountId]); // Only reset when opening or switching account ID
 
   const accountDetailsDirty = useMemo(() => {
     if (!selectedAccount) return false;
@@ -123,11 +124,10 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     setStatusMessage('Hesap bilgileri güncellendi.');
   };
 
-  const resetForms = () => {
-    const lastClose = selectedAccount?.history[selectedAccount.history.length - 1]?.closeTime;
+  const resetEntryForms = () => {
     setCloseTimeTouched(false);
-    setTradeForm(createTradeFormState(lastClose));
-    setBalanceForm(createBalanceFormState(lastClose));
+    setTradeForm(createTradeFormState());
+    setBalanceForm(createBalanceFormState());
   };
 
   const handleTradeChange = (field: keyof typeof tradeForm, value: string) => {
@@ -178,6 +178,10 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
 
     try {
       if (entryType === 'trade') {
+        if (!tradeForm.volume || !tradeForm.openTime || !tradeForm.closeTime) {
+            setStatusMessage('Lütfen tüm zorunlu alanları (Lot, Zaman) doldurun.');
+            return;
+        }
         addEntry(selectedAccountId, {
           kind: 'trade',
           symbol: tradeForm.symbol || 'GOLD',
@@ -190,6 +194,10 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
         });
         setStatusMessage('İşlem başarıyla eklendi.');
       } else {
+        if (!balanceForm.amount || !balanceForm.timestamp) {
+            setStatusMessage('Lütfen Tutar ve Zaman alanlarını doldurun.');
+            return;
+        }
         addEntry(selectedAccountId, {
           kind: entryType,
           amount: Number(balanceForm.amount || '0'),
@@ -197,7 +205,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
         });
         setStatusMessage(entryType === 'deposit' ? 'Deposit eklendi.' : 'Withdrawal eklendi.');
       }
-      resetForms();
+      resetEntryForms();
     } catch (error) {
       console.error(error);
       setStatusMessage('Kayıt eklenirken bir hata oluştu.');
@@ -237,7 +245,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                     }`}
                   >
                     <div className="text-sm font-semibold text-black">{account.name}</div>
-                    <div className="text-xs text-gray-500">{account.accountNo} â€¢ {account.server}</div>
+                    <div className="text-xs text-gray-500">{account.accountNo} • {account.server}</div>
                   </button>
                 ))}
               </div>
@@ -317,14 +325,13 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                 <p className="text-sm text-gray-500">Bir işlem silebilmek için önce hesap seçin.</p>
               )}
             </div>
-
           </div>
 
           <div className="border rounded-xl p-4">
             <h3 className="text-sm font-semibold text-gray-600 mb-2">Yeni Kayıt</h3>
             {selectedAccount && (
               <p className="text-xs text-gray-500 mb-3">
-                {selectedAccount.name} â€¢ {selectedAccount.accountNo}
+                {selectedAccount.name} • {selectedAccount.accountNo}
               </p>
             )}
             <form className="space-y-3" onSubmit={handleSubmit}>
@@ -399,25 +406,23 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                   <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                     <label className="text-xs font-semibold text-gray-500">
                       Açılış Zamanı
-                                            <input
+                      <input
                         type="datetime-local"
                         className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
                         value={toDateTimeLocal(tradeForm.openTime)}
                         onChange={(event) => handleTradeChange('openTime', fromDateTimeLocal(event.target.value))}
                         step="60"
                       />
-
                     </label>
                     <label className="text-xs font-semibold text-gray-500">
                       Kapanış Zamanı
-                                            <input
+                      <input
                         type="datetime-local"
                         className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
                         value={toDateTimeLocal(tradeForm.closeTime)}
                         onChange={(event) => handleTradeChange('closeTime', fromDateTimeLocal(event.target.value))}
                         step="60"
                       />
-
                     </label>
                   </div>
                   <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -447,14 +452,13 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                 <div className="space-y-3">
                   <label className="block text-xs font-semibold text-gray-500">
                     Tarih / Saat
-                                          <input
-                        type="datetime-local"
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={toDateTimeLocal(balanceForm.timestamp)}
-                        onChange={(event) => handleBalanceChange('timestamp', fromDateTimeLocal(event.target.value))}
-                        step="60"
-                      />
-
+                    <input
+                      type="datetime-local"
+                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
+                      value={toDateTimeLocal(balanceForm.timestamp)}
+                      onChange={(event) => handleBalanceChange('timestamp', fromDateTimeLocal(event.target.value))}
+                      step="60"
+                    />
                   </label>
                   <label className="block text-xs font-semibold text-gray-500">
                     Tutar
@@ -475,7 +479,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
               >
                 Kaydet
               </button>
-              {statusMessage && <p className="text-xs text-mt5-blue">{statusMessage}</p>}
+              {statusMessage && <p className="text-xs text-mt5-blue font-semibold mt-2">{statusMessage}</p>}
             </form>
           </div>
         </div>
@@ -485,5 +489,3 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
 };
 
 export default AccountManager;
-
-

@@ -1,4 +1,4 @@
-﻿import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
 
@@ -7,7 +7,6 @@ const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount';
 const COMMISSION_PER_LOT = 7;
 const TICKET_SEQUENCE_KEY = 'mt5TicketSequence';
 const DEFAULT_TICKET_BASE = 20250403;
-
 
 type EntryInput =
   | {
@@ -38,8 +37,27 @@ interface AccountsContextValue {
 
 const AccountsContext = createContext<AccountsContextValue | undefined>(undefined);
 
+// Robust date parsing for "YYYY.MM.DD HH:mm:ss"
+const parseMT5Date = (dateStr: string): Date | null => {
+  if (!dateStr) return null;
+  try {
+    const [datePart, timePart = '00:00:00'] = dateStr.split(' ');
+    const [year, month, day] = datePart.split('.').map(Number);
+    const [hour, minute, second = 0] = timePart.split(':').map(Number);
+    const date = new Date(year, month - 1, day, hour, minute, second);
+    return Number.isNaN(date.getTime()) ? null : date;
+  } catch (e) {
+    return null;
+  }
+};
+
 const normalizeDateString = (value: string) => {
   if (!value) return value;
+  // If already in MT5 format, leave it
+  if (/^\d{4}\.\d{2}\.\d{2}\s\d{2}:\d{2}:\d{2}$/.test(value)) {
+    return value;
+  }
+  
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
     return value;
@@ -49,14 +67,12 @@ const normalizeDateString = (value: string) => {
 };
 
 const sortDeals = (history: HistoryDeal[]) => {
-  const parse = (value: string) => {
-    const [datePart, timePart] = value.split(' ');
-    const normalized = datePart.replace(/\./g, '-');
-    return new Date(`${normalized}T${timePart || '00:00:00'}`);
-  };
-  return [...history].sort((a, b) => parse(a.closeTime).getTime() - parse(b.closeTime).getTime());
+  return [...history].sort((a, b) => {
+    const dateA = parseMT5Date(a.closeTime)?.getTime() ?? 0;
+    const dateB = parseMT5Date(b.closeTime)?.getTime() ?? 0;
+    return dateA - dateB;
+  });
 };
-
 
 const randomTicketIncrement = () => Math.floor(Math.random() * 900) + 50;
 
@@ -225,10 +241,11 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const addEntry = (accountId: string, payload: EntryInput) => {
+    const nextTicketId = generateTicketId();
     setAccounts((prev) =>
       prev.map((account) => {
         if (account.id !== accountId) return account;
-        const newDeal = createHistoryDeal(payload, generateTicketId());
+        const newDeal = createHistoryDeal(payload, nextTicketId);
         return {
           ...account,
           history: sortDeals([...account.history, newDeal]),
@@ -302,8 +319,3 @@ export const useAccounts = () => {
   }
   return context;
 };
-
-
-
-
-

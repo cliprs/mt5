@@ -111,7 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts }) 
       >
         <div className="p-4 pt-6">
           <div className="flex items-start gap-4">
-            <img src="/fxpro-logo.svg" alt="FxPro Logo" className="w-12 h-12 object-contain" />
+            <img src="/pepperstone.svg" alt="Pepperstone Logo" className="w-14 h-14 object-contain -ml-1" />
             <div className="flex flex-col">
               <span className="text-black font-normal text-[16px] leading-tight">
                 {selectedAccount?.name ?? 'Hesap seçilmedi'}
