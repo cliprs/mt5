@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
-import { IoDownloadOutline, IoCloudUploadOutline, IoCopyOutline } from 'react-icons/io5';
+import { IoTrashOutline } from 'react-icons/io5';
 
 interface AccountManagerProps {
   isOpen: boolean;
@@ -11,6 +11,7 @@ type EntryType = 'trade' | 'deposit' | 'withdraw';
 type TradeSide = 'buy' | 'sell';
 
 const sanitizePositive = (value: string) => value.replace(/-/g, '');
+const sanitizeDigits = (value: string) => value.replace(/[^0-9]/g, '');
 
 const padTimePart = (value: string) => value.padStart(2, '0');
 
@@ -54,8 +55,8 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     selectedAccount,
     selectAccount,
     addEntry,
-    updateAccountDetails,
-    setAccounts
+    removeEntry,
+    updateAccountDetails
   } = useAccounts();
 
   const [entryType, setEntryType] = useState<EntryType>('trade');
@@ -68,11 +69,14 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     server: '',
   });
 
+  const [ticketToDelete, setTicketToDelete] = useState('');
+
   useEffect(() => {
     if (!isOpen) return;
     setStatusMessage('');
     setTradeForm(createTradeFormState());
     setBalanceForm(createBalanceFormState());
+    setTicketToDelete('');
     if (selectedAccount) {
       setAccountForm({
         name: selectedAccount.name,
@@ -118,6 +122,21 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     setStatusMessage('Hesap bilgileri güncellendi.');
   };
 
+  const handleDeleteTicket = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!selectedAccountId) return;
+    const ticket = ticketToDelete.trim();
+    if (!ticket) return;
+    
+    const removed = removeEntry(selectedAccountId, ticket);
+    if (removed) {
+      setStatusMessage(`İşlem ${ticket} başarıyla silindi.`);
+      setTicketToDelete('');
+    } else {
+      setStatusMessage(`İşlem ${ticket} bulunamadı.`);
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId) return;
@@ -158,42 +177,6 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const downloadBackup = () => {
-    const dataStr = JSON.stringify(accounts, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    const exportFileDefaultName = `mt5_yedek_${new Date().toISOString().split('T')[0]}.json`;
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
-    setStatusMessage('Yedek dosyası indirildi.');
-  };
-
-  const uploadBackup = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const json = JSON.parse(e.target?.result as string);
-        if (Array.isArray(json)) {
-          setAccounts(json);
-          setStatusMessage('Yedek başarıyla yüklendi!');
-        }
-      } catch (err) {
-        setStatusMessage('Geçersiz yedek dosyası.');
-      }
-    };
-    reader.readAsText(file);
-  };
-
-  const copyBackupCode = () => {
-    const dataStr = JSON.stringify(accounts, null, 2);
-    navigator.clipboard.writeText(dataStr).then(() => {
-      setStatusMessage('Yedek kodu kopyalandı! Bana gönderebilirsiniz.');
-    });
-  };
-
   if (!isOpen) return null;
 
   return (
@@ -210,28 +193,12 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100">
-            <h3 className="text-[13px] font-bold text-blue-800 mb-3 flex items-center gap-2">
-              <IoCloudUploadOutline size={18} /> Veri Güvenliği ve Yedekleme
-            </h3>
-            <div className="grid grid-cols-2 gap-2">
-              <button onClick={downloadBackup} className="flex items-center justify-center gap-2 bg-white border border-blue-200 text-blue-700 py-2.5 rounded-xl text-[12px] font-bold hover:bg-blue-100 transition-all shadow-sm">
-                <IoDownloadOutline size={16} /> Dosya İndir
-              </button>
-              <label className="flex items-center justify-center gap-2 bg-white border border-blue-200 text-blue-700 py-2.5 rounded-xl text-[12px] font-bold hover:bg-blue-100 transition-all shadow-sm cursor-pointer">
-                <IoCloudUploadOutline size={16} /> Dosya Yükle
-                <input type="file" className="hidden" accept=".json" onChange={uploadBackup} />
-              </label>
-              <button onClick={copyBackupCode} className="col-span-2 flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl text-[12px] font-bold hover:bg-blue-700 transition-all shadow-md mt-1">
-                <IoCopyOutline size={16} /> Yedek Kodunu Kopyala (Bana Göndermek İçin)
-              </button>
-            </div>
-          </div>
-
           <div className="grid md:grid-cols-2 gap-6">
+            
+            {/* Sol Kolon */}
             <div className="space-y-6">
               <div className="space-y-2">
-                <h3 className="text-[12px] font-bold text-gray-400 uppercase">Aktif Hesaplar</h3>
+                <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Aktif Hesaplar</h3>
                 <div className="flex flex-col gap-2">
                   {accounts.map((account) => (
                     <button
@@ -249,63 +216,35 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-[12px] font-bold text-gray-400 uppercase">Hesap Bilgilerini Düzenle</h3>
-                <input
-                  className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold focus:ring-2 focus:ring-blue-500 outline-none"
-                  value={accountForm.name}
-                  onChange={(e) => handleAccountFieldChange('name', e.target.value.toUpperCase())}
-                  placeholder="İSİM SOYİSİM"
-                />
-                <input
-                  className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold focus:ring-2 focus:ring-blue-500 outline-none"
-                  value={accountForm.accountNo}
-                  onChange={(e) => handleAccountFieldChange('accountNo', sanitizePositive(e.target.value))}
-                  placeholder="HESAP NUMARASI"
-                />
-                <input
-                  className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold focus:ring-2 focus:ring-blue-500 outline-none"
-                  value={accountForm.server}
-                  onChange={(e) => handleAccountFieldChange('server', e.target.value)}
-                  placeholder="SUNUCU (BROKER)"
-                />
-                <button
-                  onClick={handleAccountDetailsSave}
-                  disabled={!canSaveAccountDetails}
-                  className={`w-full py-3 rounded-xl text-[13px] font-black transition-all ${
-                    canSaveAccountDetails ? 'bg-black text-white shadow-lg' : 'bg-gray-200 text-gray-400'
-                  }`}
-                >
-                  BİLGİLERİ KAYDET
-                </button>
+                <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Hesap Bilgilerini Düzenle</h3>
+                <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={accountForm.name} onChange={(e) => handleAccountFieldChange('name', e.target.value.toUpperCase())} placeholder="İSİM SOYİSİM" />
+                <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={accountForm.accountNo} onChange={(e) => handleAccountFieldChange('accountNo', sanitizeDigits(e.target.value))} placeholder="HESAP NUMARASI" />
+                <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={accountForm.server} onChange={(e) => handleAccountFieldChange('server', e.target.value)} placeholder="SUNUCU (BROKER)" />
+                <button onClick={handleAccountDetailsSave} disabled={!canSaveAccountDetails} className={`w-full py-3 rounded-xl text-[13px] font-black transition-all ${canSaveAccountDetails ? 'bg-black text-white shadow-lg' : 'bg-gray-200 text-gray-400'}`}>BİLGİLERİ KAYDET</button>
+              </div>
+
+              <div className="bg-red-50 rounded-2xl p-4 border border-red-100">
+                <h3 className="text-[12px] font-bold text-red-800 mb-3 flex items-center gap-2"><IoTrashOutline size={16} /> İŞLEM SİL</h3>
+                <form onSubmit={handleDeleteTicket} className="space-y-2">
+                  <input className="w-full rounded-xl bg-white border border-red-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={ticketToDelete} onChange={(e) => setTicketToDelete(sanitizeDigits(e.target.value))} placeholder="TICKET NUMARASI" />
+                  <button type="submit" disabled={!ticketToDelete} className={`w-full py-2.5 rounded-xl text-[11px] font-black transition-all ${ticketToDelete ? 'bg-red-600 text-white shadow-md' : 'bg-gray-200 text-gray-400'}`}>İŞLEMİ KALICI OLARAK SİL</button>
+                </form>
               </div>
             </div>
 
+            {/* Sağ Kolon */}
             <div className="space-y-4">
-              <h3 className="text-[12px] font-bold text-gray-400 uppercase">Yeni İşlem / Hareket</h3>
+              <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Yeni İşlem Ekle</h3>
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="flex bg-gray-100 p-1 rounded-xl">
                   {(['trade', 'deposit', 'withdraw'] as const).map((type) => (
-                    <button
-                      key={type}
-                      type="button"
-                      onClick={() => setEntryType(type)}
-                      className={`flex-1 py-2 rounded-lg text-[11px] font-bold transition-all ${
-                        entryType === type ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'
-                      }`}
-                    >
-                      {type.toUpperCase()}
-                    </button>
+                    <button key={type} type="button" onClick={() => setEntryType(type)} className={`flex-1 py-2 rounded-lg text-[11px] font-bold transition-all ${entryType === type ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'}`}>{type.toUpperCase()}</button>
                   ))}
                 </div>
 
                 {entryType === 'trade' ? (
                   <>
-                    <input
-                      className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none"
-                      value={tradeForm.symbol}
-                      onChange={(e) => setTradeForm({ ...tradeForm, symbol: e.target.value.toUpperCase() })}
-                      placeholder="XAUUSD"
-                    />
+                    <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold outline-none" value={tradeForm.symbol} onChange={(e) => setTradeForm({ ...tradeForm, symbol: e.target.value.toUpperCase() })} placeholder="XAUUSD" />
                     <div className="flex gap-2">
                       <button type="button" onClick={() => setTradeForm({...tradeForm, side: 'buy'})} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
                       <button type="button" onClick={() => setTradeForm({...tradeForm, side: 'sell'})} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
@@ -334,7 +273,7 @@ const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
                   </>
                 )}
 
-                <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-2xl text-[14px] font-black shadow-lg shadow-blue-200 active:scale-95 transition-all">EKLE VE KAYDET</button>
+                <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-2xl text-[14px] font-black shadow-lg shadow-blue-200 active:scale-95 transition-all uppercase tracking-tighter">EKLE VE KAYDET</button>
               </form>
             </div>
           </div>
