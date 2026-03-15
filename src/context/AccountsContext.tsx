@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
+import { supabase } from '../lib/supabase';
 
-const STORAGE_KEY = 'mt5Accounts_v2';
-const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount_v2';
+const SELECTED_ACCOUNT_KEY = 'mt5SelectedAccount_v3';
 const COMMISSION_PER_LOT = 7;
 
 type EntryInput =
@@ -31,6 +31,8 @@ interface AccountsContextValue {
   addEntry: (accountId: string, payload: EntryInput) => void;
   removeEntry: (accountId: string, ticketId: string) => boolean;
   updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string }) => void;
+  setAccounts: React.Dispatch<React.SetStateAction<AccountProfile[]>>;
+  isLoading: boolean;
 }
 
 const AccountsContext = createContext<AccountsContextValue | undefined>(undefined);
@@ -41,11 +43,8 @@ const parseMT5Date = (dateStr: string): Date | null => {
     const [datePart, timePart = '00:00:00'] = dateStr.split(' ');
     const [year, month, day] = datePart.split('.').map(Number);
     const [hour, minute, second = 0] = timePart.split(':').map(Number);
-    const date = new Date(year, month - 1, day, hour, minute, second);
-    return Number.isNaN(date.getTime()) ? null : date;
-  } catch (e) {
-    return null;
-  }
+    return new Date(year, month - 1, day, hour, minute, second);
+  } catch (e) { return null; }
 };
 
 const normalizeDateString = (value: string) => {
@@ -66,72 +65,90 @@ const sortDeals = (history: HistoryDeal[]) => {
 };
 
 export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [accounts, setAccounts] = useState<AccountProfile[]>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
+  const [accounts, setAccounts] = useState<AccountProfile[]>(defaultAccounts);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedAccountId, setSelectedAccountId] = useState<string>('');
+
+  // 1. Verileri Supabase'den çek
+  useEffect(() => {
+    const loadData = async () => {
       try {
-        return JSON.parse(stored);
+        const { data, error } = await supabase
+          .from('app_settings')
+          .select('data')
+          .eq('id', 'mt5_accounts')
+          .single();
+
+        if (error) throw error;
+
+        if (data && Array.isArray(data.data) && data.data.length > 0) {
+          setAccounts(data.data);
+        }
       } catch (e) {
-        console.error('Parse error', e);
+        console.error('Veri çekme hatası (Supabase):', e);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  // 2. Veri her değiştiğinde Supabase'e kaydet
+  useEffect(() => {
+    if (isLoading) return;
+    const saveData = async () => {
+      try {
+        await supabase
+          .from('app_settings')
+          .upsert({ id: 'mt5_accounts', data: accounts, updated_at: new Date() });
+      } catch (e) {
+        console.error('Veri kaydetme hatası (Supabase):', e);
+      }
+    };
+    saveData();
+  }, [accounts, isLoading]);
+
+  // Seçili hesabı yükle
+  useEffect(() => {
+    if (!isLoading && accounts.length > 0) {
+      const saved = localStorage.getItem(SELECTED_ACCOUNT_KEY);
+      if (saved && accounts.some(acc => acc.id === saved)) {
+        setSelectedAccountId(saved);
+      } else {
+        setSelectedAccountId(accounts[0].id);
       }
     }
-    return defaultAccounts;
-  });
+  }, [isLoading, accounts]);
 
-  const [selectedAccountId, setSelectedAccountId] = useState<string>(() => {
-    const saved = localStorage.getItem(SELECTED_ACCOUNT_KEY);
-    if (saved && accounts.some(acc => acc.id === saved)) return saved;
-    return accounts[0]?.id || '';
-  });
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
-  }, [accounts]);
-
-  useEffect(() => {
-    if (selectedAccountId) {
-      localStorage.setItem(SELECTED_ACCOUNT_KEY, selectedAccountId);
-    }
-  }, [selectedAccountId]);
-
-  const selectAccount = (id: string) => setSelectedAccountId(id);
+  const selectAccount = (id: string) => {
+    setSelectedAccountId(id);
+    localStorage.setItem(SELECTED_ACCOUNT_KEY, id);
+  };
 
   const addEntry = (accountId: string, payload: EntryInput) => {
     const ticketId = String(Date.now());
     setAccounts((prev) =>
       prev.map((acc) => {
         if (acc.id !== accountId) return acc;
-        
         let newDeal: HistoryDeal;
         if (payload.kind === 'trade') {
           const pointDiff = payload.side === 'buy' ? payload.closePrice - payload.openPrice : payload.openPrice - payload.closePrice;
           const profit = pointDiff * payload.volume * 100;
           newDeal = {
-            id: ticketId,
-            symbol: payload.symbol,
-            type: payload.side,
-            volume: payload.volume,
-            openTime: normalizeDateString(payload.openTime),
-            closeTime: normalizeDateString(payload.closeTime),
-            openPrice: payload.openPrice,
-            closePrice: payload.closePrice,
-            sl: 0, tp: 0, swap: 0,
-            commission: Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
+            id: ticketId, symbol: payload.symbol, type: payload.side, volume: payload.volume,
+            openTime: normalizeDateString(payload.openTime), closeTime: normalizeDateString(payload.closeTime),
+            openPrice: payload.openPrice, closePrice: payload.closePrice,
+            sl: 0, tp: 0, swap: 0, commission: Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
             profit: Number(profit.toFixed(2))
           };
         } else {
           newDeal = {
-            id: ticketId,
-            symbol: payload.kind === 'deposit' ? 'Deposit' : 'Withdrawal',
-            type: 'balance',
-            volume: 0,
-            openTime: normalizeDateString(payload.timestamp),
-            closeTime: normalizeDateString(payload.timestamp),
-            openPrice: 0, closePrice: 0, sl: 0, tp: 0, commission: 0, swap: 0,
-            profit: payload.kind === 'deposit' ? Math.abs(payload.amount) : -Math.abs(payload.amount)
+            id: ticketId, symbol: payload.kind === 'deposit' ? 'Deposit' : 'Withdrawal',
+            type: 'balance', volume: 0, openTime: normalizeDateString(payload.timestamp),
+            closeTime: normalizeDateString(payload.timestamp), openPrice: 0, closePrice: 0,
+            sl: 0, tp: 0, commission: 0, swap: 0, profit: payload.kind === 'deposit' ? Math.abs(payload.amount) : -Math.abs(payload.amount)
           };
         }
-
         return { ...acc, history: sortDeals([...acc.history, newDeal]) };
       })
     );
@@ -154,18 +171,8 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const selectedAccount = useMemo(() => accounts.find(a => a.id === selectedAccountId) || null, [accounts, selectedAccountId]);
 
-  const value: AccountsContextValue = {
-    accounts,
-    selectedAccountId,
-    selectedAccount,
-    selectAccount,
-    addEntry,
-    removeEntry,
-    updateAccountDetails,
-  };
-
   return (
-    <AccountsContext.Provider value={value}>
+    <AccountsContext.Provider value={{ accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails, setAccounts, isLoading }}>
       {children}
     </AccountsContext.Provider>
   );
