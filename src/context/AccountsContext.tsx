@@ -3,8 +3,7 @@ import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
 import { supabase } from '../lib/supabase';
 
-const STORAGE_KEY = 'mt5_persistent_accounts_v4'; // Hibrit sistem için yeni anahtar
-const SELECTED_ACCOUNT_KEY = 'mt5_selected_id_v4';
+const SELECTED_ACCOUNT_KEY = 'mt5_selected_id_final';
 const COMMISSION_PER_LOT = 7;
 
 type EntryInput =
@@ -66,26 +65,13 @@ const sortDeals = (history: HistoryDeal[]) => {
 };
 
 export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // 1. İlklendirme: Önce LocalStorage'a bak, yoksa varsayılanları al
-  const [accounts, setAccounts] = useState<AccountProfile[]>(() => {
-    const local = localStorage.getItem(STORAGE_KEY);
-    if (local) {
-      try {
-        const parsed = JSON.parse(local);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      } catch (e) {}
-    }
-    return defaultAccounts;
-  });
-
+  const [accounts, setAccounts] = useState<AccountProfile[]>(defaultAccounts);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedAccountId, setSelectedAccountId] = useState<string>(() => {
-    return localStorage.getItem(SELECTED_ACCOUNT_KEY) || accounts[0]?.id || '';
-  });
+  const [selectedAccountId, setSelectedAccountId] = useState<string>('');
 
-  // 2. Sayfa açıldığında Supabase'den en güncel veriyi çek
+  // 1. Sadece Supabase'den yükle
   useEffect(() => {
-    const syncWithCloud = async () => {
+    const loadFromCloud = async () => {
       try {
         const { data, error } = await supabase
           .from('app_settings')
@@ -93,8 +79,8 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           .eq('id', 'mt5_accounts')
           .single();
 
-        if (!error && data?.data && Array.isArray(data.data)) {
-          // Buluttan gelen veriyi sanitize et (GOLD -> XAUUSD)
+        if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
+          // XAUUSD Sanitization
           const cloudData = data.data.map((acc: AccountProfile) => ({
             ...acc,
             history: acc.history.map(deal => ({
@@ -102,42 +88,48 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                 symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
             }))
           }));
-          
           setAccounts(cloudData);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudData));
         }
       } catch (e) {
-        console.error('Bulut senkronizasyon hatası:', e);
+        console.error('Supabase yükleme hatası:', e);
       } finally {
         setIsLoading(false);
       }
     };
-    syncWithCloud();
+    loadFromCloud();
   }, []);
 
-  // 3. Her değişiklikte hem LocalStorage hem Supabase'e yaz
+  // 2. Değişiklikleri sadece Supabase'e kaydet
   useEffect(() => {
-    if (isLoading) return; // Yükleme sırasında yazma işlemini engelle (çakışma önleyici)
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+    if (isLoading) return;
     
-    const persistToCloud = async () => {
+    const saveToCloud = async () => {
       try {
         await supabase
           .from('app_settings')
           .upsert({ id: 'mt5_accounts', data: accounts, updated_at: new Date() });
-      } catch (e) {}
+      } catch (e) {
+        console.error('Supabase kayıt hatası:', e);
+      }
     };
-    persistToCloud();
+    saveToCloud();
   }, [accounts, isLoading]);
 
   useEffect(() => {
-    if (selectedAccountId) {
-      localStorage.setItem(SELECTED_ACCOUNT_KEY, selectedAccountId);
+    if (!isLoading && accounts.length > 0) {
+      const savedId = localStorage.getItem(SELECTED_ACCOUNT_KEY);
+      if (savedId && accounts.some(acc => acc.id === savedId)) {
+        setSelectedAccountId(savedId);
+      } else {
+        setSelectedAccountId(accounts[0].id);
+      }
     }
-  }, [selectedAccountId]);
+  }, [isLoading, accounts]);
 
-  const selectAccount = (id: string) => setSelectedAccountId(id);
+  const selectAccount = (id: string) => {
+    setSelectedAccountId(id);
+    localStorage.setItem(SELECTED_ACCOUNT_KEY, id);
+  };
 
   const addEntry = (accountId: string, payload: EntryInput) => {
     const ticketId = String(Date.now());
@@ -185,11 +177,19 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const selectedAccount = useMemo(() => accounts.find(a => a.id === selectedAccountId) || null, [accounts, selectedAccountId]);
 
-  return (
-    <AccountsContext.Provider value={{ accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails, setAccounts, isLoading }}>
-      {children}
-    </AccountsContext.Provider>
-  );
+  const value: AccountsContextValue = {
+    accounts,
+    selectedAccountId,
+    selectedAccount,
+    selectAccount,
+    addEntry,
+    removeEntry,
+    updateAccountDetails,
+    setAccounts,
+    isLoading,
+  };
+
+  return <AccountsContext.Provider value={value}>{children}</AccountsContext.Provider>;
 };
 
 export const useAccounts = () => {
