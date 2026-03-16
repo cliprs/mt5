@@ -82,13 +82,15 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
           console.log('Supabase: Veri bulundu, senkronize ediliyor...');
-          // EĞER MAYIS 2025 İŞLEMLERİ YOKSA, defaultAccounts'ı kullanmaya zorla (Tek seferlik)
-          const hasMayTrades = data.data.some((acc: any) => 
-            acc.history.some((deal: any) => deal.closeTime.includes('2025.05'))
+          // EĞER MAYIS 2025 İŞLEMLERİ YOKSA veya ESKİ "tr-" FORMATLI ID'LER VARSA, defaultAccounts'ı kullanmaya zorla
+          const needsReset = data.data.some((acc: any) => 
+            acc.history.some((deal: any) => 
+                !deal.closeTime.includes('2025.05') || deal.id.includes('tr-') || deal.id.includes('dep-')
+            )
           );
 
-          if (!hasMayTrades) {
-            console.log('Supabase: Yeni işlemler bulunamadı, yerel veriler yükleniyor...');
+          if (needsReset) {
+            console.log('Supabase: Eski formatlı veri bulundu, temiz veriler yükleniyor...');
             setAccounts(defaultAccounts);
           } else {
             const cloudData = data.data.map((acc: AccountProfile) => ({
