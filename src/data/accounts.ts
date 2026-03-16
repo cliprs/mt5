@@ -35,7 +35,7 @@ export const defaultAccounts: AccountProfile[] = [
     server: 'Pepperstone-MT5',
     history: withDefaultCommission([
       {
-        id: 'dep-20250430',
+        id: '514343000',
         symbol: 'Deposit',
         type: 'balance',
         volume: 0,
@@ -50,7 +50,7 @@ export const defaultAccounts: AccountProfile[] = [
         profit: 1000.0,
       },
       {
-        id: 'tr-2025050101',
+        id: '514343001',
         symbol: 'XAUUSD',
         type: 'buy',
         volume: 0.01,
@@ -65,7 +65,7 @@ export const defaultAccounts: AccountProfile[] = [
         profit: 7.00,
       },
       {
-        id: 'tr-2025050102',
+        id: '514343002',
         symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
@@ -80,7 +80,7 @@ export const defaultAccounts: AccountProfile[] = [
         profit: 8.00,
       },
       {
-        id: 'tr-2025050103',
+        id: '514343003',
         symbol: 'XAUUSD',
         type: 'buy',
         volume: 0.01,
@@ -95,7 +95,7 @@ export const defaultAccounts: AccountProfile[] = [
         profit: -0.70,
       },
       {
-        id: 'tr-2025050201',
+        id: '514343004',
         symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
@@ -110,7 +110,7 @@ export const defaultAccounts: AccountProfile[] = [
         profit: 5.50,
       },
       {
-        id: 'tr-2025050202',
+        id: '514343005',
         symbol: 'XAUUSD',
         type: 'buy',
         volume: 0.01,
@@ -125,7 +125,7 @@ export const defaultAccounts: AccountProfile[] = [
         profit: 4.40,
       },
       {
-        id: 'tr-2025050203',
+        id: '514343006',
         symbol: 'XAUUSD',
         type: 'sell',
         volume: 0.01,
