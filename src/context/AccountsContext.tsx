@@ -73,6 +73,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const loadFromCloud = async () => {
       try {
+        console.log('Supabase: Veri yükleniyor...');
         const { data, error } = await supabase
           .from('app_settings')
           .select('data')
@@ -80,15 +81,28 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           .single();
 
         if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
-          // XAUUSD Sanitization
-          const cloudData = data.data.map((acc: AccountProfile) => ({
-            ...acc,
-            history: acc.history.map(deal => ({
-                ...deal,
-                symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
-            }))
-          }));
-          setAccounts(cloudData);
+          console.log('Supabase: Veri bulundu, senkronize ediliyor...');
+          // EĞER MAYIS 2025 İŞLEMLERİ YOKSA, defaultAccounts'ı kullanmaya zorla (Tek seferlik)
+          const hasMayTrades = data.data.some((acc: any) => 
+            acc.history.some((deal: any) => deal.closeTime.includes('2025.05'))
+          );
+
+          if (!hasMayTrades) {
+            console.log('Supabase: Yeni işlemler bulunamadı, yerel veriler yükleniyor...');
+            setAccounts(defaultAccounts);
+          } else {
+            const cloudData = data.data.map((acc: AccountProfile) => ({
+              ...acc,
+              history: acc.history.map(deal => ({
+                  ...deal,
+                  symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
+              }))
+            }));
+            setAccounts(cloudData);
+          }
+        } else {
+          console.log('Supabase: Veri bulunamadı veya hata oluştu, varsayılanlar kullanılıyor.');
+          setAccounts(defaultAccounts);
         }
       } catch (e) {
         console.error('Supabase yükleme hatası:', e);
