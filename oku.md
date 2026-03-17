@@ -1314,4 +1314,18 @@
 
   Canlı sitede görmek için git push yapmanız yeterlidir. Kontrol edip onay
   verirseniz Ekim ayı için devam edebiliriz. Başka bir build hatası veya sorun
-  görürseniz lütfen bildirin.
+  görürseniz lütfen bildirin.✦ Ekim 2025 (10. ay) verilerini de hedeflediğimiz şekilde ekledim!
+
+  Yapılan Değişiklikler:
+   1. 70 adet XAUUSD işlemi (0.01 lot) eklendi; her biri 2$-8$ aralığında kâr/zarar bırakıyor ve toplam brüt kâr 350$ (1000$ baz bakiyenin ~%35'i).
+   2. 24 Ekim 2025 10:05:42 tarihine -500$ tutarında Withdrawal kaydı girildi.
+   3. İşlem ID'leri 514343326-514343396 aralığına devam etti; AccountsContext içindeki Supabase senkronizasyon kontrol ID'si 514343396 olarak güncellendi.
+   4. Fiyatlar 3660-3895 bandından seçildi ve açılış-kapanış zamanları ay geneline yayılmış şekilde gerçekçi tutuldu.
+
+  Özet Tablo:
+   * Eylül Sonu Baz Bakiye: ~1000$
+   * Ekim Brüt Kâr: +350$
+   * Ekim Çekim: -500$
+   * Ekim Net Etki: -150$ (çekim sebebiyle)
+
+  01.10.2025 - 31.10.2025 aralığını seçerek Geçmiş ekranından yeni işlemleri kontrol edebilirsin. Canlı ortam için git push -> sayfayı yenilemen yeterli.
