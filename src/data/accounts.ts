@@ -59,7 +59,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3288.58,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.18
   },
@@ -74,7 +74,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3231.88,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.22
   },
@@ -89,7 +89,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3213.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.73
   },
@@ -104,7 +104,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3249.69,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.91
   },
@@ -119,7 +119,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3260.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.16
   },
@@ -134,7 +134,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3263.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.71
   },
@@ -149,7 +149,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3315.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.62
   },
@@ -164,7 +164,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3331.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2.77
   },
@@ -179,7 +179,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3377.24,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.66
   },
@@ -194,7 +194,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3414.88,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.56
   },
@@ -209,7 +209,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3391.69,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.69
   },
@@ -224,7 +224,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3384.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.41
   },
@@ -239,7 +239,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3401.55,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.63
   },
@@ -254,7 +254,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3359.33,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.5
   },
@@ -269,7 +269,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3319.39,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.49
   },
@@ -284,7 +284,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3323.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.27
   },
@@ -299,7 +299,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3327.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.96
   },
@@ -314,7 +314,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3213.72,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.53
   },
@@ -329,7 +329,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3236.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.14
   },
@@ -344,7 +344,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3258.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.9
   },
@@ -359,7 +359,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3246.09,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.68
   },
@@ -374,7 +374,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3224.58,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.57
   },
@@ -389,7 +389,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3183.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.67
   },
@@ -404,7 +404,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3183.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.84
   },
@@ -419,7 +419,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3177.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.72
   },
@@ -434,7 +434,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3245.59,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.4
   },
@@ -449,7 +449,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3200.68,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.99
   },
@@ -464,7 +464,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3187.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.09
   },
@@ -479,7 +479,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3217.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.45
   },
@@ -494,7 +494,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3232.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.28
   },
@@ -509,7 +509,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3214.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.94
   },
@@ -524,7 +524,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3238.09,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -539,7 +539,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3291.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.59
   },
@@ -554,7 +554,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3309.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -569,7 +569,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3323.22,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.95
   },
@@ -584,7 +584,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3328.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.62
   },
@@ -599,7 +599,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3297.45,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.67
   },
@@ -614,7 +614,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3298.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.03
   },
@@ -629,7 +629,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3345.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.17
   },
@@ -644,7 +644,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.71
   },
@@ -659,7 +659,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3331.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.43
   },
@@ -674,7 +674,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3344.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.37
   },
@@ -689,7 +689,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3296.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.3
   },
@@ -704,7 +704,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3305.03,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.84
   },
@@ -719,7 +719,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3307.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.34
   },
@@ -734,7 +734,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3292.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.68
   },
@@ -749,7 +749,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3274.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.36
   },
@@ -764,7 +764,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3312.68,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.16
   },
@@ -779,7 +779,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3312.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.28
   },
@@ -794,7 +794,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3294.68,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -809,7 +809,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3297.97,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -824,7 +824,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3313.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -839,7 +839,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3356.93,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.82
   },
@@ -854,7 +854,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3371.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.5
   },
@@ -869,7 +869,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3372.87,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.88
   },
@@ -884,7 +884,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3357.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.32
   },
@@ -899,7 +899,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3352.51,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.58
   },
@@ -914,7 +914,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3356.31,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.68
   },
@@ -929,7 +929,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3356.59,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -944,7 +944,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3353.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -959,7 +959,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3374.33,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.67
   },
@@ -974,7 +974,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3367.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.18
   },
@@ -989,7 +989,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3397.25,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.71
   },
@@ -1004,7 +1004,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3351.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.38
   },
@@ -1019,7 +1019,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3363.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.95
   },
@@ -1034,7 +1034,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3365.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.37
   },
@@ -1049,7 +1049,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3332.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.27
   },
@@ -1064,7 +1064,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3313.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.56
   },
@@ -1079,7 +1079,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3318.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.37
   },
@@ -1094,7 +1094,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3312.41,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.41
   },
@@ -1109,7 +1109,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3326.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.83
   },
@@ -1124,7 +1124,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3306.91,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1139,7 +1139,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3335.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.21
   },
@@ -1154,7 +1154,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3324.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.3
   },
@@ -1169,7 +1169,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.97
   },
@@ -1184,7 +1184,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3344.35,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.16
   },
@@ -1199,7 +1199,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3339.03,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.48
   },
@@ -1214,7 +1214,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3365.12,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.74
   },
@@ -1229,7 +1229,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3372.09,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.16
   },
@@ -1244,7 +1244,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3392.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.8
   },
@@ -1259,7 +1259,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3388.22,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.43
   },
@@ -1274,7 +1274,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3430.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.14
   },
@@ -1289,7 +1289,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3415.07,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1304,7 +1304,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3432.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1319,7 +1319,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3436.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.8
   },
@@ -1334,7 +1334,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3415.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.62
   },
@@ -1349,7 +1349,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3401.93,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1364,7 +1364,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3395.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.46
   },
@@ -1379,7 +1379,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3392.38,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.03
   },
@@ -1394,7 +1394,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3387.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.52
   },
@@ -1409,7 +1409,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3384.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.08
   },
@@ -1424,7 +1424,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3384.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.12
   },
@@ -1439,7 +1439,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3377.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.57
   },
@@ -1454,7 +1454,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3389.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.29
   },
@@ -1469,7 +1469,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3378.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1484,7 +1484,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3366.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.39
   },
@@ -1499,7 +1499,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3364.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.99
   },
@@ -1514,7 +1514,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3364.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.62
   },
@@ -1529,7 +1529,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3347.36,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.17
   },
@@ -1544,7 +1544,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3368.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1559,7 +1559,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3378.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.31
   },
@@ -1574,7 +1574,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3351.86,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.53
   },
@@ -1589,7 +1589,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3362.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.67
   },
@@ -1604,7 +1604,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3380.12,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.72
   },
@@ -1619,7 +1619,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3353.38,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1634,7 +1634,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3320.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.67
   },
@@ -1649,7 +1649,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3318.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1664,7 +1664,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3324.36,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1679,7 +1679,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.44
   },
@@ -1694,7 +1694,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3321.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.55
   },
@@ -1709,7 +1709,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3332.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.32
   },
@@ -1724,7 +1724,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.72
   },
@@ -1739,7 +1739,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.11
   },
@@ -1754,7 +1754,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.53
   },
@@ -1769,7 +1769,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3309.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.39
   },
@@ -1799,7 +1799,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3287.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.47
   },
@@ -1814,7 +1814,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3275.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1829,7 +1829,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3268.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.32
   },
@@ -1844,7 +1844,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3293.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.07
   },
@@ -1859,7 +1859,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3284.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.38
   },
@@ -1874,7 +1874,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3303.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1889,7 +1889,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3339.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -1904,7 +1904,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3337.17,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -1919,7 +1919,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3334.37,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.96
   },
@@ -1934,7 +1934,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3349.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.99
   },
@@ -1949,7 +1949,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3348.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.54
   },
@@ -1964,7 +1964,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3324.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.32
   },
@@ -1979,7 +1979,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3332.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.39
   },
@@ -1994,7 +1994,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3333.35,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.52
   },
@@ -2009,7 +2009,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3307.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.51
   },
@@ -2024,7 +2024,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3317.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.33
   },
@@ -2039,7 +2039,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3335.58,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.8
   },
@@ -2054,7 +2054,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3328.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.22
   },
@@ -2069,7 +2069,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3305.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2084,7 +2084,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3294.31,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.54
   },
@@ -2099,7 +2099,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3320.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5
   },
@@ -2114,7 +2114,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3329.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.3
   },
@@ -2129,7 +2129,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3323.28,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2144,7 +2144,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3331.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2159,7 +2159,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3351.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.61
   },
@@ -2174,7 +2174,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3359.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.84
   },
@@ -2189,7 +2189,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3347.65,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.47
   },
@@ -2204,7 +2204,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3351.91,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2219,7 +2219,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3340.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.63
   },
@@ -2234,7 +2234,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3329.84,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.78
   },
@@ -2249,7 +2249,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3336.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.28
   },
@@ -2264,7 +2264,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3349.26,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.76
   },
@@ -2279,7 +2279,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3329.65,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.69
   },
@@ -2294,7 +2294,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3340.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.73
   },
@@ -2324,7 +2324,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3344.55,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.28
   },
@@ -2339,7 +2339,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3353.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.9
   },
@@ -2354,7 +2354,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3366.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.39
   },
@@ -2369,7 +2369,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3397.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.76
   },
@@ -2384,7 +2384,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3390,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.4
   },
@@ -2399,7 +2399,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3406.31,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.96
   },
@@ -2414,7 +2414,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3425.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.96
   },
@@ -2429,7 +2429,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3427.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.75
   },
@@ -2444,7 +2444,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3390.17,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2459,7 +2459,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3363.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.26
   },
@@ -2474,7 +2474,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3369.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.09
   },
@@ -2489,7 +2489,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3354.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.76
   },
@@ -2504,7 +2504,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3338.56,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2519,7 +2519,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3344.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.74
   },
@@ -2534,7 +2534,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3313.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.92
   },
@@ -2549,7 +2549,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3312.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.41
   },
@@ -2564,7 +2564,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3323.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.61
   },
@@ -2579,7 +2579,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3324.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.2
   },
@@ -2594,7 +2594,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3326.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2609,7 +2609,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3286.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2624,7 +2624,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3304.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.24
   },
@@ -2639,7 +2639,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3289.58,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2654,7 +2654,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3295.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2669,7 +2669,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3348.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2684,7 +2684,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3358.07,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2699,7 +2699,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3360.69,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -2714,7 +2714,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3374.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.33
   },
@@ -2729,7 +2729,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3377.31,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.28
   },
@@ -2744,7 +2744,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3372.41,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.16
   },
@@ -2759,7 +2759,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3383.45,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.3
   },
@@ -2774,7 +2774,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3377.73,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.54
   },
@@ -2789,7 +2789,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3364.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.76
   },
@@ -2804,7 +2804,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3372.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.79
   },
@@ -2819,7 +2819,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3380.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.72
   },
@@ -2834,7 +2834,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3375.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.08
   },
@@ -2849,7 +2849,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3390.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.29
   },
@@ -2864,7 +2864,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3394.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.01
   },
@@ -2894,7 +2894,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3387.56,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.51
   },
@@ -2909,7 +2909,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3396.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.85
   },
@@ -2924,7 +2924,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3375.59,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.18
   },
@@ -2939,7 +2939,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3355.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.36
   },
@@ -2954,7 +2954,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3342.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.55
   },
@@ -2969,7 +2969,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3352.03,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.13
   },
@@ -2984,7 +2984,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3343.64,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.98
   },
@@ -2999,7 +2999,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3350.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.44
   },
@@ -3014,7 +3014,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3358.17,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3029,7 +3029,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3357.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3044,7 +3044,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3369.18,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.82
   },
@@ -3059,7 +3059,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3346.12,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.75
   },
@@ -3074,7 +3074,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3332.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.34
   },
@@ -3089,7 +3089,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3335.47,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.9
   },
@@ -3104,7 +3104,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3344.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.69
   },
@@ -3119,7 +3119,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3336.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.81
   },
@@ -3134,7 +3134,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3343.43,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.55
   },
@@ -3149,7 +3149,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3349.26,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.11
   },
@@ -3164,7 +3164,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3331.31,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.46
   },
@@ -3179,7 +3179,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3338.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.03
   },
@@ -3194,7 +3194,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3341.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.38
   },
@@ -3209,7 +3209,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3316.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.97
   },
@@ -3224,7 +3224,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3319.12,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.04
   },
@@ -3239,7 +3239,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3342.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.05
   },
@@ -3254,7 +3254,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3348.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.41
   },
@@ -3269,7 +3269,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3339.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.91
   },
@@ -3284,7 +3284,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3340.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3299,7 +3299,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3338.28,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.05
   },
@@ -3314,7 +3314,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3331.18,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.62
   },
@@ -3329,7 +3329,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3376.41,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.66
   },
@@ -3344,7 +3344,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3364.93,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.71
   },
@@ -3359,7 +3359,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3364.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.45
   },
@@ -3374,7 +3374,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3372.37,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.17
   },
@@ -3389,7 +3389,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3373.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3404,7 +3404,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3375.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.08
   },
@@ -3419,7 +3419,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3383.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.94
   },
@@ -3434,7 +3434,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3384.24,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.64
   },
@@ -3449,7 +3449,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3376.45,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.19
   },
@@ -3464,7 +3464,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3395.56,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.33
   },
@@ -3479,7 +3479,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3390.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.72
   },
@@ -3494,7 +3494,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3404.68,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.83
   },
@@ -3509,7 +3509,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3419.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3524,7 +3524,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3408.27,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3539,7 +3539,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3415.73,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.87
   },
@@ -3554,7 +3554,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3444.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3569,7 +3569,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3474.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3584,7 +3584,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3473.97,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3599,7 +3599,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3474.93,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3614,7 +3614,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3479.71,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3629,7 +3629,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3492.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -3644,7 +3644,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3485,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3659,7 +3659,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3527.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3674,7 +3674,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3528.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3689,7 +3689,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3537.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3704,7 +3704,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3535.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3719,7 +3719,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3563.24,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3734,7 +3734,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3561.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3749,7 +3749,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3533.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -3764,7 +3764,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3540.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -3779,7 +3779,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3546.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3794,7 +3794,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3545,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3809,7 +3809,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3557.22,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3824,7 +3824,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3549.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3839,7 +3839,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3579.91,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3854,7 +3854,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3589.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3869,7 +3869,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3591.25,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3884,7 +3884,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3612.91,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3899,7 +3899,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3636.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3914,7 +3914,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3635.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3929,7 +3929,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3652.38,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -3944,7 +3944,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3642.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3959,7 +3959,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3662.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -3974,7 +3974,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3640.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -3989,7 +3989,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3628.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4004,7 +4004,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3646.37,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4019,7 +4019,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3643.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4034,7 +4034,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3647.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4049,7 +4049,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3646.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4064,7 +4064,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3636.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4079,7 +4079,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3621.93,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4094,7 +4094,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3635.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4109,7 +4109,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3631.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4124,7 +4124,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3652.41,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4139,7 +4139,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3648.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4154,7 +4154,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3650.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4169,7 +4169,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3637.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4184,7 +4184,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3644.28,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4199,7 +4199,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3639.73,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.45
   },
@@ -4214,7 +4214,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3679.36,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -7.59
   },
@@ -4229,7 +4229,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3679.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.05
   },
@@ -4244,7 +4244,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3683.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.26
   },
@@ -4259,7 +4259,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3697.69,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4274,7 +4274,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3686.23,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.36
   },
@@ -4289,7 +4289,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3691.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4304,7 +4304,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3681.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4319,7 +4319,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3669.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.13
   },
@@ -4334,7 +4334,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3685.69,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.33
   },
@@ -4349,7 +4349,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3660.58,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4364,7 +4364,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3661.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4379,7 +4379,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3668.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.76
   },
@@ -4394,7 +4394,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3641.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4409,7 +4409,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3645.76,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4424,7 +4424,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3646.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -7.02
   },
@@ -4454,7 +4454,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3653.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.05
   },
@@ -4469,7 +4469,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3659.36,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.27
   },
@@ -4484,7 +4484,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3684.17,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4499,7 +4499,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3690.66,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4514,7 +4514,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3714.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -7.49
   },
@@ -4529,7 +4529,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3720.51,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4544,7 +4544,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3747.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4559,7 +4559,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3756.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4574,7 +4574,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3753.77,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4589,7 +4589,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3784.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.05
   },
@@ -4604,7 +4604,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3777.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.37
   },
@@ -4619,7 +4619,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3769.09,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4634,7 +4634,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3772.25,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4649,7 +4649,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3768.26,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -7.12
   },
@@ -4664,7 +4664,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3734.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.96
   },
@@ -4679,7 +4679,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3748.28,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.28
   },
@@ -4694,7 +4694,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3739.88,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.89
   },
@@ -4709,7 +4709,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3751.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4724,7 +4724,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3740.91,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -8
   },
@@ -4739,7 +4739,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3744.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.26
   },
@@ -4754,7 +4754,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3746.33,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4769,7 +4769,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3745.86,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.56
   },
@@ -4784,7 +4784,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3775.87,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.68
   },
@@ -4799,7 +4799,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3768.47,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4814,7 +4814,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3806.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.32
   },
@@ -4829,7 +4829,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3817.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.61
   },
@@ -4844,7 +4844,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3830.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4859,7 +4859,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3827.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.29
   },
@@ -4874,7 +4874,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3863.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4889,7 +4889,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3797.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4904,7 +4904,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3839.21,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4919,7 +4919,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3857.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4934,7 +4934,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3865.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4949,7 +4949,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3867.26,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4964,7 +4964,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3863.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -4979,7 +4979,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3868.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -2
   },
@@ -4994,7 +4994,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3882.98,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5009,7 +5009,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3856.71,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5024,7 +5024,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3843.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5039,7 +5039,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3861.98,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.58
   },
@@ -5054,7 +5054,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3885.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.7
   },
@@ -5069,7 +5069,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3934.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.35
   },
@@ -5084,7 +5084,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3937.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5099,7 +5099,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3962.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.56
   },
@@ -5114,7 +5114,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3973.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.09
   },
@@ -5129,7 +5129,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3965.99,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.38
   },
@@ -5144,7 +5144,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3980.33,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.05
   },
@@ -5159,7 +5159,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4013.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.14
   },
@@ -5174,7 +5174,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4035.33,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5189,7 +5189,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4051.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6
   },
@@ -5204,7 +5204,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4026.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.08
   },
@@ -5219,7 +5219,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4039.86,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.66
   },
@@ -5234,7 +5234,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3958.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5249,7 +5249,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3970.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.8
   },
@@ -5264,7 +5264,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3997.56,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.56
   },
@@ -5279,7 +5279,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4004.09,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.18
   },
@@ -5294,7 +5294,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4045.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5309,7 +5309,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4076.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5324,7 +5324,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4103.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5339,7 +5339,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4146.22,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.27
   },
@@ -5354,7 +5354,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4127.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.69
   },
@@ -5369,7 +5369,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4149.85,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.46
   },
@@ -5384,7 +5384,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4182.89,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.85
   },
@@ -5399,7 +5399,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4190.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.05
   },
@@ -5414,7 +5414,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4185.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.5
   },
@@ -5429,7 +5429,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4228.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.23
   },
@@ -5444,7 +5444,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4222.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.72
   },
@@ -5459,7 +5459,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4287.23,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5474,7 +5474,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4321.27,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.92
   },
@@ -5489,7 +5489,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4343.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.74
   },
@@ -5504,7 +5504,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4213.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5519,7 +5519,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4255.37,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.28
   },
@@ -5534,7 +5534,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4252,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.61
   },
@@ -5549,7 +5549,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4347.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.35
   },
@@ -5564,7 +5564,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4368.55,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.88
   },
@@ -5579,7 +5579,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4267.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.27
   },
@@ -5594,7 +5594,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4139.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.97
   },
@@ -5609,7 +5609,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4073.14,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.11
   },
@@ -5624,7 +5624,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4101.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5639,7 +5639,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4034.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5654,7 +5654,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4084.21,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.13
   },
@@ -5669,7 +5669,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4096.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.85
   },
@@ -5684,7 +5684,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4140.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5699,7 +5699,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4119.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.05
   },
@@ -5729,7 +5729,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4087.91,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.2
   },
@@ -5744,7 +5744,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4119.76,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5759,7 +5759,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4071.86,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.54
   },
@@ -5774,7 +5774,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4072.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5789,7 +5789,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3997.72,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.46
   },
@@ -5804,7 +5804,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3988.41,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.88
   },
@@ -5819,7 +5819,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3941.87,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.22
   },
@@ -5834,7 +5834,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3944.27,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5849,7 +5849,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3933.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.07
   },
@@ -5864,7 +5864,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3974.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.9
   },
@@ -5879,7 +5879,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4020.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.34
   },
@@ -5894,7 +5894,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3938.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.83
   },
@@ -5909,7 +5909,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3957.12,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5924,7 +5924,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3978.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.46
   },
@@ -5939,7 +5939,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4018.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.16
   },
@@ -5954,7 +5954,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4007.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.63
   },
@@ -5969,7 +5969,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4029.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.22
   },
@@ -5984,7 +5984,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3983.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -5999,7 +5999,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4010.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6014,7 +6014,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4005.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6029,7 +6029,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3999.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6044,7 +6044,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3989.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.68
   },
@@ -6059,7 +6059,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3995.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.35
   },
@@ -6074,7 +6074,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3942.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6089,7 +6089,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3934.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.65
   },
@@ -6104,7 +6104,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3969.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.69
   },
@@ -6119,7 +6119,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3960.77,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.99
   },
@@ -6134,7 +6134,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3983.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.9
   },
@@ -6149,7 +6149,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3969.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6164,7 +6164,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4003.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.84
   },
@@ -6179,7 +6179,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4007.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.48
   },
@@ -6194,7 +6194,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3982.81,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.7
   },
@@ -6209,7 +6209,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 3992.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.59
   },
@@ -6224,7 +6224,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4005.55,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6239,7 +6239,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4000.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.74
   },
@@ -6254,7 +6254,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4012.64,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.98
   },
@@ -6269,7 +6269,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4074.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.01
   },
@@ -6284,7 +6284,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4101.22,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6299,7 +6299,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4113.25,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.53
   },
@@ -6314,7 +6314,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4146.51,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.79
   },
@@ -6329,7 +6329,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4139.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6344,7 +6344,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4107.16,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.78
   },
@@ -6359,7 +6359,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4140.09,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.45
   },
@@ -6374,7 +6374,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4114.73,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.82
   },
@@ -6389,7 +6389,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4130.03,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.79
   },
@@ -6404,7 +6404,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4194.79,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.3
   },
@@ -6419,7 +6419,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4191.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.18
   },
@@ -6434,7 +6434,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4232.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.57
   },
@@ -6449,7 +6449,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4196.72,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.81
   },
@@ -6464,7 +6464,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4180.18,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.53
   },
@@ -6479,7 +6479,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4193.48,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.6
   },
@@ -6494,7 +6494,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4118.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.72
   },
@@ -6509,7 +6509,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4096.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.93
   },
@@ -6524,7 +6524,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4088.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.11
   },
@@ -6539,7 +6539,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4077.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.2
   },
@@ -6554,7 +6554,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4068.58,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.56
   },
@@ -6569,7 +6569,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4042.51,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.16
   },
@@ -6584,7 +6584,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4011,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.29
   },
@@ -6599,7 +6599,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4046.76,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6614,7 +6614,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4070.27,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.36
   },
@@ -6629,7 +6629,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4061.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.2
   },
@@ -6644,7 +6644,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4084.43,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6659,7 +6659,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4115.64,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.26
   },
@@ -6674,7 +6674,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4071.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.07
   },
@@ -6689,7 +6689,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4076.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.49
   },
@@ -6704,7 +6704,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4056.68,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.22
   },
@@ -6719,7 +6719,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4055.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.54
   },
@@ -6734,7 +6734,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4069.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.25
   },
@@ -6749,7 +6749,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4037.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6764,7 +6764,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4077.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.64
   },
@@ -6779,7 +6779,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4070.85,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.51
   },
@@ -6794,7 +6794,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4048.85,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.51
   },
@@ -6809,7 +6809,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4068.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.69
   },
@@ -6824,7 +6824,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4096.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.94
   },
@@ -6839,7 +6839,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4137.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.86
   },
@@ -6854,7 +6854,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4141.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.12
   },
@@ -6869,7 +6869,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4143.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -6884,7 +6884,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4130.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.88
   },
@@ -6899,7 +6899,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4163.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.13
   },
@@ -6914,7 +6914,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4158.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.86
   },
@@ -6929,7 +6929,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4162.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.7
   },
@@ -6944,7 +6944,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4164.79,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.58
   },
@@ -6959,7 +6959,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4152.37,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.87
   },
@@ -6974,7 +6974,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4155.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.41
   },
@@ -6989,7 +6989,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4159.43,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.74
   },
@@ -7004,7 +7004,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4181.38,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7034,7 +7034,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4172.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.15
   },
@@ -7049,7 +7049,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4228.43,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7064,7 +7064,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4231.38,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7079,7 +7079,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4246.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7094,7 +7094,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4232.19,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7109,7 +7109,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4208.24,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7124,7 +7124,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4216.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7139,7 +7139,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4210.33,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.53
   },
@@ -7154,7 +7154,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4208.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.43
   },
@@ -7169,7 +7169,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4231.62,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7184,7 +7184,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4206.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.55
   },
@@ -7199,7 +7199,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4183.86,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.84
   },
@@ -7214,7 +7214,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4191.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.53
   },
@@ -7229,7 +7229,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4207.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7244,7 +7244,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4219.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.35
   },
@@ -7259,7 +7259,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4234.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.18
   },
@@ -7274,7 +7274,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4200.22,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.59
   },
@@ -7289,7 +7289,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4215,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7304,7 +7304,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4202,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.38
   },
@@ -7319,7 +7319,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4190.86,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.67
   },
@@ -7334,7 +7334,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4178.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.77
   },
@@ -7349,7 +7349,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4198.35,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7364,7 +7364,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4210.53,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7379,7 +7379,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4212.69,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.28
   },
@@ -7394,7 +7394,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4196.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.58
   },
@@ -7409,7 +7409,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4221.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.26
   },
@@ -7424,7 +7424,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4209.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.44
   },
@@ -7439,7 +7439,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4209.17,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.49
   },
@@ -7454,7 +7454,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4274.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.78
   },
@@ -7469,7 +7469,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4276.03,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.72
   },
@@ -7484,7 +7484,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4334.73,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.33
   },
@@ -7499,7 +7499,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4300.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.69
   },
@@ -7514,7 +7514,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4326.49,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7529,7 +7529,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4345.28,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.62
   },
@@ -7544,7 +7544,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4302.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.56
   },
@@ -7559,7 +7559,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4288.15,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7574,7 +7574,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4293.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.96
   },
@@ -7589,7 +7589,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4310.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.47
   },
@@ -7604,7 +7604,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4328.85,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.9
   },
@@ -7619,7 +7619,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4317.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.85
   },
@@ -7634,7 +7634,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4340.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.53
   },
@@ -7649,7 +7649,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4331.71,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.73
   },
@@ -7664,7 +7664,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4317.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7679,7 +7679,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4333.95,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.78
   },
@@ -7694,7 +7694,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4319.68,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.8
   },
@@ -7709,7 +7709,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4325.43,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.2
   },
@@ -7724,7 +7724,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4347.52,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.68
   },
@@ -7739,7 +7739,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4394.24,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7754,7 +7754,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4408.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.81
   },
@@ -7769,7 +7769,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4432.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.96
   },
@@ -7784,7 +7784,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4485.38,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7799,7 +7799,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4492.03,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.45
   },
@@ -7814,7 +7814,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4489.01,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.56
   },
@@ -7829,7 +7829,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4493.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.28
   },
@@ -7844,7 +7844,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4488.34,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -7859,7 +7859,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4492.82,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.46
   },
@@ -7874,7 +7874,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4514.45,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.33
   },
@@ -7904,7 +7904,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4516.39,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.67
   },
@@ -7919,7 +7919,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4536.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.29
   },
@@ -7934,7 +7934,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4451.41,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.28
   },
@@ -7949,7 +7949,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4365.72,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.72
   },
@@ -7964,7 +7964,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4326.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.8
   },
@@ -7979,7 +7979,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4363.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.36
   },
@@ -7994,7 +7994,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4380.97,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.15
   },
@@ -8009,7 +8009,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4343.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8
   },
@@ -8024,7 +8024,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4313.57,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.32
   },
@@ -8039,7 +8039,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4337.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.04
   },
@@ -8054,7 +8054,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4328.76,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.68
   },
@@ -8069,7 +8069,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4374.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.95
   },
@@ -8084,7 +8084,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4355.13,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.42
   },
@@ -8099,7 +8099,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4373.94,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.91
   },
@@ -8114,7 +8114,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4421.37,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.8
   },
@@ -8129,7 +8129,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4448.96,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.97
   },
@@ -8144,7 +8144,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4434.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.6
   },
@@ -8159,7 +8159,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4463.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.86
   },
@@ -8174,7 +8174,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4488.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.65
   },
@@ -8189,7 +8189,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4467.05,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.43
   },
@@ -8204,7 +8204,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4463.21,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.75
   },
@@ -8219,7 +8219,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4451.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.08
   },
@@ -8234,7 +8234,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4440.74,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.02
   },
@@ -8249,7 +8249,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4431.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.41
   },
@@ -8264,7 +8264,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4448.43,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.12
   },
@@ -8279,7 +8279,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4464.71,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.95
   },
@@ -8294,7 +8294,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4478.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.06
   },
@@ -8309,7 +8309,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4500.42,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.63
   },
@@ -8324,7 +8324,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4570.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.53
   },
@@ -8339,7 +8339,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4600.79,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.77
   },
@@ -8354,7 +8354,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4594.32,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.25
   },
@@ -8369,7 +8369,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4591.08,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.75
   },
@@ -8384,7 +8384,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4616.44,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.56
   },
@@ -8399,7 +8399,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4593.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.29
   },
@@ -8414,7 +8414,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4633.27,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.9
   },
@@ -8429,7 +8429,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4612.92,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.83
   },
@@ -8444,7 +8444,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4616.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.67
   },
@@ -8459,7 +8459,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4602.02,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.92
   },
@@ -8474,7 +8474,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4622.06,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.38
   },
@@ -8489,7 +8489,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4603.65,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.41
   },
@@ -8504,7 +8504,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4603.29,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.52
   },
@@ -8519,7 +8519,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4590.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.87
   },
@@ -8534,7 +8534,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4660.83,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.64
   },
@@ -8549,7 +8549,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4667.75,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.04
   },
@@ -8564,7 +8564,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4676.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.16
   },
@@ -8579,7 +8579,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4706.36,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.67
   },
@@ -8594,7 +8594,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4727.98,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.57
   },
@@ -8609,7 +8609,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4761.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.41
   },
@@ -8624,7 +8624,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4859.64,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.4
   },
@@ -8639,7 +8639,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4853.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.58
   },
@@ -8654,7 +8654,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4791.11,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.21
   },
@@ -8669,7 +8669,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4833.78,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.39
   },
@@ -8684,7 +8684,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4863.07,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.22
   },
@@ -8699,7 +8699,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4956.23,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.57
   },
@@ -8714,7 +8714,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4917.63,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.35
   },
@@ -8729,7 +8729,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4979.73,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.68
   },
@@ -8744,7 +8744,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5074.67,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.69
   },
@@ -8759,7 +8759,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5082.27,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.83
   },
@@ -8774,7 +8774,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5099.11,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.67
   },
@@ -8789,7 +8789,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5065.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.93
   },
@@ -8804,7 +8804,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5083.51,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.52
   },
@@ -8819,7 +8819,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5091.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.3
   },
@@ -8834,7 +8834,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5237.54,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.62
   },
@@ -8849,7 +8849,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5261.46,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.07
   },
@@ -8864,7 +8864,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5324.04,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.49
   },
@@ -8879,7 +8879,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5555.61,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.92
   },
@@ -8894,7 +8894,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5536.26,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.18
   },
@@ -8909,7 +8909,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5397.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.96
   },
@@ -8924,7 +8924,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5186.12,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.11
   },
@@ -8939,7 +8939,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5018.85,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.89
   },
@@ -8954,7 +8954,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5003.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.91
   },
@@ -8969,7 +8969,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4991.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.17
   },
@@ -8984,7 +8984,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4992.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.22
   },
@@ -8999,7 +8999,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4959.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.15
   },
@@ -9014,7 +9014,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4928.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.03
   },
@@ -9029,7 +9029,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4927.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.92
   },
@@ -9044,7 +9044,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4862.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.95
   },
@@ -9059,7 +9059,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4879.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.06
   },
@@ -9074,7 +9074,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4919.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.11
   },
@@ -9089,7 +9089,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4929.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 10.18
   },
@@ -9104,7 +9104,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4948.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.48
   },
@@ -9119,7 +9119,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4998.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.8
   },
@@ -9134,7 +9134,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4977.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.1
   },
@@ -9149,7 +9149,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4968.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.8
   },
@@ -9164,7 +9164,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5011.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.06
   },
@@ -9179,7 +9179,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4982.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.68
   },
@@ -9194,7 +9194,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4990.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.83
   },
@@ -9209,7 +9209,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4995.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.58
   },
@@ -9224,7 +9224,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4996.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.74
   },
@@ -9239,7 +9239,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5012.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.34
   },
@@ -9254,7 +9254,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5027.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.21
   },
@@ -9269,7 +9269,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5071.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.25
   },
@@ -9284,7 +9284,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.28
   },
@@ -9299,7 +9299,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.21
   },
@@ -9314,7 +9314,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.75
   },
@@ -9329,7 +9329,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 10.53
   },
@@ -9344,7 +9344,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.81
   },
@@ -9359,7 +9359,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.97
   },
@@ -9374,7 +9374,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.8
   },
@@ -9389,7 +9389,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 10.05
   },
@@ -9404,7 +9404,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.27
   },
@@ -9419,7 +9419,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.94
   },
@@ -9434,7 +9434,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 10.19
   },
@@ -9449,7 +9449,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5161.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.09
   },
@@ -9464,7 +9464,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5137.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.4
   },
@@ -9479,7 +9479,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5163.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.27
   },
@@ -9494,7 +9494,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5199.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.77
   },
@@ -9509,7 +9509,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5227.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.69
   },
@@ -9524,7 +9524,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5185.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.54
   },
@@ -9539,7 +9539,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5172.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.21
   },
@@ -9554,7 +9554,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5151.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.71
   },
@@ -9569,7 +9569,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5159.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.05
   },
@@ -9584,7 +9584,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5144.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.1
   },
@@ -9599,7 +9599,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5180.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.27
   },
@@ -9614,7 +9614,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5187.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.28
   },
@@ -9629,7 +9629,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5182.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.11
   },
@@ -9644,7 +9644,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5206.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.28
   },
@@ -9659,7 +9659,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5165.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.13
   },
@@ -9674,7 +9674,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5191.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.45
   },
@@ -9689,7 +9689,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5189.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.37
   },
@@ -9704,7 +9704,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5182.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.55
   },
@@ -9719,7 +9719,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5170.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.62
   },
@@ -9734,7 +9734,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5184.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.22
   },
@@ -9749,7 +9749,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5184.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 10.71
   },
@@ -9764,7 +9764,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5179.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.74
   },
@@ -9779,7 +9779,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5188.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.82
   },
@@ -9794,7 +9794,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5236.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.9
   },
@@ -9809,7 +9809,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.96
   },
@@ -9824,7 +9824,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.01
   },
@@ -9839,7 +9839,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5278.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.84
   },
@@ -9854,7 +9854,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.93
   },
@@ -9869,7 +9869,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5278.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.97
   },
@@ -9884,7 +9884,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.03
   },
@@ -9899,7 +9899,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.87
   },
@@ -9914,7 +9914,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.16
   },
@@ -9929,7 +9929,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5278.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.62
   },
@@ -9944,7 +9944,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5277.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.8
   },
@@ -9959,7 +9959,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5278.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.87
   },
@@ -9974,7 +9974,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5350.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.74
   },
@@ -9989,7 +9989,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5351.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.46
   },
@@ -10004,7 +10004,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5392.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.65
   },
@@ -10019,7 +10019,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5350.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.46
   },
@@ -10034,7 +10034,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5314.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.67
   },
@@ -10049,7 +10049,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5335.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.81
   },
@@ -10064,7 +10064,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5363.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.07
   },
@@ -10079,7 +10079,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5318.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.72
   },
@@ -10094,7 +10094,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5202.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -4.18
   },
@@ -10109,7 +10109,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5107.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.86
   },
@@ -10124,7 +10124,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5086.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.94
   },
@@ -10139,7 +10139,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5183.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.5
   },
@@ -10154,7 +10154,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5152.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.76
   },
@@ -10169,7 +10169,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5192.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.67
   },
@@ -10184,7 +10184,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5141.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.23
   },
@@ -10199,7 +10199,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5129.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.08
   },
@@ -10214,7 +10214,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5174.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.68
   },
@@ -10229,7 +10229,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5175.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.83
   },
@@ -10244,7 +10244,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5165.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.08
   },
@@ -10259,7 +10259,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5120.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.23
   },
@@ -10274,7 +10274,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5079.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.36
   },
@@ -10289,7 +10289,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5085.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.98
   },
@@ -10304,7 +10304,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5131.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.79
   },
@@ -10319,7 +10319,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5118.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.07
   },
@@ -10334,7 +10334,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5086.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.22
   },
@@ -10349,7 +10349,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5137.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.96
   },
@@ -10364,7 +10364,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5170.6,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.2
   },
@@ -10379,7 +10379,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.3
   },
@@ -10394,7 +10394,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.28
   },
@@ -10409,7 +10409,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.05
   },
@@ -10424,7 +10424,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.41
   },
@@ -10439,7 +10439,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.56
   },
@@ -10454,7 +10454,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.73
   },
@@ -10469,7 +10469,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.66
   },
@@ -10484,7 +10484,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.92
   },
@@ -10499,7 +10499,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.34
   },
@@ -10514,7 +10514,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.96
   },
@@ -10529,7 +10529,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5130.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.77
   },
@@ -10544,7 +10544,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5092.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.18
   },
@@ -10559,7 +10559,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5098.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.06
   },
@@ -10574,7 +10574,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5103.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.76
   },
@@ -10589,7 +10589,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5104.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.71
   },
@@ -10604,7 +10604,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5137.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -3.21
   },
@@ -10619,7 +10619,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5172.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.76
   },
@@ -10634,7 +10634,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5176.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.41
   },
@@ -10649,7 +10649,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5171.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.47
   },
@@ -10664,7 +10664,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5224.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.55
   },
@@ -10679,7 +10679,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5189.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.85
   },
@@ -10694,7 +10694,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5202.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.42
   },
@@ -10709,7 +10709,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5203.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.66
   },
@@ -10724,7 +10724,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5187.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.59
   },
@@ -10739,7 +10739,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5173.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.88
   },
@@ -10754,7 +10754,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5172.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.16
   },
@@ -10769,7 +10769,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5158.1,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.05
   },
@@ -10784,7 +10784,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5153.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.39
   },
@@ -10799,7 +10799,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5178.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 3.62
   },
@@ -10814,7 +10814,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5169.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.7
   },
@@ -10829,7 +10829,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5130.2,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.86
   },
@@ -10844,7 +10844,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5079.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.75
   },
@@ -10859,7 +10859,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5117.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.86
   },
@@ -10874,7 +10874,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5107.0,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -6.05
   },
@@ -10889,7 +10889,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5082.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.47
   },
@@ -10904,7 +10904,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5052.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.44
   },
@@ -10919,7 +10919,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5036.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.85
   },
@@ -10934,7 +10934,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.6
   },
@@ -10949,7 +10949,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -5.1
   },
@@ -10964,7 +10964,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.62
   },
@@ -10979,7 +10979,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.84
   },
@@ -10994,7 +10994,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.71
   },
@@ -11009,7 +11009,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 4.34
   },
@@ -11024,7 +11024,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 9.56
   },
@@ -11039,7 +11039,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.09
   },
@@ -11054,7 +11054,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.57
   },
@@ -11069,7 +11069,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.47
   },
@@ -11084,7 +11084,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.73
   },
@@ -11099,7 +11099,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4994.5,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.75
   },
@@ -11114,7 +11114,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5019.4,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.72
   },
@@ -11129,7 +11129,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4980.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 6.02
   },
@@ -11144,7 +11144,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 4997.3,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 5.85
   },
@@ -11159,7 +11159,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5012.8,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": -7.01
   },
@@ -11174,7 +11174,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5009.7,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 8.61
   },
@@ -11189,7 +11189,7 @@ export const defaultAccounts: AccountProfile[] = [
     "closePrice": 5027.9,
     "sl": 0,
     "tp": 0,
-    "commission": 0,
+    "commission": -0.07,
     "swap": 0,
     "profit": 7.61
   }
