@@ -1358,3 +1358,4 @@
    * Aralık Net Etki: +30$
 
   01.11.2025-30.11.2025 ve 01.12.2025-31.12.2025 tarih aralıkları üzerinden Geçmiş ekranından doğrulayabilirsin. Canlı ortama yansıtmak için git push -> sayfa yenilemen yeterli.
+⚠️ Not: Kasım ve Aralık işlem fiyatları ham XAUUSD CSV verisindeki 4400$ civarındaki OHLC değerlerinden alınarak yeniden yazıldı; önceki 3700$ seviyesindeki hatalı kayıtlar temizlendi.
