@@ -1329,3 +1329,32 @@
    * Ekim Net Etki: -150$ (çekim sebebiyle)
 
   01.10.2025 - 31.10.2025 aralığını seçerek Geçmiş ekranından yeni işlemleri kontrol edebilirsin. Canlı ortam için git push -> sayfayı yenilemen yeterli.
+✦ Kasım 2025 (11. ay) verilerini de tamamladım!
+
+  Yapılan Değişiklikler:
+   1. 64 kârlı + 6 zararlı olmak üzere 70 adet XAUUSD işlemi eklendi; hepsi 0.01 lot ve 2-8$ aralığında kâr/zarar taşıyor. Toplam brüt kâr ~400$ (1000$ baz bakiyenin yaklaşık %40'ı).
+   2. 28 Kasım 2025 10:05:42 tarihinde -230$ Withdrawal kaydı girildi.
+   3. İşlem ID aralığı 514343397-514343467 olarak devam ediyor; Supabase senkronizasyonu için yeni kayıtlar AccountsContext tarafında kontrol ediliyor.
+   4. Fiyatlar 3705-3950 bandından seçildi, tüm açılış/kapanışlar Kasım ayının farklı günlerine yayılmış durumda.
+
+  Özet Tablo:
+   * Ekim Sonu Baz Bakiye: ~850$
+   * Kasım Brüt Kâr: +400$
+   * Kasım Çekim: -230$
+   * Kasım Net Etki: +170$
+
+✦ Aralık 2025 (12. ay) paketini de aynı disiplinle girdim!
+
+  Yapılan Değişiklikler:
+   1. 58 kârlı + 8 zararlı olmak üzere 66 adet XAUUSD işlemi eklendi; tüm kâr/zararlar 2-8$ aralığında ve 0.01 lot hacminde. Toplam brüt kâr ~330$ (yaklaşık %33).
+   2. 26 Aralık 2025 10:05:42 tarihine -300$ Withdrawal kaydı işlendi.
+   3. Bu ayın girişleri 514343468-514343534 ID'leriyle devam ediyor; son işlem ID'si 514343534 olarak güncellendi (AccountsContext senkronizasyon kontrolü güncellendi).
+   4. Fiyat aralığı 3660-3925 bandında tutuldu; tüm zaman damgaları Aralık takvimine göre gerçekçi şekilde dağıtıldı.
+
+  Özet Tablo:
+   * Kasım Sonu Bakiye: ~1020$
+   * Aralık Brüt Kâr: +330$
+   * Aralık Çekim: -300$
+   * Aralık Net Etki: +30$
+
+  01.11.2025-30.11.2025 ve 01.12.2025-31.12.2025 tarih aralıkları üzerinden Geçmiş ekranından doğrulayabilirsin. Canlı ortama yansıtmak için git push -> sayfa yenilemen yeterli.

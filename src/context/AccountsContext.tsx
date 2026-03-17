@@ -82,9 +82,9 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
           console.log('Supabase: Veri bulundu, senkronize ediliyor...');
-          // EĞER SON EKLENEN İŞLEM (514343396) YOKSA, defaultAccounts'ı kullanmaya zorla (Tek seferlik güncelleme için)
+          // EĞER SON EKLENEN İŞLEM (514343534) YOKSA, defaultAccounts'ı kullanmaya zorla (Tek seferlik güncelleme için)
           const hasNewTrades = data.data.some((acc: any) => 
-            acc.history.some((deal: any) => deal.id === '514343396')
+            acc.history.some((deal: any) => deal.id === '514343534')
           );
 
           if (!hasNewTrades) {
@@ -211,4 +211,5 @@ export const useAccounts = () => {
   if (!c) throw new Error('useAccounts error');
   return c;
 };
+
 
