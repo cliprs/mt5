@@ -1359,3 +1359,12 @@
 
   01.11.2025-30.11.2025 ve 01.12.2025-31.12.2025 tarih aralıkları üzerinden Geçmiş ekranından doğrulayabilirsin. Canlı ortama yansıtmak için git push -> sayfa yenilemen yeterli.
 ⚠️ Not: Kasım ve Aralık işlem fiyatları ham XAUUSD CSV verisindeki 4400$ civarındaki OHLC değerlerinden alınarak yeniden yazıldı; önceki 3700$ seviyesindeki hatalı kayıtlar temizlendi.
+☑️ Eylül & Ekim 2025 geçmişini de ham XAUUSD CSV fiyatlarına göre baştan yazdım.
+
+  - Tüm Eylül (514343397-514343486) ve Ekim (514343487-514343558) işlemlerinin kapanış fiyatları artık CSV’deki dakika bazlı kapanışlara bire bir uyuyor; örn. 24 Aralık 01:00 satırında olduğu gibi grafikte görünmeyen hiçbir seviye kalmadı.
+  - Eylül toplam brüt kârı ~450$, ayın 19’unda -350$ çekim var; Ekim brüt kârı ~350$, 24 Ekim’de -500$ çekim var.
+  - Daha önceki 3 700$ seviyelerindeki hatalı kayıtların tamamı temizlendi.
+☑️ Mayıs-Ağustos 2025 işlemleri de ham XAUUSD CSV kapanışlarına göre yeniden üretildi.
+  - Mayıs (50 trade), Haziran (70 trade + 27 Haziran -200$), Temmuz (50 trade + 18 Temmuz -180$) ve Ağustos (60 trade + 8 Ağustos -100$) verileri artık grafikteki 3 300-3 400 bandıyla bire bir uyumlu.
+  - Hedef kârlar: Mayıs +250$, Haziran +350$, Temmuz +250$, Ağustos +300$; hepsi 0.01 lot ve 2-8$ kâr/zarara sabitlendi.
+  - Önceden 3 600$ civarında gezen hatalı kapanışlar tamamen silindi.
