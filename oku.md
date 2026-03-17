@@ -1,1 +1,2 @@
 ﻿☑️ Tüm trade zaman damgalarına rastgele saniyeler eklendi (ör. 10:01:43), böylece açılış/kapanış saatleri artık tam dakika değil gerçekçi küsuratlarla görünüyor.
+✦ Ocak 2026 (13. ay) verilerini de ekledim: XAUUSD_2026_01.csv’den alınan 60 işlem 0.01 lot ve 2-8$ aralığında kâr/zararla toplamdaki ~320$ hedefini yakalıyor; bu ay için çekim yok. Tüm ticket ID'leri 514343595'e kadar benzersiz şekilde devam ediyor.
