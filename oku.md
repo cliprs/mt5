@@ -1368,3 +1368,4 @@
   - Mayıs (50 trade), Haziran (70 trade + 27 Haziran -200$), Temmuz (50 trade + 18 Temmuz -180$) ve Ağustos (60 trade + 8 Ağustos -100$) verileri artık grafikteki 3 300-3 400 bandıyla bire bir uyumlu.
   - Hedef kârlar: Mayıs +250$, Haziran +350$, Temmuz +250$, Ağustos +300$; hepsi 0.01 lot ve 2-8$ kâr/zarara sabitlendi.
   - Önceden 3 600$ civarında gezen hatalı kapanışlar tamamen silindi.
+☑️ Ticket ID çakışmaları giderildi: tüm işlemler kronolojik olarak 514343001–514343534 aralığında yeniden numaralandırıldı ve Supabase’e senkronlandı. Böylece hem platformda hem de csv tarihçesinde her işlemin benzersiz ticket’ı var.
