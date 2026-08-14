@@ -1,489 +1,202 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
+import { IoTrashOutline } from 'react-icons/io5';
 
-interface AccountManagerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+const joinDateTime = (parts: { date: string; h: string; m: string; s: string }) => {
+  if (!parts.date) return '';
+  const [year, month, day] = parts.date.split('-');
+  return `${year}.${month}.${day} ${parts.h.padStart(2, '0')}:${parts.m.padStart(2, '0')}:${parts.s.padStart(2, '0')}`;
+};
 
-type EntryType = 'trade' | 'deposit' | 'withdraw';
-type TradeSide = 'buy' | 'sell';
+const createTradeFormState = () => ({
+  symbol: 'XAUUSD', side: 'sell' as 'buy' | 'sell', volume: '',
+  openPrice: '', closePrice: '',
+  openDate: '', openH: '', openM: '', openS: '',
+  closeDate: '', closeH: '', closeM: '', closeS: '',
+});
 
-const sanitizePositive = (value: string) => value.replace(/-/g, '');
+const createBalanceFormState = () => ({ 
+  amount: '', date: '', h: '', m: '', s: ''
+});
+
+const sanitizePositive = (value: string) => value.replace(/[^0-9.]/g, '');
 const sanitizeDigits = (value: string) => value.replace(/[^0-9]/g, '');
 
-const padTimePart = (value: string) => value.padStart(2, '0');
-
-const toDateTimeLocal = (value: string) => {
-  if (!value) return '';
-  const [datePart, timePart = ''] = value.split(' ');
-  const [year = '0000', month = '00', day = '00'] = (datePart?.split('.') ?? []);
-  const [hour = '00', minute = '00'] = (timePart ? timePart.split(':') : []);
-  return `${year}-${padTimePart(month)}-${padTimePart(day)}T${padTimePart(hour)}:${padTimePart(minute)}`;
-};
-
-const fromDateTimeLocal = (value: string) => {
-  if (!value) return '';
-  const [datePart, timePart = ''] = value.split('T');
-  if (!datePart) return '';
-  const [year = '0000', month = '00', day = '00'] = datePart.split('-');
-  const [hour = '00', minute = '00'] = (timePart ? timePart.split(':') : []);
-  return `${year}.${padTimePart(month)}.${padTimePart(day)} ${padTimePart(hour)}:${padTimePart(minute)}:00`;
-};
-
-const createTradeFormState = (lastClose?: string) => ({
-  symbol: 'GOLD',
-  side: 'sell' as TradeSide,
-  volume: '',
-  openTime: lastClose ?? '',
-  closeTime: lastClose ?? '',
-  openPrice: '',
-  closePrice: '',
-});
-
-const createBalanceFormState = (lastClose?: string) => ({
-  timestamp: lastClose ?? '',
-  amount: '',
-});
-
-const AccountManager: React.FC<AccountManagerProps> = ({ isOpen, onClose }) => {
-  const {
-    accounts,
-    selectedAccountId,
-    selectedAccount,
-    selectAccount,
-    addEntry,
-    removeEntry,
-    updateAccountDetails,
-  } = useAccounts();
-
-  const [entryType, setEntryType] = useState<EntryType>('trade');
+const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails } = useAccounts();
+  const [entryType, setEntryType] = useState<'trade' | 'deposit' | 'withdraw'>('trade');
   const [statusMessage, setStatusMessage] = useState('');
   const [closeTimeTouched, setCloseTimeTouched] = useState(false);
-  const [tradeForm, setTradeForm] = useState(() => createTradeFormState());
-  const [balanceForm, setBalanceForm] = useState(() => createBalanceFormState());
-  const [accountForm, setAccountForm] = useState({
-    name: '',
-    accountNo: '',
-    server: '',
-  });
-
+  
+  const [tradeForm, setTradeForm] = useState(createTradeFormState);
+  const [balanceForm, setBalanceForm] = useState(createBalanceFormState);
+  const [accountForm, setAccountForm] = useState({ name: '', accountNo: '', server: '' });
   const [ticketToDelete, setTicketToDelete] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
-    const lastClose = selectedAccount?.history[selectedAccount.history.length - 1]?.closeTime;
     setStatusMessage('');
-    setCloseTimeTouched(false);
-    setTradeForm(createTradeFormState(lastClose));
-    setBalanceForm(createBalanceFormState(lastClose));
+    setTradeForm(createTradeFormState());
+    setBalanceForm(createBalanceFormState());
     setTicketToDelete('');
-    if (selectedAccount) {
-      setAccountForm({
-        name: selectedAccount.name,
-        accountNo: selectedAccount.accountNo,
-        server: selectedAccount.server,
-      });
-    }
-  }, [isOpen, selectedAccount]);
-
-  const accountDetailsDirty = useMemo(() => {
-    if (!selectedAccount) return false;
-    return (
-      accountForm.name !== selectedAccount.name ||
-      accountForm.accountNo !== selectedAccount.accountNo ||
-      accountForm.server !== selectedAccount.server
-    );
-  }, [accountForm, selectedAccount]);
-
-  const canSaveAccountDetails = useMemo(() => {
-    if (!selectedAccountId) return false;
-    return (
-      accountDetailsDirty &&
-      accountForm.name.trim().length > 0 &&
-      accountForm.accountNo.trim().length > 0 &&
-      accountForm.server.trim().length > 0
-    );
-  }, [accountDetailsDirty, accountForm, selectedAccountId]);
-
-  const handleAccountFieldChange = (field: 'name' | 'accountNo' | 'server', value: string) => {
-    setAccountForm((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const handleAccountDetailsSave = () => {
-    if (!selectedAccountId || !canSaveAccountDetails) return;
-    updateAccountDetails(selectedAccountId, {
-      name: accountForm.name.trim(),
-      accountNo: accountForm.accountNo.trim(),
-      server: accountForm.server.trim(),
-    });
-    setStatusMessage('Hesap bilgileri güncellendi.');
-  };
-
-  const resetForms = () => {
-    const lastClose = selectedAccount?.history[selectedAccount.history.length - 1]?.closeTime;
     setCloseTimeTouched(false);
-    setTradeForm(createTradeFormState(lastClose));
-    setBalanceForm(createBalanceFormState(lastClose));
-  };
+    if (selectedAccount) {
+      setAccountForm({ name: selectedAccount.name, accountNo: selectedAccount.accountNo, server: selectedAccount.server });
+    }
+  }, [isOpen, selectedAccountId]);
 
   const handleTradeChange = (field: keyof typeof tradeForm, value: string) => {
-    setTradeForm((prev) => {
-      const numericFields: (keyof typeof prev)[] = ['volume', 'openPrice', 'closePrice'];
-      const sanitizedValue = numericFields.includes(field) ? sanitizePositive(value) : value;
-      const nextState = { ...prev, [field]: sanitizedValue };
-      if (field === 'openTime' && !closeTimeTouched) {
-        nextState.closeTime = sanitizedValue;
+    const isTimePart = ['openDate', 'openH', 'openM', 'openS'].includes(field);
+    setTradeForm(prev => {
+      const nextState = { ...prev, [field]: value };
+      if (isTimePart && !closeTimeTouched) {
+        const correspondingCloseField = field.replace('open', 'close') as keyof typeof tradeForm;
+        (nextState as any)[correspondingCloseField] = value;
       }
       return nextState;
     });
-    if (field === 'closeTime') {
-      setCloseTimeTouched(true);
-    }
+    if (field.startsWith('close')) setCloseTimeTouched(true);
   };
-
+  
   const handleDeleteTicket = (event: React.FormEvent) => {
     event.preventDefault();
-    if (!selectedAccountId) {
-      setStatusMessage('Lütfen bir hesap seçin.');
-      return;
-    }
-    const ticket = ticketToDelete.trim();
-    if (!ticket) {
-      setStatusMessage('Silmek için ticket numarası girin.');
-      return;
-    }
-    const removed = removeEntry(selectedAccountId, ticket);
-    if (removed) {
-      setStatusMessage(`Ticket ${ticket} silindi.`);
+    if (!selectedAccountId || !ticketToDelete) return;
+    if (removeEntry(selectedAccountId, ticketToDelete)) {
+      setStatusMessage(`İşlem ${ticketToDelete} silindi.`);
       setTicketToDelete('');
     } else {
-      setStatusMessage(`Ticket ${ticket} bulunamadı.`);
+      setStatusMessage(`İşlem ${ticketToDelete} bulunamadı.`);
     }
-  };
-
-  const handleBalanceChange = (field: keyof typeof balanceForm, value: string) => {
-    setBalanceForm((prev) => ({
-      ...prev,
-      [field]: field === 'amount' ? sanitizePositive(value) : value,
-    }));
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId) return;
-
     try {
       if (entryType === 'trade') {
-        addEntry(selectedAccountId, {
-          kind: 'trade',
-          symbol: tradeForm.symbol || 'GOLD',
+        const openTime = joinDateTime({ date: tradeForm.openDate, h: tradeForm.openH, m: tradeForm.openM, s: tradeForm.openS });
+        const closeTime = joinDateTime({ date: tradeForm.closeDate, h: tradeForm.closeH, m: tradeForm.closeM, s: tradeForm.closeS });
+        addEntry(selectedAccountId, { 
+          kind: 'trade', 
+          symbol: tradeForm.symbol,
           side: tradeForm.side,
-          volume: Number(tradeForm.volume || '0'),
-          openTime: tradeForm.openTime || '',
-          closeTime: tradeForm.closeTime || '',
-          openPrice: Number(tradeForm.openPrice || '0'),
-          closePrice: Number(tradeForm.closePrice || '0'),
+          volume: Number(tradeForm.volume), 
+          openPrice: Number(tradeForm.openPrice), 
+          closePrice: Number(tradeForm.closePrice),
+          openTime,
+          closeTime,
         });
-        setStatusMessage('İşlem başarıyla eklendi.');
+        setStatusMessage('İşlem eklendi.');
       } else {
-        addEntry(selectedAccountId, {
-          kind: entryType,
-          amount: Number(balanceForm.amount || '0'),
-          timestamp: balanceForm.timestamp || '',
-        });
-        setStatusMessage(entryType === 'deposit' ? 'Deposit eklendi.' : 'Withdrawal eklendi.');
+        const timestamp = joinDateTime({ date: balanceForm.date, h: balanceForm.h, m: balanceForm.m, s: balanceForm.s });
+        addEntry(selectedAccountId, { kind: entryType, amount: Number(balanceForm.amount), timestamp });
+        setStatusMessage(`${entryType} eklendi.`);
       }
-      resetForms();
-    } catch (error) {
-      console.error(error);
-      setStatusMessage('Kayıt eklenirken bir hata oluştu.');
-    }
+      setTradeForm(createTradeFormState());
+      setBalanceForm(createBalanceFormState());
+      setCloseTimeTouched(false);
+    } catch (e) { setStatusMessage('Hata: Formu kontrol edin.'); }
   };
-
-  if (!isOpen) {
-    return null;
-  }
+  
+  if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="relative z-[130] w-full max-w-3xl bg-white rounded-2xl shadow-2xl p-5 max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-xl font-semibold">Hesap Yönetimi</h2>
-            <p className="text-sm text-gray-500">Hesap seçin, düzenleyin ve yeni işlem / para hareketi ekleyin.</p>
-          </div>
-          <button onClick={onClose} className="text-sm text-gray-500 hover:text-black">
-            Kapat
-          </button>
+    <div className="fixed inset-0 z-[120] flex items-center justify-center p-2 sm:p-4">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative z-[130] w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[95vh]">
+        <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+          <div><h2 className="text-lg font-bold text-black">Yönetim Paneli</h2><p className="text-[11px] text-gray-500 uppercase tracking-wider font-semibold">Bulut Senkronizasyonu Aktif</p></div>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full text-gray-600 hover:bg-gray-300 transition-colors">✕</button>
         </div>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="space-y-4">
-            <div className="border rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">Hesaplar</h3>
-              <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
-                {accounts.map((account) => (
-                  <button
-                    key={account.id}
-                    type="button"
-                    onClick={() => selectAccount(account.id)}
-                    className={`w-full text-left border rounded-lg p-2 transition ${
-                      account.id === selectedAccountId ? 'border-mt5-blue bg-mt5-blue/5' : 'border-gray-200'
-                    }`}
-                  >
-                    <div className="text-sm font-semibold text-black">{account.name}</div>
-                    <div className="text-xs text-gray-500">{account.accountNo} â€¢ {account.server}</div>
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Aktif Hesaplar</h3>
+                {accounts.map(acc => (
+                  <button key={acc.id} onClick={() => selectAccount(acc.id)} className={`w-full text-left p-3 rounded-2xl border-2 transition-all ${acc.id === selectedAccountId ? 'border-blue-500 bg-blue-50' : 'border-gray-100 bg-gray-50'}`}>
+                    <div className="text-[14px] font-bold text-black">{acc.name}</div>
+                    <div className="text-[11px] text-gray-500 font-medium">{acc.accountNo} • {acc.server}</div>
                   </button>
                 ))}
               </div>
-            </div>
-
-            <div className="border rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">Hesap Bilgileri</h3>
-              {selectedAccount ? (
-                <div className="space-y-3">
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Hesap Adı
-                    <input
-                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                      value={accountForm.name}
-                      onChange={(event) => handleAccountFieldChange('name', event.target.value.toUpperCase())}
-                      placeholder="İsim Soyisim"
-                    />
-                  </label>
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Hesap Numarası
-                    <input
-                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                      value={accountForm.accountNo}
-                      onChange={(event) => handleAccountFieldChange('accountNo', sanitizePositive(event.target.value))}
-                      placeholder="000000000"
-                    />
-                  </label>
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Sunucu
-                    <input
-                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                      value={accountForm.server}
-                      onChange={(event) => handleAccountFieldChange('server', event.target.value)}
-                      placeholder="Broker-MT5"
-                    />
-                  </label>
-                  <button
-                    type="button"
-                    onClick={handleAccountDetailsSave}
-                    disabled={!canSaveAccountDetails}
-                    className={`w-full rounded-lg py-2 text-sm font-semibold transition ${
-                      canSaveAccountDetails ? 'bg-mt5-blue text-white hover:bg-mt5-blue/90' : 'bg-gray-200 text-gray-400'
-                    }`}
-                  >
-                    Hesap Bilgilerini Kaydet
-                  </button>
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500">Düzenlemek için bir hesap seçin.</p>
-              )}
-            </div>
-            <div className="border rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">İşlem Sil</h3>
-              {selectedAccount ? (
-                <form className="space-y-3" onSubmit={handleDeleteTicket}>
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Ticket Numarası
-                    <input
-                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                      value={ticketToDelete}
-                      onChange={(event) => setTicketToDelete(sanitizeDigits(event.target.value))}
-                      placeholder="20250573"
-                      inputMode="numeric"
-                    />
-                  </label>
-                  <button
-                    type="submit"
-                    disabled={!ticketToDelete.trim()}
-                    className={`w-full rounded-lg py-2 text-sm font-semibold transition ${
-                      ticketToDelete.trim() ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-gray-200 text-gray-400'
-                    }`}
-                  >
-                    İşlemi Sil
-                  </button>
+              <div className="space-y-3">
+                <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Hesap Bilgilerini Düzenle</h3>
+                <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.name} onChange={e => setAccountForm({...accountForm, name: e.target.value.toUpperCase()})} placeholder="İSİM SOYİSİM" />
+                <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.accountNo} onChange={e => setAccountForm({...accountForm, accountNo: sanitizeDigits(e.target.value)})} placeholder="HESAP NUMARASI" />
+                <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.server} onChange={e => setAccountForm({...accountForm, server: e.target.value})} placeholder="SUNUCU (BROKER)" />
+                <button onClick={() => updateAccountDetails(selectedAccountId!, accountForm)} className="w-full py-3 rounded-xl text-[13px] font-black bg-black text-white shadow-lg">BİLGİLERİ KAYDET</button>
+              </div>
+              <div className="bg-red-50 rounded-2xl p-4 border border-red-100">
+                <h3 className="text-[12px] font-bold text-red-800 mb-3 flex items-center gap-2"><IoTrashOutline size={16} /> İŞLEM SİL</h3>
+                <form onSubmit={handleDeleteTicket} className="space-y-2">
+                  <input className="w-full rounded-xl bg-white border border-red-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={ticketToDelete} onChange={e => setTicketToDelete(sanitizeDigits(e.target.value))} placeholder="TICKET NUMARASI" />
+                  <button type="submit" disabled={!ticketToDelete} className={`w-full py-2.5 rounded-xl text-[11px] font-black transition-all ${ticketToDelete ? 'bg-red-600 text-white shadow-md' : 'bg-gray-200 text-gray-400'}`}>İŞLEMİ KALICI OLARAK SİL</button>
                 </form>
-              ) : (
-                <p className="text-sm text-gray-500">Bir işlem silebilmek için önce hesap seçin.</p>
-              )}
-            </div>
-
-          </div>
-
-          <div className="border rounded-xl p-4">
-            <h3 className="text-sm font-semibold text-gray-600 mb-2">Yeni Kayıt</h3>
-            {selectedAccount && (
-              <p className="text-xs text-gray-500 mb-3">
-                {selectedAccount.name} â€¢ {selectedAccount.accountNo}
-              </p>
-            )}
-            <form className="space-y-3" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-3 gap-2 bg-gray-100 rounded-xl p-1 text-xs font-semibold">
-                {(
-                  [
-                    { key: 'trade', label: 'Trade' },
-                    { key: 'deposit', label: 'Deposit' },
-                    { key: 'withdraw', label: 'Withdraw' },
-                  ] as { key: EntryType; label: string }[]
-                ).map((option) => (
-                  <button
-                    key={option.key}
-                    type="button"
-                    onClick={() => setEntryType(option.key)}
-                    className={`rounded-lg py-2 transition ${
-                      entryType === option.key ? 'bg-mt5-blue text-white shadow' : 'text-gray-500'
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                ))}
               </div>
-
-              {entryType === 'trade' ? (
-                <div className="space-y-3">
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Sembol
-                    <input
-                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                      value={tradeForm.symbol}
-                      onChange={(event) => handleTradeChange('symbol', event.target.value.toUpperCase())}
-                      placeholder="GOLD"
-                    />
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Yeni İşlem Ekle</h3>
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <div className="flex bg-gray-100 p-1 rounded-xl">
+                  {(['trade', 'deposit', 'withdraw'] as const).map(type => (
+                    <button key={type} type="button" onClick={() => setEntryType(type)} className={`flex-1 py-2 rounded-lg text-[11px] font-bold transition-all ${entryType === type ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'}`}>{type.toUpperCase()}</button>
+                  ))}
+                </div>
+                {entryType === 'trade' ? (
+                  <>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.symbol} onChange={e => handleTradeChange('symbol', e.target.value.toUpperCase())} placeholder="XAUUSD" />
+                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.volume} onChange={e => handleTradeChange('volume', sanitizePositive(e.target.value))} placeholder="LOT" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button type="button" onClick={() => setTradeForm(prev => ({...prev, side: 'buy'}))} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
+                      <button type="button" onClick={() => setTradeForm(prev => ({...prev, side: 'sell'}))} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.openPrice} onChange={e => handleTradeChange('openPrice', sanitizePositive(e.target.value))} placeholder="Açılış Fiyatı" />
+                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.closePrice} onChange={e => handleTradeChange('closePrice', sanitizePositive(e.target.value))} placeholder="Kapanış Fiyatı" />
+                    </div>
                     <div>
-                      <span className="text-xs font-semibold text-gray-500">Yön</span>
-                      <div className="mt-1 grid grid-cols-2 gap-2">
-                        {(
-                          [
-                            { key: 'buy', label: 'BUY' },
-                            { key: 'sell', label: 'SELL' },
-                          ] as { key: TradeSide; label: string }[]
-                        ).map((option) => (
-                          <button
-                            key={option.key}
-                            type="button"
-                            onClick={() => handleTradeChange('side', option.key)}
-                            className={`rounded-lg border px-3 py-2 text-sm font-semibold transition ${
-                              tradeForm.side === option.key
-                                ? 'border-mt5-blue bg-mt5-blue/10 text-mt5-blue'
-                                : 'border-gray-200 text-gray-500'
-                            }`}
-                          >
-                            {option.label}
-                          </button>
-                        ))}
+                      <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Açılış Zamanı</span>
+                      <div className="grid grid-cols-4 gap-2 mt-1">
+                        <input type="date" className="col-span-4 w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold" value={tradeForm.openDate} onChange={e => handleTradeChange('openDate', e.target.value)} />
+                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.openH} onChange={e => handleTradeChange('openH', e.target.value)} placeholder="SS" max="23" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.openM} onChange={e => handleTradeChange('openM', e.target.value)} placeholder="DD" max="59" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.openS} onChange={e => handleTradeChange('openS', e.target.value)} placeholder="sn" max="59" min="0" />
                       </div>
                     </div>
-                    <label className="text-xs font-semibold text-gray-500">
-                      Lot
-                      <input
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={tradeForm.volume}
-                        onChange={(event) => handleTradeChange('volume', event.target.value)}
-                        placeholder="Lot"
-                        inputMode="decimal"
-                      />
-                    </label>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <label className="text-xs font-semibold text-gray-500">
-                      Açılış Zamanı
-                                            <input
-                        type="datetime-local"
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={toDateTimeLocal(tradeForm.openTime)}
-                        onChange={(event) => handleTradeChange('openTime', fromDateTimeLocal(event.target.value))}
-                        step="60"
-                      />
-
-                    </label>
-                    <label className="text-xs font-semibold text-gray-500">
-                      Kapanış Zamanı
-                                            <input
-                        type="datetime-local"
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={toDateTimeLocal(tradeForm.closeTime)}
-                        onChange={(event) => handleTradeChange('closeTime', fromDateTimeLocal(event.target.value))}
-                        step="60"
-                      />
-
-                    </label>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <label className="text-xs font-semibold text-gray-500">
-                      Açılış Fiyatı
-                      <input
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={tradeForm.openPrice}
-                        onChange={(event) => handleTradeChange('openPrice', event.target.value)}
-                        placeholder="0.00"
-                        inputMode="decimal"
-                      />
-                    </label>
-                    <label className="text-xs font-semibold text-gray-500">
-                      Kapanış Fiyatı
-                      <input
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={tradeForm.closePrice}
-                        onChange={(event) => handleTradeChange('closePrice', event.target.value)}
-                        placeholder="0.00"
-                        inputMode="decimal"
-                      />
-                    </label>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-3">
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Tarih / Saat
-                                          <input
-                        type="datetime-local"
-                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                        value={toDateTimeLocal(balanceForm.timestamp)}
-                        onChange={(event) => handleBalanceChange('timestamp', fromDateTimeLocal(event.target.value))}
-                        step="60"
-                      />
-
-                  </label>
-                  <label className="block text-xs font-semibold text-gray-500">
-                    Tutar
-                    <input
-                      className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-mt5-blue focus:outline-none"
-                      value={balanceForm.amount}
-                      onChange={(event) => handleBalanceChange('amount', event.target.value)}
-                      placeholder="0.00"
-                      inputMode="decimal"
-                    />
-                  </label>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-mt5-blue py-2 text-sm font-semibold text-white transition hover:bg-mt5-blue/90"
-              >
-                Kaydet
-              </button>
-              {statusMessage && <p className="text-xs text-mt5-blue">{statusMessage}</p>}
-            </form>
+                     <div>
+                      <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Kapanış Zamanı</span>
+                      <div className="grid grid-cols-4 gap-2 mt-1">
+                        <input type="date" className="col-span-4 w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold" value={tradeForm.closeDate} onChange={e => handleTradeChange('closeDate', e.target.value)} />
+                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.closeH} onChange={e => handleTradeChange('closeH', e.target.value)} placeholder="SS" max="23" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.closeM} onChange={e => handleTradeChange('closeM', e.target.value)} placeholder="DD" max="59" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.closeS} onChange={e => handleTradeChange('closeS', e.target.value)} placeholder="sn" max="59" min="0" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={balanceForm.amount} onChange={e => setBalanceForm({...balanceForm, amount: sanitizePositive(e.target.value)})} placeholder="TUTAR ($)" />
+                    <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">İşlem Zamanı</span>
+                    <div className="grid grid-cols-4 gap-2 mt-1">
+                      <input type="date" className="col-span-4 w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold" value={balanceForm.date} onChange={e => setBalanceForm({...balanceForm, date: e.target.value})} />
+                      <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={balanceForm.h} onChange={e => setBalanceForm({...balanceForm, h: e.target.value})} placeholder="SS" max="23" min="0" />
+                      <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={balanceForm.m} onChange={e => setBalanceForm({...balanceForm, m: e.target.value})} placeholder="DD" max="59" min="0" />
+                      <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={balanceForm.s} onChange={e => setBalanceForm({...balanceForm, s: e.target.value})} placeholder="sn" max="59" min="0" />
+                    </div>
+                  </>
+                )}
+                <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-2xl text-[14px] font-black uppercase">EKLE VE KAYDET</button>
+              </form>
+            </div>
           </div>
         </div>
+        {statusMessage && <div className="bg-blue-600 text-white px-6 py-2 text-center text-[12px] font-bold animate-pulse">{statusMessage}</div>}
       </div>
     </div>
   );
 };
 
 export default AccountManager;
-
-

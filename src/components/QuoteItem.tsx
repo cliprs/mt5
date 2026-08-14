@@ -1,3 +1,4 @@
+import React from 'react';
 import { Quote } from '../data/mockData';
 
 interface QuoteItemProps {
@@ -5,71 +6,57 @@ interface QuoteItemProps {
 }
 
 const QuoteItem: React.FC<QuoteItemProps> = ({ quote }) => {
-    const isPositive = quote.change > 0;
-    const priceColor = isPositive ? 'text-mt5-blue' : 'text-mt5-red';
-  
-    // Helper to format L and H prices
-    const formatLowHigh = (val: number) => {
-        if (quote.symbol === 'GOLD') {
-            return val.toLocaleString('en-US', { 
-                minimumFractionDigits: 2, 
-                maximumFractionDigits: 2 
-            }).replace(/,/g, ' ');
-        }
-        return val.toFixed(5);
-    };
-
-    // MT5 Style: First part smaller, last two digits larger
-    const renderPrice = (price: number) => {
-        // Find decimal places based on symbol (GOLD usually 2, FX usually 5)
-        const decimalPlaces = quote.symbol === 'GOLD' ? 2 : 5;
-        const s = price.toFixed(decimalPlaces);
-        
-        const mainPart = s.slice(0, -2);
-        const lastTwo = s.slice(-2);
-
-        return (
-            <div className="flex items-baseline font-medium font-condensed">
-                <span className="text-[14px] leading-none">{mainPart}</span>
-                <span className="text-[20px] leading-none">{lastTwo}</span>
-            </div>
-        )
+  const formatPrice = (price: number) => {
+    // Determine decimal places
+    let decimalPlaces = 5;
+    if (quote.symbol === 'XAUUSD') {
+        decimalPlaces = 2;
+    } else if (quote.symbol.includes('JPY')) {
+        decimalPlaces = 3;
+    } else if (quote.symbol === 'BTCUSD') {
+        decimalPlaces = 2;
     }
 
-    return (
-        <div className="flex flex-col py-3 px-4 bg-white hover:bg-gray-50 transition-colors cursor-pointer" style={{ transform: 'scaleX(0.95)', transformOrigin: 'left', width: '105.3%' }}>
-            <div className="flex justify-between items-center">
-                {/* Symbol & Description */}
-                <div className="flex flex-col">
-                    <div className="flex items-center gap-1.5 text-[10px] font-normal leading-none mb-0.5">
-                        <span className="text-gray-400 font-sans">{quote.changeAmount}</span>
-                        <span className="text-mt5-blue font-sans">{quote.changePercentage}</span>
-                    </div>
-                    <span className="text-black font-medium text-[17px] leading-tight font-condensed">{quote.symbol}</span>
-                    <div className="flex items-center gap-1.5 text-[11px] text-gray-400 mt-1 font-normal">
-                         <span>15:00:33</span>
-                         <span className="text-gray-300">•</span>
-                         <div className="flex items-center gap-0.5">
-                            <img src="/spread.svg" alt="Spread" className="w-3 h-3 opacity-60" />
-                            <span>{quote.spread}</span>
-                         </div>
-                    </div>
-                </div>
+    const parts = price.toFixed(decimalPlaces).split('.');
+    const integerPart = parts[0];
+    const decimalPart = parts[1] || '';
 
-                {/* Prices */}
-                <div className="flex gap-8 items-center pr-1">
-                    <div className={`flex flex-col items-center ${priceColor}`}>
-                        <div className="h-6 flex items-center">{renderPrice(quote.bid)}</div>
-                        <span className="text-[10px] text-gray-400 mt-1 font-sans">L: {formatLowHigh(quote.low)}</span>
-                    </div>
-                    <div className={`flex flex-col items-center ${priceColor}`}>
-                        <div className="h-6 flex items-center">{renderPrice(quote.ask)}</div>
-                         <span className="text-[10px] text-gray-400 mt-1 font-sans">H: {formatLowHigh(quote.high)}</span>
-                    </div>
-                </div>
-            </div>
+    // MT5 style: last 2 digits are smaller/bigger depending on UI
+    // Here we just render standard
+    return (
+        <div className="flex items-baseline leading-none">
+            <span className="text-[13px] font-normal">{integerPart}.</span>
+            <span className="text-[18px] font-bold">{decimalPart.slice(0, -1)}</span>
+            <span className="text-[13px] font-bold">{decimalPart.slice(-1)}</span>
         </div>
-    )
-}
+    );
+  };
+
+  const getPriceColor = () => {
+    if (quote.change > 0) return 'text-mt5-blue';
+    if (quote.change < 0) return 'text-mt5-red';
+    return 'text-black';
+  };
+
+  return (
+    <div className="flex items-center justify-between px-4 py-3 border-b border-gray-50 active:bg-gray-50 transition-colors">
+      <div className="flex flex-col gap-0">
+        <span className="text-[16px] font-bold text-black leading-tight">{quote.symbol}</span>
+        <span className="text-[12px] text-gray-400 font-normal leading-tight">{quote.time || '18:55:04'}</span>
+      </div>
+
+      <div className="flex gap-8">
+        <div className="flex flex-col items-end min-w-[65px]">
+          <div className={getPriceColor()}>{formatPrice(quote.bid)}</div>
+          <span className="text-[10px] text-gray-400 mt-0.5">D: {quote.low.toFixed(quote.symbol === 'XAUUSD' ? 2 : 5)}</span>
+        </div>
+        <div className="flex flex-col items-end min-w-[65px]">
+          <div className={getPriceColor()}>{formatPrice(quote.ask)}</div>
+          <span className="text-[10px] text-gray-400 mt-0.5">Y: {quote.high.toFixed(quote.symbol === 'XAUUSD' ? 2 : 5)}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default QuoteItem;

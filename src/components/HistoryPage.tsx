@@ -8,13 +8,19 @@ const formatMoney = (val: number) => {
 };
 
 const parseDate = (dateStr: string) => {
-    const [datePart, timePart] = dateStr.split(' ');
-    const [year, month, day] = datePart.split('.').map(Number);
-    const [hour, minute, second] = timePart.split(':').map(Number);
-    return new Date(year, month - 1, day, hour, minute, second);
+    if (!dateStr) return new Date(0);
+    try {
+        const [datePart, timePart = '00:00:00'] = dateStr.split(' ');
+        const [year, month, day] = datePart.split('.').map(Number);
+        const [hour, minute, second = 0] = timePart.split(':').map(Number);
+        const date = new Date(year, month - 1, day, hour, minute, second);
+        return Number.isNaN(date.getTime()) ? new Date(0) : date;
+    } catch (e) {
+        return new Date(0);
+    }
 };
 
-const DEFAULT_REFERENCE_DATE = new Date(2026, 1, 14, 23, 59, 59);
+const DEFAULT_REFERENCE_DATE = new Date(2026, 2, 15, 23, 59, 59); // Updated to today March 15 2026
 
 const getTimelineReferenceDate = (historyData: HistoryDeal[]): Date => {
     if (historyData.length === 0) {
@@ -26,10 +32,14 @@ const getTimelineReferenceDate = (historyData: HistoryDeal[]): Date => {
         return dealDate > latest ? dealDate : latest;
     }, parseDate(historyData[0].closeTime));
 
+    // Ensure it's at least today if no history or history is in past
+    const today = new Date();
+    const finalDate = latestDealDate > today ? latestDealDate : today;
+
     return new Date(
-        latestDealDate.getFullYear(),
-        latestDealDate.getMonth(),
-        latestDealDate.getDate(),
+        finalDate.getFullYear(),
+        finalDate.getMonth(),
+        finalDate.getDate(),
         23,
         59,
         59
@@ -49,11 +59,12 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
 }) => {
   const { selectedAccount } = useAccounts();
   const historyData = selectedAccount?.history ?? [];
+  
   const timelineReference = useMemo(() => getTimelineReferenceDate(historyData), [historyData]);
   
   const filteredData = useMemo(() => {
     const now = timelineReference; 
-    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
     
     return historyData.filter(deal => {
         const dealDate = parseDate(deal.closeTime);
@@ -64,16 +75,19 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
             case 'Son hafta': {
                 const lastWeek = new Date(now);
                 lastWeek.setDate(now.getDate() - 7);
+                lastWeek.setHours(0, 0, 0);
                 return dealDate >= lastWeek;
             }
             case 'Son ay': {
                 const lastMonth = new Date(now);
                 lastMonth.setMonth(now.getMonth() - 1);
+                lastMonth.setHours(0, 0, 0);
                 return dealDate >= lastMonth;
             }
             case 'Son 3 ay': {
                 const last3Months = new Date(now);
                 last3Months.setMonth(now.getMonth() - 3);
+                last3Months.setHours(0, 0, 0);
                 return dealDate >= last3Months;
             }
             case 'Özel dönem': {
@@ -123,9 +137,6 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
         balance: balance
     };
   }, [filteredData]);
-
-
-  console.log(`Filtrelenen veri sayısı (${selectedPeriod}):`, filteredData.length);
 
   return (
     <div className="flex flex-col w-full pb-20 bg-white">
@@ -179,7 +190,7 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
       {/* List */}
       <div className="flex flex-col bg-white min-h-[400px]">
         {filteredData.length > 0 ? (
-            filteredData.map((deal) => (
+            [...filteredData].reverse().map((deal) => (
             <HistoryItem key={deal.id} deal={deal} />
             ))
         ) : (
