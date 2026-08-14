@@ -82,24 +82,14 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
           console.log('Supabase: Veri bulundu, senkronize ediliyor...');
-          // EĞER SON EKLENEN İŞLEM (514343534) YOKSA, defaultAccounts'ı kullanmaya zorla (Tek seferlik güncelleme için)
-          const hasNewTrades = data.data.some((acc: any) => 
-            acc.history.some((deal: any) => deal.id === '514343534')
-          );
-
-          if (!hasNewTrades) {
-            console.log('Supabase: Yeni haftalık işlemler bulunamadı, yerel veriler yükleniyor...');
-            setAccounts(defaultAccounts);
-          } else {
-            const cloudData = data.data.map((acc: AccountProfile) => ({
-              ...acc,
-              history: acc.history.map(deal => ({
-                  ...deal,
-                  symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
-              }))
-            }));
-            setAccounts(cloudData);
-          }
+          const cloudData = data.data.map((acc: AccountProfile) => ({
+            ...acc,
+            history: acc.history.map(deal => ({
+                ...deal,
+                symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
+            }))
+          }));
+          setAccounts(cloudData);
         } else {
           console.log('Supabase: Veri bulunamadı veya hata oluştu, varsayılanlar kullanılıyor.');
           setAccounts(defaultAccounts);
