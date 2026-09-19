@@ -77,7 +77,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const { data, error } = await supabase
           .from('app_settings')
           .select('data')
-          .eq('id', 'mt5_accounts')
+          .eq('id', 'mt5_accounts_v2')
           .single();
 
         if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
@@ -111,7 +111,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       try {
         await supabase
           .from('app_settings')
-          .upsert({ id: 'mt5_accounts', data: accounts, updated_at: new Date() });
+          .upsert({ id: 'mt5_accounts_v2', data: accounts, updated_at: new Date() });
       } catch (e) {
         console.error('Supabase kayıt hatası:', e);
       }
