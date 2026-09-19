@@ -138,7 +138,6 @@ export const defaultAccounts: AccountProfile[] = [
     "swap": 0,
     "profit": 1222.5
   },
-
   {
     "id": "514344001",
     "symbol": "Deposit",
@@ -275,6 +274,21 @@ export const defaultAccounts: AccountProfile[] = [
     "profit": 410.2
   },
   {
+    "id": "514344025",
+    "symbol": "Withdrawal",
+    "type": "balance",
+    "volume": 0,
+    "openTime": "2026.08.19 18:00:00",
+    "closeTime": "2026.08.19 18:00:00",
+    "openPrice": 0,
+    "closePrice": 0,
+    "sl": 0,
+    "tp": 0,
+    "commission": 0,
+    "swap": 0,
+    "profit": -1846.5
+  },
+  {
     "id": "514344012",
     "symbol": "XAUUSD",
     "type": "buy",
@@ -320,6 +334,21 @@ export const defaultAccounts: AccountProfile[] = [
     "profit": 690.85
   },
   {
+    "id": "514344026",
+    "symbol": "Withdrawal",
+    "type": "balance",
+    "volume": 0,
+    "openTime": "2026.08.21 15:00:00",
+    "closeTime": "2026.08.21 15:00:00",
+    "openPrice": 0,
+    "closePrice": 0,
+    "sl": 0,
+    "tp": 0,
+    "commission": 0,
+    "swap": 0,
+    "profit": -2103.25
+  },
+  {
     "id": "514344004",
     "symbol": "Deposit",
     "type": "balance",
@@ -332,7 +361,7 @@ export const defaultAccounts: AccountProfile[] = [
     "tp": 0,
     "commission": 0,
     "swap": 0,
-    "profit": 14300.0
+    "profit": 6000.0
   },
   {
     "id": "514344015",
@@ -363,6 +392,36 @@ export const defaultAccounts: AccountProfile[] = [
     "commission": 0,
     "swap": 0,
     "profit": 1775.45
+  },
+  {
+    "id": "514344027",
+    "symbol": "Withdrawal",
+    "type": "balance",
+    "volume": 0,
+    "openTime": "2026.08.25 10:00:00",
+    "closeTime": "2026.08.25 10:00:00",
+    "openPrice": 0,
+    "closePrice": 0,
+    "sl": 0,
+    "tp": 0,
+    "commission": 0,
+    "swap": 0,
+    "profit": -1198.9
+  },
+  {
+    "id": "514344028",
+    "symbol": "Withdrawal",
+    "type": "balance",
+    "volume": 0,
+    "openTime": "2026.08.27 09:00:00",
+    "closeTime": "2026.08.27 09:00:00",
+    "openPrice": 0,
+    "closePrice": 0,
+    "sl": 0,
+    "tp": 0,
+    "commission": 0,
+    "swap": 0,
+    "profit": -2251.35
   },
   {
     "id": "514344017",
