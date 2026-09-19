@@ -77,6 +77,36 @@ export const defaultAccounts: AccountProfile[] = [
     "commission": 0,
     "swap": 0,
     "profit": 1329.80
+  },
+  {
+    "id": "514344004",
+    "symbol": "Deposit",
+    "type": "balance",
+    "volume": 0,
+    "openTime": "2026.08.27 15:00:00",
+    "closeTime": "2026.08.27 15:00:00",
+    "openPrice": 0,
+    "closePrice": 0,
+    "sl": 0,
+    "tp": 0,
+    "commission": 0,
+    "swap": 0,
+    "profit": 17934.44
+  },
+  {
+    "id": "514344005",
+    "symbol": "Withdrawal",
+    "type": "balance",
+    "volume": 0,
+    "openTime": "2026.08.28 12:00:00",
+    "closeTime": "2026.08.28 12:00:00",
+    "openPrice": 0,
+    "closePrice": 0,
+    "sl": 0,
+    "tp": 0,
+    "commission": 0,
+    "swap": 0,
+    "profit": -14480.0
   }
 ]),
   },
