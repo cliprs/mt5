@@ -23,15 +23,16 @@ const sanitizePositive = (value: string) => value.replace(/[^0-9.]/g, '');
 const sanitizeDigits = (value: string) => value.replace(/[^0-9]/g, '');
 
 const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails } = useAccounts();
+  const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails, addAccount } = useAccounts();
   const [entryType, setEntryType] = useState<'trade' | 'deposit' | 'withdraw'>('trade');
   const [statusMessage, setStatusMessage] = useState('');
   const [closeTimeTouched, setCloseTimeTouched] = useState(false);
-  
+
   const [tradeForm, setTradeForm] = useState(createTradeFormState);
   const [balanceForm, setBalanceForm] = useState(createBalanceFormState);
   const [accountForm, setAccountForm] = useState({ name: '', accountNo: '', server: '' });
   const [ticketToDelete, setTicketToDelete] = useState('');
+  const [newAccountForm, setNewAccountForm] = useState({ name: '', accountNo: '', server: '' });
 
   useEffect(() => {
     if (!isOpen) return;
@@ -58,6 +59,21 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     if (field.startsWith('close')) setCloseTimeTouched(true);
   };
   
+  const handleAddAccount = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!newAccountForm.name.trim() || !newAccountForm.accountNo.trim() || !newAccountForm.server.trim()) {
+      setStatusMessage('Yeni hesap için tüm alanları doldurun.');
+      return;
+    }
+    addAccount({
+      name: newAccountForm.name.trim(),
+      accountNo: newAccountForm.accountNo.trim(),
+      server: newAccountForm.server.trim(),
+    });
+    setStatusMessage('Yeni hesap oluşturuldu.');
+    setNewAccountForm({ name: '', accountNo: '', server: '' });
+  };
+
   const handleDeleteTicket = (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId || !ticketToDelete) return;
@@ -119,6 +135,15 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                     <div className="text-[11px] text-gray-500 font-medium">{acc.accountNo} • {acc.server}</div>
                   </button>
                 ))}
+              </div>
+              <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100 space-y-2">
+                <h3 className="text-[12px] font-bold text-blue-800 uppercase tracking-tight">Yeni Hesap Ekle</h3>
+                <form onSubmit={handleAddAccount} className="space-y-2">
+                  <input className="w-full rounded-xl bg-white border border-blue-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={newAccountForm.name} onChange={e => setNewAccountForm({...newAccountForm, name: e.target.value.toUpperCase()})} placeholder="İSİM SOYİSİM" />
+                  <input className="w-full rounded-xl bg-white border border-blue-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={newAccountForm.accountNo} onChange={e => setNewAccountForm({...newAccountForm, accountNo: sanitizeDigits(e.target.value)})} placeholder="HESAP NUMARASI" />
+                  <input className="w-full rounded-xl bg-white border border-blue-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={newAccountForm.server} onChange={e => setNewAccountForm({...newAccountForm, server: e.target.value})} placeholder="SUNUCU (BROKER)" />
+                  <button type="submit" className="w-full py-2.5 rounded-xl text-[12px] font-black bg-blue-600 text-white shadow-md">HESAP OLUŞTUR</button>
+                </form>
               </div>
               <div className="space-y-3">
                 <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Hesap Bilgilerini Düzenle</h3>

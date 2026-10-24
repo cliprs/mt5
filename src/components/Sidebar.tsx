@@ -119,9 +119,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts }) 
               <span className="text-gray-500 text-[13px] font-normal mt-0.5">
                 {selectedAccount ? `${selectedAccount.accountNo} - ${selectedAccount.server}` : '---'}
               </span>
-              <span className="text-mt5-blue text-[14px] font-normal mt-3 cursor-default select-none">
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onManageAccounts();
+                }}
+                className="text-mt5-blue text-[14px] font-normal mt-3 text-left cursor-pointer hover:underline"
+              >
                 Hesapları yönet
-              </span>
+              </button>
             </div>
           </div>
         </div>

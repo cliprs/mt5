@@ -31,6 +31,7 @@ interface AccountsContextValue {
   addEntry: (accountId: string, payload: EntryInput) => void;
   removeEntry: (accountId: string, ticketId: string) => boolean;
   updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string }) => void;
+  addAccount: (payload: { name: string; accountNo: string; server: string; broker?: string }) => string;
   setAccounts: React.Dispatch<React.SetStateAction<AccountProfile[]>>;
   isLoading: boolean;
 }
@@ -179,6 +180,21 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setAccounts(prev => prev.map(acc => acc.id === id ? { ...acc, ...data } : acc));
   };
 
+  const addAccount = (payload: { name: string; accountNo: string; server: string; broker?: string }) => {
+    const newId = `account-${Date.now()}`;
+    const newAccount: AccountProfile = {
+      id: newId,
+      name: payload.name,
+      broker: payload.broker || payload.server,
+      accountNo: payload.accountNo,
+      server: payload.server,
+      history: [],
+    };
+    setAccounts(prev => [...prev, newAccount]);
+    selectAccount(newId);
+    return newId;
+  };
+
   const selectedAccount = useMemo(() => accounts.find(a => a.id === selectedAccountId) || null, [accounts, selectedAccountId]);
 
   const value: AccountsContextValue = {
@@ -189,6 +205,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     addEntry,
     removeEntry,
     updateAccountDetails,
+    addAccount,
     setAccounts,
     isLoading,
   };
