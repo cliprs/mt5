@@ -59,13 +59,13 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     if (field.startsWith('close')) setCloseTimeTouched(true);
   };
   
-  const handleAddAccount = (event: React.FormEvent) => {
+  const handleAddAccount = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!newAccountForm.name.trim() || !newAccountForm.accountNo.trim() || !newAccountForm.server.trim()) {
       setStatusMessage('Yeni hesap için tüm alanları doldurun.');
       return;
     }
-    addAccount({
+    await addAccount({
       name: newAccountForm.name.trim(),
       accountNo: newAccountForm.accountNo.trim(),
       server: newAccountForm.server.trim(),
@@ -74,10 +74,11 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     setNewAccountForm({ name: '', accountNo: '', server: '' });
   };
 
-  const handleDeleteTicket = (event: React.FormEvent) => {
+  const handleDeleteTicket = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId || !ticketToDelete) return;
-    if (removeEntry(selectedAccountId, ticketToDelete)) {
+    const removed = await removeEntry(selectedAccountId, ticketToDelete);
+    if (removed) {
       setStatusMessage(`İşlem ${ticketToDelete} silindi.`);
       setTicketToDelete('');
     } else {
@@ -85,19 +86,19 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId) return;
     try {
       if (entryType === 'trade') {
         const openTime = joinDateTime({ date: tradeForm.openDate, h: tradeForm.openH, m: tradeForm.openM, s: tradeForm.openS });
         const closeTime = joinDateTime({ date: tradeForm.closeDate, h: tradeForm.closeH, m: tradeForm.closeM, s: tradeForm.closeS });
-        addEntry(selectedAccountId, { 
-          kind: 'trade', 
+        await addEntry(selectedAccountId, {
+          kind: 'trade',
           symbol: tradeForm.symbol,
           side: tradeForm.side,
-          volume: Number(tradeForm.volume), 
-          openPrice: Number(tradeForm.openPrice), 
+          volume: Number(tradeForm.volume),
+          openPrice: Number(tradeForm.openPrice),
           closePrice: Number(tradeForm.closePrice),
           openTime,
           closeTime,
@@ -105,7 +106,7 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
         setStatusMessage('İşlem eklendi.');
       } else {
         const timestamp = joinDateTime({ date: balanceForm.date, h: balanceForm.h, m: balanceForm.m, s: balanceForm.s });
-        addEntry(selectedAccountId, { kind: entryType, amount: Number(balanceForm.amount), timestamp });
+        await addEntry(selectedAccountId, { kind: entryType, amount: Number(balanceForm.amount), timestamp });
         setStatusMessage(`${entryType} eklendi.`);
       }
       setTradeForm(createTradeFormState());

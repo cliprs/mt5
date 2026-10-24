@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 
 const SELECTED_ACCOUNT_KEY = 'mt5_selected_id_final';
 const COMMISSION_PER_LOT = 7;
+const CLOUD_ROW_ID = 'mt5_accounts_v2';
 
 type EntryInput =
   | {
@@ -28,10 +29,10 @@ interface AccountsContextValue {
   selectedAccountId: string | null;
   selectedAccount: AccountProfile | null;
   selectAccount: (id: string) => void;
-  addEntry: (accountId: string, payload: EntryInput) => void;
-  removeEntry: (accountId: string, ticketId: string) => boolean;
-  updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string }) => void;
-  addAccount: (payload: { name: string; accountNo: string; server: string; broker?: string }) => string;
+  addEntry: (accountId: string, payload: EntryInput) => Promise<void>;
+  removeEntry: (accountId: string, ticketId: string) => Promise<boolean>;
+  updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string }) => Promise<void>;
+  addAccount: (payload: { name: string; accountNo: string; server: string; broker?: string }) => Promise<string>;
   setAccounts: React.Dispatch<React.SetStateAction<AccountProfile[]>>;
   isLoading: boolean;
 }
@@ -65,60 +66,63 @@ const sortDeals = (history: HistoryDeal[]) => {
   });
 };
 
+const sanitizeCloudAccounts = (raw: AccountProfile[]): AccountProfile[] =>
+  raw.map((acc) => ({
+    ...acc,
+    history: acc.history.map((deal) => ({
+      ...deal,
+      symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol,
+    })),
+  }));
+
+const fetchCloudAccounts = async (): Promise<AccountProfile[] | null> => {
+  try {
+    const { data, error } = await supabase
+      .from('app_settings')
+      .select('data')
+      .eq('id', CLOUD_ROW_ID)
+      .single();
+
+    if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
+      return sanitizeCloudAccounts(data.data as AccountProfile[]);
+    }
+  } catch (e) {
+    console.error('Supabase yükleme hatası:', e);
+  }
+  return null;
+};
+
+const saveCloudAccounts = async (accounts: AccountProfile[]) => {
+  try {
+    await supabase
+      .from('app_settings')
+      .upsert({ id: CLOUD_ROW_ID, data: accounts, updated_at: new Date() });
+  } catch (e) {
+    console.error('Supabase kayıt hatası:', e);
+  }
+};
+
 export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [accounts, setAccounts] = useState<AccountProfile[]>(defaultAccounts);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAccountId, setSelectedAccountId] = useState<string>('');
 
-  // 1. Sadece Supabase'den yükle
+  // 1. Sadece Supabase'den yükle (ilk açılış)
   useEffect(() => {
     const loadFromCloud = async () => {
-      try {
-        console.log('Supabase: Veri yükleniyor...');
-        const { data, error } = await supabase
-          .from('app_settings')
-          .select('data')
-          .eq('id', 'mt5_accounts_v2')
-          .single();
-
-        if (!error && data?.data && Array.isArray(data.data) && data.data.length > 0) {
-          console.log('Supabase: Veri bulundu, senkronize ediliyor...');
-          const cloudData = data.data.map((acc: AccountProfile) => ({
-            ...acc,
-            history: acc.history.map(deal => ({
-                ...deal,
-                symbol: deal.symbol === 'GOLD' ? 'XAUUSD' : deal.symbol
-            }))
-          }));
-          setAccounts(cloudData);
-        } else {
-          console.log('Supabase: Veri bulunamadı veya hata oluştu, varsayılanlar kullanılıyor.');
-          setAccounts(defaultAccounts);
-        }
-      } catch (e) {
-        console.error('Supabase yükleme hatası:', e);
-      } finally {
-        setIsLoading(false);
+      console.log('Supabase: Veri yükleniyor...');
+      const cloudData = await fetchCloudAccounts();
+      if (cloudData) {
+        console.log('Supabase: Veri bulundu, senkronize ediliyor...');
+        setAccounts(cloudData);
+      } else {
+        console.log('Supabase: Veri bulunamadı veya hata oluştu, varsayılanlar kullanılıyor.');
+        setAccounts(defaultAccounts);
       }
+      setIsLoading(false);
     };
     loadFromCloud();
   }, []);
-
-  // 2. Değişiklikleri sadece Supabase'e kaydet
-  useEffect(() => {
-    if (isLoading) return;
-    
-    const saveToCloud = async () => {
-      try {
-        await supabase
-          .from('app_settings')
-          .upsert({ id: 'mt5_accounts_v2', data: accounts, updated_at: new Date() });
-      } catch (e) {
-        console.error('Supabase kayıt hatası:', e);
-      }
-    };
-    saveToCloud();
-  }, [accounts, isLoading]);
 
   useEffect(() => {
     if (!isLoading && accounts.length > 0) {
@@ -136,9 +140,24 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem(SELECTED_ACCOUNT_KEY, id);
   };
 
-  const addEntry = (accountId: string, payload: EntryInput) => {
+  // Her değişiklik önce buluttan EN GÜNCEL veriyi çeker, değişikliği onun üzerine
+  // uygular ve geri kaydeder. Bu, uzun süre açık kalmış bir sekmenin elindeki eski
+  // state'in, aradan geçen süredeki başka değişiklikleri (başka cihaz/sekme/API)
+  // körlemesine ezmesini engeller.
+  const mutateAccounts = async (
+    mutator: (current: AccountProfile[]) => AccountProfile[]
+  ): Promise<AccountProfile[]> => {
+    const latest = await fetchCloudAccounts();
+    const base = latest ?? accounts;
+    const result = mutator(base);
+    setAccounts(result);
+    await saveCloudAccounts(result);
+    return result;
+  };
+
+  const addEntry = async (accountId: string, payload: EntryInput) => {
     const ticketId = String(Date.now());
-    setAccounts((prev) =>
+    await mutateAccounts((prev) =>
       prev.map((acc) => {
         if (acc.id !== accountId) return acc;
         let newDeal: HistoryDeal;
@@ -165,22 +184,24 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     );
   };
 
-  const removeEntry = (accountId: string, ticketId: string) => {
+  const removeEntry = async (accountId: string, ticketId: string): Promise<boolean> => {
     let found = false;
-    setAccounts((prev) => prev.map(acc => {
-      if (acc.id !== accountId) return acc;
-      const filtered = acc.history.filter(d => d.id !== ticketId);
-      if (filtered.length !== acc.history.length) found = true;
-      return { ...acc, history: filtered };
-    }));
+    await mutateAccounts((prev) =>
+      prev.map((acc) => {
+        if (acc.id !== accountId) return acc;
+        const filtered = acc.history.filter((d) => d.id !== ticketId);
+        if (filtered.length !== acc.history.length) found = true;
+        return { ...acc, history: filtered };
+      })
+    );
     return found;
   };
 
-  const updateAccountDetails = (id: string, data: any) => {
-    setAccounts(prev => prev.map(acc => acc.id === id ? { ...acc, ...data } : acc));
+  const updateAccountDetails = async (id: string, data: any) => {
+    await mutateAccounts((prev) => prev.map((acc) => (acc.id === id ? { ...acc, ...data } : acc)));
   };
 
-  const addAccount = (payload: { name: string; accountNo: string; server: string; broker?: string }) => {
+  const addAccount = async (payload: { name: string; accountNo: string; server: string; broker?: string }) => {
     const newId = `account-${Date.now()}`;
     const newAccount: AccountProfile = {
       id: newId,
@@ -190,7 +211,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       server: payload.server,
       history: [],
     };
-    setAccounts(prev => [...prev, newAccount]);
+    await mutateAccounts((prev) => [...prev, newAccount]);
     selectAccount(newId);
     return newId;
   };
@@ -218,5 +239,3 @@ export const useAccounts = () => {
   if (!c) throw new Error('useAccounts error');
   return c;
 };
-
-
