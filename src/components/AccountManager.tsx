@@ -115,13 +115,23 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     } catch (e) { setStatusMessage('Hata: Formu kontrol edin.'); }
   };
   
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center p-2 sm:p-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-[130] w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[95vh]">
-        <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+    <>
+      <div
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[120] transition-opacity duration-300 ${
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={onClose}
+      />
+      <div
+        className={`fixed bottom-0 inset-x-0 z-[130] mx-auto w-full sm:max-w-2xl bg-white rounded-t-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-out ${
+          isOpen ? 'translate-y-0' : 'translate-y-full'
+        }`}
+      >
+        <div className="flex justify-center pt-3 pb-1 shrink-0">
+          <div className="w-10 h-1.5 rounded-full bg-gray-300" />
+        </div>
+        <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center justify-between shrink-0">
           <div><h2 className="text-lg font-bold text-black">Yönetim Paneli</h2><p className="text-[11px] text-gray-500 uppercase tracking-wider font-semibold">Bulut Senkronizasyonu Aktif</p></div>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full text-gray-600 hover:bg-gray-300 transition-colors">✕</button>
         </div>
@@ -219,9 +229,9 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
             </div>
           </div>
         </div>
-        {statusMessage && <div className="bg-blue-600 text-white px-6 py-2 text-center text-[12px] font-bold animate-pulse">{statusMessage}</div>}
+        {statusMessage && <div className="bg-blue-600 text-white px-6 py-2 text-center text-[12px] font-bold animate-pulse shrink-0">{statusMessage}</div>}
       </div>
-    </div>
+    </>
   );
 };
 
