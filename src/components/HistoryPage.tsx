@@ -190,13 +190,13 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
       )}
 
       {/* List */}
-      <div className="flex flex-col bg-white min-h-[400px]">
+      <div className="flex flex-col bg-white min-h-[70vh]">
         {filteredData.length > 0 ? (
             [...filteredData].reverse().map((deal) => (
             <HistoryItem key={deal.id} deal={deal} accountNo={selectedAccount?.accountNo} />
             ))
         ) : (
-            <div className="flex flex-col items-center justify-start pt-12">
+            <div className="flex-1 flex flex-col items-center justify-center">
                 <img
                     src="/gecmisyok.jpg"
                     alt="İşlem bulunamadı"
