@@ -140,17 +140,20 @@ const Header: React.FC<HeaderProps> = ({ title, selectedPeriod = 'Bugün', onPer
         )}
         {(title === 'Geçmiş' || title === 'İşlem') && (
             <>
-                <img 
-                    src={title === 'İşlem' ? "/yatircek.svg" : "/sembol.svg"} 
-                    alt="Symbol" 
-                    className="w-5 h-5 object-contain opacity-80 brightness-50" 
+                <img
+                    src={title === 'İşlem' ? "/yatircek.svg" : "/sembol.svg"}
+                    alt="Symbol"
+                    className="w-5 h-5 object-contain opacity-80 brightness-50"
                 />
                 <img src="/oklar2.svg" alt="Order" className="w-5 h-5 object-contain opacity-80 brightness-50" />
+                {title === 'İşlem' ? (
+                    <img src="/ekle.svg" alt="Ekle" className="w-5 h-5 object-contain opacity-80 brightness-50" />
+                ) : (
                 <div className="relative" ref={menuRef}>
                     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="flex items-center justify-center focus:outline-none">
                         <img src={currentIconPath} alt="Calendar" className="w-5 h-5 object-contain opacity-80 brightness-50" />
                     </button>
-                    
+
                     {isMenuOpen && (
                     <div className="absolute right-[-10px] top-[-10px] w-48 bg-[#f7f7f7] shadow-xl rounded-sm border border-gray-300 py-0 z-[60] overflow-hidden">
                         {menuItems.map((item, index) => (
@@ -181,6 +184,7 @@ const Header: React.FC<HeaderProps> = ({ title, selectedPeriod = 'Bugün', onPer
                     </div>
                 )}
             </div>
+                )}
             </>
         )}
       </div>
