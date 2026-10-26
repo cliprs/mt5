@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAccounts } from '../context/AccountsContext';
-import { IoTrashOutline } from 'react-icons/io5';
+import { IoTrashOutline, IoChevronDown } from 'react-icons/io5';
 
 const joinDateTime = (parts: { date: string; h: string; m: string; s: string }) => {
   if (!parts.date) return '';
@@ -33,6 +33,7 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const [accountForm, setAccountForm] = useState({ name: '', accountNo: '', server: '' });
   const [ticketToDelete, setTicketToDelete] = useState('');
   const [newAccountForm, setNewAccountForm] = useState({ name: '', accountNo: '', server: '' });
+  const [isAccountPickerOpen, setIsAccountPickerOpen] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -41,6 +42,7 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     setBalanceForm(createBalanceFormState());
     setTicketToDelete('');
     setCloseTimeTouched(false);
+    setIsAccountPickerOpen(false);
     if (selectedAccount) {
       setAccountForm({ name: selectedAccount.name, accountNo: selectedAccount.accountNo, server: selectedAccount.server });
     }
@@ -140,12 +142,44 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
             <div className="space-y-6">
               <div className="space-y-2">
                 <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Aktif Hesaplar</h3>
-                {accounts.map(acc => (
-                  <button key={acc.id} onClick={() => selectAccount(acc.id)} className={`w-full text-left p-3 rounded-2xl border-2 transition-all ${acc.id === selectedAccountId ? 'border-blue-500 bg-blue-50' : 'border-gray-100 bg-gray-50'}`}>
-                    <div className="text-[14px] font-bold text-black">{acc.name}</div>
-                    <div className="text-[11px] text-gray-500 font-medium">{acc.accountNo} • {acc.server}</div>
-                  </button>
-                ))}
+                <button
+                  type="button"
+                  onClick={() => setIsAccountPickerOpen((prev) => !prev)}
+                  className="w-full text-left p-3 rounded-2xl border-2 border-blue-500 bg-blue-50 flex items-center justify-between gap-2"
+                >
+                  <div className="min-w-0">
+                    <div className="text-[14px] font-bold text-black truncate">{selectedAccount?.name ?? 'Hesap seçilmedi'}</div>
+                    <div className="text-[11px] text-gray-500 font-medium truncate">
+                      {selectedAccount ? `${selectedAccount.accountNo} • ${selectedAccount.server}` : '---'}
+                    </div>
+                  </div>
+                  <IoChevronDown
+                    size={18}
+                    className={`text-blue-600 shrink-0 transition-transform ${isAccountPickerOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {isAccountPickerOpen && (
+                  <div className="space-y-2 pt-1">
+                    {accounts
+                      .filter((acc) => acc.id !== selectedAccountId)
+                      .map((acc) => (
+                        <button
+                          key={acc.id}
+                          onClick={() => {
+                            selectAccount(acc.id);
+                            setIsAccountPickerOpen(false);
+                          }}
+                          className="w-full text-left p-3 rounded-2xl border-2 border-gray-100 bg-gray-50"
+                        >
+                          <div className="text-[14px] font-bold text-black">{acc.name}</div>
+                          <div className="text-[11px] text-gray-500 font-medium">{acc.accountNo} • {acc.server}</div>
+                        </button>
+                      ))}
+                    {accounts.length <= 1 && (
+                      <p className="text-[12px] text-gray-400 px-1">Başka aktif hesap yok.</p>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100 space-y-2">
                 <h3 className="text-[12px] font-bold text-blue-800 uppercase tracking-tight">Yeni Hesap Ekle</h3>
