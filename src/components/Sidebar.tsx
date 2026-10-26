@@ -13,6 +13,7 @@ interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   onManageAccounts: () => void;
+  onOpenAccounts: () => void;
 }
 
 interface MenuItemProps {
@@ -23,7 +24,7 @@ interface MenuItemProps {
   onClick?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, onOpenAccounts }) => {
   const { selectedAccount } = useAccounts();
 
   const menuItems: MenuItemProps[] = [
@@ -123,7 +124,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts }) 
                 type="button"
                 onClick={() => {
                   onClose();
-                  onManageAccounts();
+                  onOpenAccounts();
                 }}
                 className="text-mt5-blue text-[14px] font-normal mt-3 text-left cursor-pointer hover:underline"
               >

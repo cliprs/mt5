@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { IoMenu, IoAddOutline } from 'react-icons/io5';
+import { IoMenu, IoAddOutline, IoEllipsisVertical } from 'react-icons/io5';
 
 interface HeaderProps {
     title: string;
     selectedPeriod?: string;
     onPeriodChange?: (period: string) => void;
     onMenuClick?: () => void;
+    onAddAccount?: () => void;
 }
 
 // Helper to format date as DD.MM.YYYY
@@ -16,7 +17,7 @@ const formatDate = (date: Date): string => {
     return `${d}.${m}.${y}`;
 };
 
-const Header: React.FC<HeaderProps> = ({ title, selectedPeriod = 'Bugün', onPeriodChange, onMenuClick }) => {
+const Header: React.FC<HeaderProps> = ({ title, selectedPeriod = 'Bugün', onPeriodChange, onMenuClick, onAddAccount }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -95,6 +96,12 @@ const Header: React.FC<HeaderProps> = ({ title, selectedPeriod = 'Bugün', onPer
             <>
                 <IoAddOutline size={32} className="text-gray-600" />
                 <img src="/kalem.svg" alt="Edit" className="w-5 h-5 object-contain opacity-60 brightness-50" />
+            </>
+        )}
+        {title === 'Hesaplar' && (
+            <>
+                <IoAddOutline size={28} className="text-gray-600 cursor-pointer" onClick={onAddAccount} />
+                <IoEllipsisVertical size={20} className="text-gray-600" />
             </>
         )}
         {title === 'Grafik' && (

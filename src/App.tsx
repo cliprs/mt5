@@ -5,6 +5,7 @@ import HistoryPage from './components/HistoryPage';
 import BottomNav from './components/BottomNav';
 import Sidebar from './components/Sidebar';
 import AccountManager from './components/AccountManager';
+import AccountsPage from './components/AccountsPage';
 import InstallPrompt from './components/InstallPrompt';
 import CustomCalendar from './components/CustomCalendar';
 import TradePage from './components/TradePage';
@@ -70,6 +71,7 @@ function App() {
         case 'charts': return 'Grafik';
         case 'trade': return 'İşlem';
         case 'messages': return 'Mesajlar';
+        case 'accounts': return 'Hesaplar';
         default: return 'Fiyatlar';
     }
   };
@@ -80,20 +82,22 @@ function App() {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         onManageAccounts={() => setIsAccountManagerOpen(true)}
+        onOpenAccounts={() => setActiveTab('accounts')}
       />
-      
-      <Header 
-        title={getTitle()} 
+
+      <Header
+        title={getTitle()}
         selectedPeriod={selectedPeriod}
         onPeriodChange={handlePeriodChange}
         onMenuClick={() => setIsSidebarOpen(true)}
-      /> 
+        onAddAccount={() => setIsAccountManagerOpen(true)}
+      />
 
-      <main className="pt-0"> 
+      <main className="pt-0">
         {activeTab === 'quotes' && <QuoteList />}
         {activeTab === 'history' && (
-            <HistoryPage 
-                selectedPeriod={selectedPeriod} 
+            <HistoryPage
+                selectedPeriod={selectedPeriod}
                 customStartDate={customDates.start}
                 customEndDate={customDates.end}
             />
@@ -101,6 +105,7 @@ function App() {
         {activeTab === 'charts' && <ChartPage />}
         {activeTab === 'trade' && <TradePage />}
         {activeTab === 'messages' && <div className="flex justify-center items-center h-[calc(100vh-120px)] text-gray-500 font-condensed">Mesajlar Alanı</div>}
+        {activeTab === 'accounts' && <AccountsPage onAddAccount={() => setIsAccountManagerOpen(true)} />}
       </main>
       
       <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
