@@ -1,10 +1,19 @@
+import { useAccounts } from '../context/AccountsContext';
+import { calculateBalance } from '../utils/balance';
+
 interface BottomNavProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
 }
 
+const formatBalance = (val: number) =>
+  val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
-  const getTabClass = (tabName: string) => 
+  const { selectedAccount } = useAccounts();
+  const balance = selectedAccount ? calculateBalance(selectedAccount.history) : 0;
+
+  const getTabClass = (tabName: string) =>
     `flex flex-col items-center justify-center gap-1 cursor-pointer flex-1 transition-all ${activeTab === tabName ? 'text-[#0055b3]' : 'text-gray-500'}`;
 
   const getIconContainerClass = (tabName: string) =>
@@ -25,10 +34,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
         <span className="font-bold">Grafik</span>
       </div>
       <div className={getTabClass('trade')} onClick={() => onTabChange('trade')}>
-        <div className={getIconContainerClass('trade')}>
-          <img src="/islem.svg" alt="İşlem" className={`w-5 h-5 object-contain ${activeTab === 'trade' ? 'filter-mt5-blue' : 'opacity-70'}`} />
+        <div className={`${getIconContainerClass('trade')} px-2 w-auto min-w-[56px]`}>
+          <span className="text-[11px] font-bold leading-none whitespace-nowrap">{formatBalance(balance)}</span>
         </div>
-        <span className="font-bold">İşlem</span>
       </div>
       <div className={getTabClass('history')} onClick={() => onTabChange('history')}>
         <div className={getIconContainerClass('history')}>

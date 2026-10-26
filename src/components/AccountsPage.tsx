@@ -1,32 +1,11 @@
 import React from 'react';
 import { useAccounts } from '../context/AccountsContext';
 import { AccountProfile } from '../data/accounts';
+import { calculateBalance } from '../utils/balance';
 import { IoAppsOutline, IoNotificationsOutline } from 'react-icons/io5';
 
 const formatMoney = (val: number) =>
   val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-const calcBalance = (acc: AccountProfile) => {
-  let totalDeposit = 0;
-  let totalWithdrawal = 0;
-  let gross = 0;
-  let comm = 0;
-  let swap = 0;
-
-  acc.history.forEach((deal) => {
-    if (deal.type === 'balance') {
-      if (deal.profit < 0) totalWithdrawal += Math.abs(deal.profit);
-      else totalDeposit += deal.profit;
-    } else {
-      gross += deal.profit;
-      comm += Math.abs(deal.commission);
-      swap += deal.swap;
-    }
-  });
-
-  const net = gross - comm;
-  return totalDeposit + net + swap - totalWithdrawal;
-};
 
 const getBrokerLogo = (acc: AccountProfile) => {
   const s = `${acc.broker} ${acc.server}`.toLowerCase();
@@ -68,7 +47,7 @@ const AccountsPage: React.FC<AccountsPageProps> = ({ onAddAccount }) => {
           {selected.accountNo} — {selected.server}
         </div>
         <div className="text-[28px] font-bold text-black mt-3">
-          {formatMoney(calcBalance(selected))} <span className="text-[14px] text-gray-400 font-normal">USD</span>
+          {formatMoney(calculateBalance(selected.history))} <span className="text-[14px] text-gray-400 font-normal">USD</span>
         </div>
         <div className="flex items-center justify-between w-full mt-4">
           <IoAppsOutline size={20} className="text-gray-400" />
@@ -93,7 +72,7 @@ const AccountsPage: React.FC<AccountsPageProps> = ({ onAddAccount }) => {
                   {acc.accountNo} — {acc.server}
                 </div>
                 <div className="text-[13px] text-black font-semibold mt-0.5">
-                  {formatMoney(calcBalance(acc))} USD
+                  {formatMoney(calculateBalance(acc.history))} USD
                 </div>
               </div>
               <IoAppsOutline size={18} className="text-gray-300 shrink-0" />
