@@ -191,7 +191,7 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
       <div className="flex flex-col bg-white min-h-[400px]">
         {filteredData.length > 0 ? (
             [...filteredData].reverse().map((deal) => (
-            <HistoryItem key={deal.id} deal={deal} />
+            <HistoryItem key={deal.id} deal={deal} accountNo={selectedAccount?.accountNo} />
             ))
         ) : (
             <div className="flex flex-col items-center justify-start pt-12">

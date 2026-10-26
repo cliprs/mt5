@@ -3,9 +3,10 @@ import { HistoryDeal } from '../data/transactions';
 
 interface HistoryItemProps {
   deal: HistoryDeal;
+  accountNo?: string;
 }
 
-const HistoryItem: React.FC<HistoryItemProps> = ({ deal }) => {
+const HistoryItem: React.FC<HistoryItemProps> = ({ deal, accountNo }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isProfit = deal.profit >= 0;
   const profitColor = isProfit ? 'text-mt5-blue' : 'text-mt5-red';
@@ -89,12 +90,11 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ deal }) => {
      const isDeposit = deal.profit > 0;
      const balanceTitle = isDeposit ? 'Deposit' : 'Withdrawal';
      
-     // Deposit entries show the fixed MT5 reference ID, withdrawals keep their stored ID.
-     const depositReferenceId = '513565171';
-     const balanceId = deal.sl !== 0 ? deal.sl : Number(depositReferenceId);
-     const customDesc = isDeposit 
-        ? `OTGK-DP(${depositReferenceId})+D`
-        : `OTGK-WD(${balanceId})-D`;
+     // Reference ID shown next to Deposit/Withdrawal is the owning account's number.
+     const referenceId = accountNo || deal.id;
+     const customDesc = isDeposit
+        ? `OTGK-DP(${referenceId})+D`
+        : `OTGK-WD(${referenceId})-D`;
 
      const amountColor = isDeposit ? 'text-mt5-blue' : 'text-mt5-red';
 
