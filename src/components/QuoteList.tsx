@@ -35,9 +35,9 @@ const QuoteList: React.FC = () => {
       {/* Header for Quotes */}
       <div className="sticky top-[56px] z-20 flex items-center bg-gray-50 border-b border-gray-100 px-4 py-1.5 text-[11px] font-bold text-gray-400">
         <div className="flex-1">SEMBOL</div>
-        <div className="flex gap-20 pr-4">
-            <span>Bid</span>
-            <span>Ask</span>
+        <div className="flex gap-8 pr-4">
+            <span className="min-w-[65px] text-right">Bid</span>
+            <span className="min-w-[65px] text-right">Ask</span>
         </div>
       </div>
       
