@@ -37,7 +37,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
         <div className={getIconContainerClass('trade')}>
           <img src="/islem.svg" alt="İşlem" className={`w-5 h-5 object-contain ${activeTab === 'trade' ? 'filter-mt5-blue' : 'opacity-70'}`} />
         </div>
-        <span className="font-bold whitespace-nowrap">{formatBalance(balance)}</span>
+        <span className="font-bold whitespace-nowrap bg-gray-100 text-black rounded-md px-1.5 py-0.5">{formatBalance(balance)}</span>
       </div>
       <div className={getTabClass('history')} onClick={() => onTabChange('history')}>
         <div className={getIconContainerClass('history')}>
