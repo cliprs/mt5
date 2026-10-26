@@ -155,37 +155,39 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
       </div>
 
        {/* Summary Header */}
-      <div className="bg-white pt-4 pb-2">
-         <div className="flex flex-col gap-y-1 text-sm px-4">
-            {[
-                { label: 'Kâr:', value: formatMoney(summary.profit), color: summary.profit >= 0 ? 'text-mt5-blue' : 'text-mt5-red' },
-                { label: 'Yatırılan:', value: formatMoney(summary.deposit), color: 'text-black' },
-                { label: 'Çekilen:', value: formatMoney(-summary.withdrawal), color: 'text-black' },
-                { label: 'Swap:', value: formatMoney(summary.swap), color: 'text-black' },
-                { label: 'Komisyon:', value: formatMoney(-summary.commission), color: 'text-black' },
-                { label: 'Bakiye:', value: formatMoney(summary.balance), color: 'text-black' }
-            ].map((item, index) => {
-                let minWidth = 'min-w-[50px]';
-                if (item.label === 'Yatırılan:' || item.label === 'Bakiye:') minWidth = 'min-w-[68px]';
-                if (item.label === 'Çekilen:' || item.label === 'Komisyon:') minWidth = 'min-w-[62px]';
+      {filteredData.length > 0 && (
+        <div className="bg-white pt-4 pb-2">
+           <div className="flex flex-col gap-y-1 text-sm px-4">
+              {[
+                  { label: 'Kâr:', value: formatMoney(summary.profit), color: summary.profit >= 0 ? 'text-mt5-blue' : 'text-mt5-red' },
+                  { label: 'Yatırılan:', value: formatMoney(summary.deposit), color: 'text-black' },
+                  { label: 'Çekilen:', value: formatMoney(-summary.withdrawal), color: 'text-black' },
+                  { label: 'Swap:', value: formatMoney(summary.swap), color: 'text-black' },
+                  { label: 'Komisyon:', value: formatMoney(-summary.commission), color: 'text-black' },
+                  { label: 'Bakiye:', value: formatMoney(summary.balance), color: 'text-black' }
+              ].map((item, index) => {
+                  let minWidth = 'min-w-[50px]';
+                  if (item.label === 'Yatırılan:' || item.label === 'Bakiye:') minWidth = 'min-w-[68px]';
+                  if (item.label === 'Çekilen:' || item.label === 'Komisyon:') minWidth = 'min-w-[62px]';
 
-                return (
-                    <div key={index} className="flex items-center w-full">
-                        <span className={`font-bold text-black whitespace-nowrap text-left tracking-tight ${minWidth}`}>{item.label}</span>
-                        <div className="flex-grow mx-1 h-px relative top-[2px]" style={{
-                            backgroundImage: 'linear-gradient(to right, #9ca3af 20%, rgba(255,255,255,0) 0%)',
-                            backgroundPosition: 'bottom',
-                            backgroundSize: '6px 1px',
-                            backgroundRepeat: 'repeat-x'
-                        }}></div>
-                        <span className={`font-bold whitespace-nowrap text-right ${item.color} tracking-tight`}>
-                            {item.value}
-                        </span>
-                    </div>
-                );
-            })}
-         </div>
-      </div>
+                  return (
+                      <div key={index} className="flex items-center w-full">
+                          <span className={`font-bold text-black whitespace-nowrap text-left tracking-tight ${minWidth}`}>{item.label}</span>
+                          <div className="flex-grow mx-1 h-px relative top-[2px]" style={{
+                              backgroundImage: 'linear-gradient(to right, #9ca3af 20%, rgba(255,255,255,0) 0%)',
+                              backgroundPosition: 'bottom',
+                              backgroundSize: '6px 1px',
+                              backgroundRepeat: 'repeat-x'
+                          }}></div>
+                          <span className={`font-bold whitespace-nowrap text-right ${item.color} tracking-tight`}>
+                              {item.value}
+                          </span>
+                      </div>
+                  );
+              })}
+           </div>
+        </div>
+      )}
 
       {/* List */}
       <div className="flex flex-col bg-white min-h-[400px]">
@@ -195,10 +197,10 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
             ))
         ) : (
             <div className="flex flex-col items-center justify-start pt-12">
-                <img 
-                    src="/gecmisyok.jpg" 
-                    alt="İşlem bulunamadı" 
-                    className="w-full max-w-[300px] object-contain opacity-90" 
+                <img
+                    src="/gecmisyok.jpg"
+                    alt="İşlem bulunamadı"
+                    className="w-full max-w-[160px] object-contain opacity-90"
                 />
             </div>
         )}
