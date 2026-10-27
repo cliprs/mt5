@@ -15,15 +15,29 @@ const createTradeFormState = () => ({
   closeDate: '', closeH: '', closeM: '', closeS: '',
 });
 
-const createBalanceFormState = () => ({ 
+const createBalanceFormState = () => ({
   amount: '', date: '', h: '', m: '', s: ''
 });
+
+const createEditFormState = () => ({
+  volume: '', openPrice: '', closePrice: '',
+  openDate: '', openH: '', openM: '', openS: '',
+  closeDate: '', closeH: '', closeM: '', closeS: '',
+});
+
+const splitDateTime = (value: string) => {
+  if (!value) return { date: '', h: '00', m: '00', s: '00' };
+  const [datePart, timePart = '00:00:00'] = value.split(' ');
+  const [year, month, day] = datePart.split('.');
+  const [h = '00', m = '00', s = '00'] = timePart.split(':');
+  return { date: `${year}-${month}-${day}`, h, m, s };
+};
 
 const sanitizePositive = (value: string) => value.replace(/[^0-9.]/g, '');
 const sanitizeDigits = (value: string) => value.replace(/[^0-9]/g, '');
 
 const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateAccountDetails, addAccount } = useAccounts();
+  const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateTradeEntry, updateAccountDetails, addAccount } = useAccounts();
   const [entryType, setEntryType] = useState<'trade' | 'deposit' | 'withdraw'>('trade');
   const [statusMessage, setStatusMessage] = useState('');
   const [closeTimeTouched, setCloseTimeTouched] = useState(false);
@@ -34,6 +48,10 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const [ticketToDelete, setTicketToDelete] = useState('');
   const [newAccountForm, setNewAccountForm] = useState({ name: '', accountNo: '', server: '' });
   const [isAccountPickerOpen, setIsAccountPickerOpen] = useState(false);
+  const [editTicketId, setEditTicketId] = useState('');
+  const [editForm, setEditForm] = useState(createEditFormState);
+  const [editLoadedDeal, setEditLoadedDeal] = useState<{ symbol: string; type: string } | null>(null);
+  const [editCloseTimeTouched, setEditCloseTimeTouched] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -43,6 +61,10 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     setTicketToDelete('');
     setCloseTimeTouched(false);
     setIsAccountPickerOpen(false);
+    setEditTicketId('');
+    setEditForm(createEditFormState());
+    setEditLoadedDeal(null);
+    setEditCloseTimeTouched(false);
     if (selectedAccount) {
       setAccountForm({ name: selectedAccount.name, accountNo: selectedAccount.accountNo, server: selectedAccount.server });
     }
@@ -74,6 +96,70 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     });
     setStatusMessage('Yeni hesap oluşturuldu.');
     setNewAccountForm({ name: '', accountNo: '', server: '' });
+  };
+
+  const handleEditTradeChange = (field: keyof typeof editForm, value: string) => {
+    const isTimePart = ['openDate', 'openH', 'openM', 'openS'].includes(field);
+    setEditForm(prev => {
+      const nextState = { ...prev, [field]: value };
+      if (isTimePart && !editCloseTimeTouched) {
+        const correspondingCloseField = field.replace('open', 'close') as keyof typeof editForm;
+        (nextState as any)[correspondingCloseField] = value;
+      }
+      return nextState;
+    });
+    if (field.startsWith('close')) setEditCloseTimeTouched(true);
+  };
+
+  const handleLoadTicket = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!selectedAccount || !editTicketId.trim()) return;
+    const deal = selectedAccount.history.find(d => d.id === editTicketId.trim());
+    if (!deal) {
+      setStatusMessage(`İşlem ${editTicketId} bulunamadı.`);
+      setEditLoadedDeal(null);
+      return;
+    }
+    if (deal.type === 'balance') {
+      setStatusMessage('Bu ticket bir deposit/withdraw kaydı, sadece trade işlemleri düzenlenebilir.');
+      setEditLoadedDeal(null);
+      return;
+    }
+    const open = splitDateTime(deal.openTime);
+    const close = splitDateTime(deal.closeTime);
+    setEditForm({
+      volume: String(deal.volume),
+      openPrice: String(deal.openPrice),
+      closePrice: String(deal.closePrice),
+      openDate: open.date, openH: open.h, openM: open.m, openS: open.s,
+      closeDate: close.date, closeH: close.h, closeM: close.m, closeS: close.s,
+    });
+    setEditLoadedDeal({ symbol: deal.symbol, type: deal.type });
+    setEditCloseTimeTouched(true);
+    setStatusMessage(`İşlem ${editTicketId} yüklendi, düzenleyebilirsiniz.`);
+  };
+
+  const handleUpdateTicket = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!selectedAccountId || !editLoadedDeal) return;
+    const openTime = joinDateTime({ date: editForm.openDate, h: editForm.openH, m: editForm.openM, s: editForm.openS });
+    const closeTime = joinDateTime({ date: editForm.closeDate, h: editForm.closeH, m: editForm.closeM, s: editForm.closeS });
+    const updated = await updateTradeEntry(selectedAccountId, editTicketId.trim(), {
+      volume: Number(editForm.volume || '0'),
+      openPrice: Number(editForm.openPrice || '0'),
+      closePrice: Number(editForm.closePrice || '0'),
+      openTime,
+      closeTime,
+    });
+    if (updated) {
+      setStatusMessage(`İşlem ${editTicketId} güncellendi.`);
+      setEditTicketId('');
+      setEditForm(createEditFormState());
+      setEditLoadedDeal(null);
+      setEditCloseTimeTouched(false);
+    } else {
+      setStatusMessage(`İşlem ${editTicketId} bulunamadı.`);
+    }
   };
 
   const handleDeleteTicket = async (event: React.FormEvent) => {
@@ -196,6 +282,48 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                 <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.accountNo} onChange={e => setAccountForm({...accountForm, accountNo: sanitizeDigits(e.target.value)})} placeholder="HESAP NUMARASI" />
                 <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.server} onChange={e => setAccountForm({...accountForm, server: e.target.value})} placeholder="SUNUCU (BROKER)" />
                 <button onClick={() => updateAccountDetails(selectedAccountId!, accountForm)} className="w-full py-3 rounded-xl text-[13px] font-black bg-black text-white shadow-lg">BİLGİLERİ KAYDET</button>
+              </div>
+              <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 space-y-3">
+                <h3 className="text-[12px] font-bold text-amber-800 uppercase tracking-tight">İşlem Düzelt</h3>
+                <form onSubmit={handleLoadTicket} className="flex gap-2">
+                  <input
+                    className="flex-1 min-w-0 rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[13px] font-bold outline-none"
+                    value={editTicketId}
+                    onChange={e => { setEditTicketId(sanitizeDigits(e.target.value)); setEditLoadedDeal(null); }}
+                    placeholder="TICKET NUMARASI"
+                    inputMode="numeric"
+                  />
+                  <button type="submit" disabled={!editTicketId} className={`px-4 rounded-xl text-[12px] font-black transition-all shrink-0 ${editTicketId ? 'bg-amber-600 text-white shadow-md' : 'bg-gray-200 text-gray-400'}`}>GETİR</button>
+                </form>
+                {editLoadedDeal && (
+                  <form onSubmit={handleUpdateTicket} className="space-y-2">
+                    <p className="text-[11px] text-amber-700 font-semibold">{editLoadedDeal.symbol}, {editLoadedDeal.type.toUpperCase()}</p>
+                    <input className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={editForm.volume} onChange={e => handleEditTradeChange('volume', sanitizePositive(e.target.value))} placeholder="LOT" />
+                    <div className="grid grid-cols-2 gap-2">
+                      <input className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={editForm.openPrice} onChange={e => handleEditTradeChange('openPrice', sanitizePositive(e.target.value))} placeholder="Açılış Fiyatı" />
+                      <input className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[13px] font-bold outline-none" value={editForm.closePrice} onChange={e => handleEditTradeChange('closePrice', sanitizePositive(e.target.value))} placeholder="Kapanış Fiyatı" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold text-amber-700 ml-2 uppercase">Açılış Zamanı</span>
+                      <div className="grid grid-cols-4 gap-2 mt-1">
+                        <input type="date" className="col-span-4 w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold" value={editForm.openDate} onChange={e => handleEditTradeChange('openDate', e.target.value)} />
+                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.openH} onChange={e => handleEditTradeChange('openH', e.target.value)} placeholder="SS" max="23" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.openM} onChange={e => handleEditTradeChange('openM', e.target.value)} placeholder="DD" max="59" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.openS} onChange={e => handleEditTradeChange('openS', e.target.value)} placeholder="sn" max="59" min="0" />
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold text-amber-700 ml-2 uppercase">Kapanış Zamanı</span>
+                      <div className="grid grid-cols-4 gap-2 mt-1">
+                        <input type="date" className="col-span-4 w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold" value={editForm.closeDate} onChange={e => handleEditTradeChange('closeDate', e.target.value)} />
+                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.closeH} onChange={e => handleEditTradeChange('closeH', e.target.value)} placeholder="SS" max="23" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.closeM} onChange={e => handleEditTradeChange('closeM', e.target.value)} placeholder="DD" max="59" min="0" />
+                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.closeS} onChange={e => handleEditTradeChange('closeS', e.target.value)} placeholder="sn" max="59" min="0" />
+                      </div>
+                    </div>
+                    <button type="submit" className="w-full py-2.5 rounded-xl text-[12px] font-black bg-amber-600 text-white shadow-md">İŞLEMİ GÜNCELLE</button>
+                  </form>
+                )}
               </div>
               <div className="bg-red-50 rounded-2xl p-4 border border-red-100">
                 <h3 className="text-[12px] font-bold text-red-800 mb-3 flex items-center gap-2"><IoTrashOutline size={16} /> İŞLEM SİL</h3>

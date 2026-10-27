@@ -31,6 +31,11 @@ interface AccountsContextValue {
   selectAccount: (id: string) => void;
   addEntry: (accountId: string, payload: EntryInput) => Promise<void>;
   removeEntry: (accountId: string, ticketId: string) => Promise<boolean>;
+  updateTradeEntry: (
+    accountId: string,
+    ticketId: string,
+    payload: { volume: number; openPrice: number; closePrice: number; openTime: string; closeTime: string }
+  ) => Promise<boolean>;
   updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string }) => Promise<void>;
   addAccount: (payload: { name: string; accountNo: string; server: string; broker?: string }) => Promise<string>;
   setAccounts: React.Dispatch<React.SetStateAction<AccountProfile[]>>;
@@ -184,6 +189,39 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     );
   };
 
+  const updateTradeEntry = async (
+    accountId: string,
+    ticketId: string,
+    payload: { volume: number; openPrice: number; closePrice: number; openTime: string; closeTime: string }
+  ): Promise<boolean> => {
+    let found = false;
+    await mutateAccounts((prev) =>
+      prev.map((acc) => {
+        if (acc.id !== accountId) return acc;
+        const updatedHistory = acc.history.map((deal) => {
+          if (deal.id !== ticketId || deal.type === 'balance') return deal;
+          found = true;
+          const pointDiff = deal.type === 'buy'
+            ? payload.closePrice - payload.openPrice
+            : payload.openPrice - payload.closePrice;
+          const profit = pointDiff * payload.volume * 100;
+          return {
+            ...deal,
+            volume: payload.volume,
+            openPrice: payload.openPrice,
+            closePrice: payload.closePrice,
+            openTime: normalizeDateString(payload.openTime),
+            closeTime: normalizeDateString(payload.closeTime),
+            commission: Number((payload.volume * COMMISSION_PER_LOT).toFixed(2)) * -1,
+            profit: Number(profit.toFixed(2)),
+          };
+        });
+        return { ...acc, history: sortDeals(updatedHistory) };
+      })
+    );
+    return found;
+  };
+
   const removeEntry = async (accountId: string, ticketId: string): Promise<boolean> => {
     let found = false;
     await mutateAccounts((prev) =>
@@ -225,6 +263,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     selectAccount,
     addEntry,
     removeEntry,
+    updateTradeEntry,
     updateAccountDetails,
     addAccount,
     setAccounts,
