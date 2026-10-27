@@ -36,6 +36,22 @@ const splitDateTime = (value: string) => {
 const sanitizePositive = (value: string) => value.replace(/[^0-9.]/g, '');
 const sanitizeDigits = (value: string) => value.replace(/[^0-9]/g, '');
 
+const buildDateTime = (date: string, h: string, m: string, s: string): Date | null => {
+  if (!date) return null;
+  const hh = (h || '0').padStart(2, '0');
+  const mm = (m || '0').padStart(2, '0');
+  const ss = (s || '0').padStart(2, '0');
+  const d = new Date(`${date}T${hh}:${mm}:${ss}`);
+  return Number.isNaN(d.getTime()) ? null : d;
+};
+
+const isCloseBeforeOpen = (form: { openDate: string; openH: string; openM: string; openS: string; closeDate: string; closeH: string; closeM: string; closeS: string }) => {
+  const open = buildDateTime(form.openDate, form.openH, form.openM, form.openS);
+  const close = buildDateTime(form.closeDate, form.closeH, form.closeM, form.closeS);
+  if (!open || !close) return false;
+  return close < open;
+};
+
 const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateTradeEntry, updateAccountDetails, addAccount } = useAccounts();
   const [entryType, setEntryType] = useState<'trade' | 'deposit' | 'withdraw'>('trade');
@@ -52,6 +68,9 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const [editForm, setEditForm] = useState(createEditFormState);
   const [editLoadedDeal, setEditLoadedDeal] = useState<{ symbol: string; type: string } | null>(null);
   const [editCloseTimeTouched, setEditCloseTimeTouched] = useState(false);
+
+  const tradeDateInvalid = isCloseBeforeOpen(tradeForm);
+  const editDateInvalid = isCloseBeforeOpen(editForm);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -142,6 +161,10 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const handleUpdateTicket = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId || !editLoadedDeal) return;
+    if (isCloseBeforeOpen(editForm)) {
+      setStatusMessage('Kapanış zamanı, açılış zamanından önce olamaz.');
+      return;
+    }
     const openTime = joinDateTime({ date: editForm.openDate, h: editForm.openH, m: editForm.openM, s: editForm.openS });
     const closeTime = joinDateTime({ date: editForm.closeDate, h: editForm.closeH, m: editForm.closeM, s: editForm.closeS });
     const updated = await updateTradeEntry(selectedAccountId, editTicketId.trim(), {
@@ -177,6 +200,10 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!selectedAccountId) return;
+    if (entryType === 'trade' && isCloseBeforeOpen(tradeForm)) {
+      setStatusMessage('Kapanış zamanı, açılış zamanından önce olamaz.');
+      return;
+    }
     try {
       if (entryType === 'trade') {
         const openTime = joinDateTime({ date: tradeForm.openDate, h: tradeForm.openH, m: tradeForm.openM, s: tradeForm.openS });
@@ -313,15 +340,18 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                       </div>
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-amber-700 ml-2 uppercase">Kapanış Zamanı</span>
+                      <span className={`text-[10px] font-bold ml-2 uppercase ${editDateInvalid ? 'text-red-600' : 'text-amber-700'}`}>Kapanış Zamanı</span>
                       <div className="grid grid-cols-4 gap-2 mt-1">
-                        <input type="date" className="col-span-4 w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold" value={editForm.closeDate} onChange={e => handleEditTradeChange('closeDate', e.target.value)} />
-                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.closeH} onChange={e => handleEditTradeChange('closeH', e.target.value)} placeholder="SS" max="23" min="0" />
-                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.closeM} onChange={e => handleEditTradeChange('closeM', e.target.value)} placeholder="DD" max="59" min="0" />
-                        <input type="number" className="w-full rounded-xl bg-white border border-amber-200 px-4 py-2.5 text-[12px] font-bold text-center" value={editForm.closeS} onChange={e => handleEditTradeChange('closeS', e.target.value)} placeholder="sn" max="59" min="0" />
+                        <input type="date" className={`col-span-4 w-full rounded-xl border px-4 py-2.5 text-[12px] font-bold ${editDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-white border-amber-200'}`} value={editForm.closeDate} onChange={e => handleEditTradeChange('closeDate', e.target.value)} />
+                        <input type="number" className={`w-full rounded-xl border px-4 py-2.5 text-[12px] font-bold text-center ${editDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-white border-amber-200'}`} value={editForm.closeH} onChange={e => handleEditTradeChange('closeH', e.target.value)} placeholder="SS" max="23" min="0" />
+                        <input type="number" className={`w-full rounded-xl border px-4 py-2.5 text-[12px] font-bold text-center ${editDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-white border-amber-200'}`} value={editForm.closeM} onChange={e => handleEditTradeChange('closeM', e.target.value)} placeholder="DD" max="59" min="0" />
+                        <input type="number" className={`w-full rounded-xl border px-4 py-2.5 text-[12px] font-bold text-center ${editDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-white border-amber-200'}`} value={editForm.closeS} onChange={e => handleEditTradeChange('closeS', e.target.value)} placeholder="sn" max="59" min="0" />
                       </div>
+                      {editDateInvalid && (
+                        <p className="text-[10px] text-red-600 font-semibold mt-1 ml-2">Kapanış zamanı açılıştan önce olamaz.</p>
+                      )}
                     </div>
-                    <button type="submit" className="w-full py-2.5 rounded-xl text-[12px] font-black bg-amber-600 text-white shadow-md">İŞLEMİ GÜNCELLE</button>
+                    <button type="submit" disabled={editDateInvalid} className={`w-full py-2.5 rounded-xl text-[12px] font-black shadow-md ${editDateInvalid ? 'bg-gray-200 text-gray-400' : 'bg-amber-600 text-white'}`}>İŞLEMİ GÜNCELLE</button>
                   </form>
                 )}
               </div>
@@ -363,13 +393,16 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                     </div>
                     <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.closePrice} onChange={e => handleTradeChange('closePrice', sanitizePositive(e.target.value))} placeholder="Kapanış Fiyatı" />
                      <div>
-                      <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Kapanış Zamanı</span>
+                      <span className={`text-[10px] font-bold ml-2 uppercase ${tradeDateInvalid ? 'text-red-600' : 'text-gray-400'}`}>Kapanış Zamanı</span>
                       <div className="grid grid-cols-4 gap-2 mt-1">
-                        <input type="date" className="col-span-4 w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold" value={tradeForm.closeDate} onChange={e => handleTradeChange('closeDate', e.target.value)} />
-                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.closeH} onChange={e => handleTradeChange('closeH', e.target.value)} placeholder="SS" max="23" min="0" />
-                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.closeM} onChange={e => handleTradeChange('closeM', e.target.value)} placeholder="DD" max="59" min="0" />
-                        <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.closeS} onChange={e => handleTradeChange('closeS', e.target.value)} placeholder="sn" max="59" min="0" />
+                        <input type="date" className={`col-span-4 w-full rounded-xl border px-4 py-3 text-[12px] font-bold ${tradeDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-gray-100 border-none'}`} value={tradeForm.closeDate} onChange={e => handleTradeChange('closeDate', e.target.value)} />
+                        <input type="number" className={`w-full rounded-xl border px-4 py-3 text-[12px] font-bold text-center ${tradeDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-gray-100 border-none'}`} value={tradeForm.closeH} onChange={e => handleTradeChange('closeH', e.target.value)} placeholder="SS" max="23" min="0" />
+                        <input type="number" className={`w-full rounded-xl border px-4 py-3 text-[12px] font-bold text-center ${tradeDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-gray-100 border-none'}`} value={tradeForm.closeM} onChange={e => handleTradeChange('closeM', e.target.value)} placeholder="DD" max="59" min="0" />
+                        <input type="number" className={`w-full rounded-xl border px-4 py-3 text-[12px] font-bold text-center ${tradeDateInvalid ? 'bg-red-50 border-red-400 text-red-700' : 'bg-gray-100 border-none'}`} value={tradeForm.closeS} onChange={e => handleTradeChange('closeS', e.target.value)} placeholder="sn" max="59" min="0" />
                       </div>
+                      {tradeDateInvalid && (
+                        <p className="text-[10px] text-red-600 font-semibold mt-1 ml-2">Kapanış zamanı açılıştan önce olamaz.</p>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -384,7 +417,7 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                     </div>
                   </>
                 )}
-                <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-2xl text-[14px] font-black uppercase">EKLE VE KAYDET</button>
+                <button type="submit" disabled={entryType === 'trade' && tradeDateInvalid} className={`w-full py-4 rounded-2xl text-[14px] font-black uppercase ${entryType === 'trade' && tradeDateInvalid ? 'bg-gray-200 text-gray-400' : 'bg-blue-600 text-white'}`}>EKLE VE KAYDET</button>
               </form>
             </div>
           </div>
