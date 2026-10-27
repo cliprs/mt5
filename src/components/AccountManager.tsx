@@ -351,10 +351,7 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                       <button type="button" onClick={() => setTradeForm(prev => ({...prev, side: 'buy'}))} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'buy' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-100 text-gray-400'}`}>BUY</button>
                       <button type="button" onClick={() => setTradeForm(prev => ({...prev, side: 'sell'}))} className={`flex-1 py-2 rounded-xl text-[12px] font-black border-2 ${tradeForm.side === 'sell' ? 'bg-red-600 border-red-600 text-white' : 'border-gray-100 text-gray-400'}`}>SELL</button>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.openPrice} onChange={e => handleTradeChange('openPrice', sanitizePositive(e.target.value))} placeholder="Açılış Fiyatı" />
-                      <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.closePrice} onChange={e => handleTradeChange('closePrice', sanitizePositive(e.target.value))} placeholder="Kapanış Fiyatı" />
-                    </div>
+                    <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.openPrice} onChange={e => handleTradeChange('openPrice', sanitizePositive(e.target.value))} placeholder="Açılış Fiyatı" />
                     <div>
                       <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Açılış Zamanı</span>
                       <div className="grid grid-cols-4 gap-2 mt-1">
@@ -364,6 +361,7 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                         <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={tradeForm.openS} onChange={e => handleTradeChange('openS', e.target.value)} placeholder="sn" max="59" min="0" />
                       </div>
                     </div>
+                    <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={tradeForm.closePrice} onChange={e => handleTradeChange('closePrice', sanitizePositive(e.target.value))} placeholder="Kapanış Fiyatı" />
                      <div>
                       <span className="text-[10px] font-bold text-gray-400 ml-2 uppercase">Kapanış Zamanı</span>
                       <div className="grid grid-cols-4 gap-2 mt-1">
