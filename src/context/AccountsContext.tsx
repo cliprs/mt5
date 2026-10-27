@@ -4,7 +4,7 @@ import { AccountProfile, defaultAccounts } from '../data/accounts';
 import { supabase } from '../lib/supabase';
 
 const SELECTED_ACCOUNT_KEY = 'mt5_selected_id_final';
-const COMMISSION_PER_LOT = 7;
+export const COMMISSION_PER_LOT = 7;
 const CLOUD_ROW_ID = 'mt5_accounts_v2';
 
 type EntryInput =

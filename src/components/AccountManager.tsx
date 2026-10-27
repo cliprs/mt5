@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAccounts } from '../context/AccountsContext';
+import { useAccounts, COMMISSION_PER_LOT } from '../context/AccountsContext';
 import { IoTrashOutline, IoChevronDown } from 'react-icons/io5';
 
 const joinDateTime = (parts: { date: string; h: string; m: string; s: string }) => {
@@ -52,6 +52,13 @@ const isCloseBeforeOpen = (form: { openDate: string; openH: string; openM: strin
   return close < open;
 };
 
+const calcPreviewProfit = (side: 'buy' | 'sell', volume: number, openPrice: number, closePrice: number) => {
+  const pointDiff = side === 'buy' ? closePrice - openPrice : openPrice - closePrice;
+  const gross = pointDiff * volume * 100;
+  const commission = Number((volume * COMMISSION_PER_LOT).toFixed(2)) * -1;
+  return { gross: Number(gross.toFixed(2)), commission, net: Number((gross + commission).toFixed(2)) };
+};
+
 const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { accounts, selectedAccountId, selectedAccount, selectAccount, addEntry, removeEntry, updateTradeEntry, updateAccountDetails, addAccount } = useAccounts();
   const [entryType, setEntryType] = useState<'trade' | 'deposit' | 'withdraw'>('trade');
@@ -71,6 +78,11 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
 
   const tradeDateInvalid = isCloseBeforeOpen(tradeForm);
   const editDateInvalid = isCloseBeforeOpen(editForm);
+
+  const tradePreviewReady = Boolean(tradeForm.volume && tradeForm.openPrice && tradeForm.closePrice);
+  const tradePreview = tradePreviewReady
+    ? calcPreviewProfit(tradeForm.side, Number(tradeForm.volume), Number(tradeForm.openPrice), Number(tradeForm.closePrice))
+    : null;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -416,6 +428,22 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                       <input type="number" className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[12px] font-bold text-center" value={balanceForm.s} onChange={e => setBalanceForm({...balanceForm, s: e.target.value})} placeholder="sn" max="59" min="0" />
                     </div>
                   </>
+                )}
+                {entryType === 'trade' && tradePreview && (
+                  <div className="rounded-2xl p-4 bg-gray-50 border border-gray-100 space-y-1.5">
+                    <div className="flex items-center justify-between text-[12px]">
+                      <span className="text-gray-500 font-semibold">Brüt Kâr/Zarar</span>
+                      <span className={`font-bold ${tradePreview.gross >= 0 ? 'text-mt5-blue' : 'text-mt5-red'}`}>{tradePreview.gross.toFixed(2)}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[12px]">
+                      <span className="text-gray-500 font-semibold">Komisyon</span>
+                      <span className="font-bold text-black">{tradePreview.commission.toFixed(2)}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[13px] pt-1.5 border-t border-gray-200">
+                      <span className="text-black font-bold">Net Sonuç</span>
+                      <span className={`font-black ${tradePreview.net >= 0 ? 'text-mt5-blue' : 'text-mt5-red'}`}>{tradePreview.net.toFixed(2)}</span>
+                    </div>
+                  </div>
                 )}
                 <button type="submit" disabled={entryType === 'trade' && tradeDateInvalid} className={`w-full py-4 rounded-2xl text-[14px] font-black uppercase ${entryType === 'trade' && tradeDateInvalid ? 'bg-gray-200 text-gray-400' : 'bg-blue-600 text-white'}`}>EKLE VE KAYDET</button>
               </form>
