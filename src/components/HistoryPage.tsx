@@ -1,5 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
+import html2canvas from 'html2canvas';
+import { IoShareSocialOutline } from 'react-icons/io5';
 import HistoryItem from './HistoryItem';
+import ShareSummaryCard from './ShareSummaryCard';
 import { HistoryDeal } from '../data/transactions';
 import { useAccounts } from '../context/AccountsContext';
 
@@ -59,7 +62,9 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
 }) => {
   const { selectedAccount } = useAccounts();
   const historyData = selectedAccount?.history ?? [];
-  
+  const shareCardRef = useRef<HTMLDivElement>(null);
+  const [isSharing, setIsSharing] = useState(false);
+
   const timelineReference = useMemo(() => getTimelineReferenceDate(historyData), [historyData]);
   
   const filteredData = useMemo(() => {
@@ -138,6 +143,47 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
     };
   }, [filteredData]);
 
+  const handleShare = async () => {
+    if (!shareCardRef.current || isSharing) return;
+    setIsSharing(true);
+    try {
+      const canvas = await html2canvas(shareCardRef.current, { backgroundColor: '#ffffff', scale: 2 });
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          setIsSharing(false);
+          return;
+        }
+        const fileName = `${(selectedAccount?.name || 'hesap').replace(/\s+/g, '_')}_ozet.png`;
+        const file = new File([blob], fileName, { type: 'image/png' });
+        try {
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: 'Finansal Özet',
+              text: `${selectedAccount?.name ?? ''} - ${selectedPeriod} finansal özeti`,
+            });
+          } else {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          }
+        } catch (shareErr) {
+          // Kullanıcı paylaşımı iptal etmiş olabilir, sessizce geç.
+        } finally {
+          setIsSharing(false);
+        }
+      }, 'image/png');
+    } catch (e) {
+      console.error('Paylaşım görseli oluşturulamadı', e);
+      setIsSharing(false);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full pb-20 bg-white">
       
@@ -186,6 +232,17 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
                   );
               })}
            </div>
+           <div className="px-4 mt-3">
+              <button
+                type="button"
+                onClick={handleShare}
+                disabled={isSharing}
+                className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-[12px] font-bold transition-colors ${isSharing ? 'bg-gray-100 text-gray-400' : 'bg-blue-50 text-mt5-blue active:bg-blue-100'}`}
+              >
+                <IoShareSocialOutline size={18} />
+                {isSharing ? 'Hazırlanıyor...' : 'Paylaş'}
+              </button>
+           </div>
         </div>
       )}
 
@@ -205,6 +262,19 @@ const HistoryPage: React.FC<HistoryPageProps> = ({
             </div>
         )}
       </div>
+
+      {filteredData.length > 0 && selectedAccount && (
+        <div style={{ position: 'fixed', top: 0, left: -9999, zIndex: -1 }}>
+          <ShareSummaryCard
+            ref={shareCardRef}
+            accountName={selectedAccount.name}
+            accountNo={selectedAccount.accountNo}
+            server={selectedAccount.server}
+            periodLabel={selectedPeriod}
+            summary={summary}
+          />
+        </div>
+      )}
     </div>
   );
 };
