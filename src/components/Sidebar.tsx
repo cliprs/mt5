@@ -1,13 +1,6 @@
 import React from 'react';
 import { useAccounts } from '../context/AccountsContext';
-import {
-  IoMailOutline,
-  IoSettingsOutline,
-  IoCalendarOutline,
-  IoPaperPlaneOutline,
-  IoHelpCircleOutline,
-  IoInformationCircleOutline,
-} from 'react-icons/io5';
+import { IoSettingsOutline, IoHelpCircleOutline } from 'react-icons/io5';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -48,7 +41,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
     },
     {
       label: 'Posta kutusu',
-      icon: <IoMailOutline size={20} className="text-gray-600" />,
+      icon: (
+        <div
+          className="w-5 h-5 bg-gray-600"
+          style={{ mask: 'url(/posta.svg) no-repeat center / contain', WebkitMask: 'url(/posta.svg) no-repeat center / contain' }}
+        />
+      ),
       badge: 8,
     },
     {
@@ -66,7 +64,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
     },
     {
       label: 'Ekonomik Takvim',
-      icon: <IoCalendarOutline size={20} className="text-gray-600" />,
+      icon: (
+        <div
+          className="w-5 h-5 bg-gray-600"
+          style={{ mask: 'url(/ekonomi.svg) no-repeat center / contain', WebkitMask: 'url(/ekonomi.svg) no-repeat center / contain' }}
+        />
+      ),
       tag: 'Ads',
     },
     {
@@ -80,7 +83,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
     },
     {
       label: 'MQL5 Algo Alım-Satım',
-      icon: <IoPaperPlaneOutline size={20} className="text-gray-600" />,
+      icon: (
+        <div
+          className="w-5 h-5 bg-gray-600"
+          style={{ mask: 'url(/algo.svg) no-repeat center / contain', WebkitMask: 'url(/algo.svg) no-repeat center / contain' }}
+        />
+      ),
     },
     {
       label: 'Kullanıcı Kılavuzu',
@@ -88,7 +96,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
     },
     {
       label: 'Hakkında',
-      icon: <IoInformationCircleOutline size={20} className="text-gray-600" />,
+      icon: (
+        <div
+          className="w-5 h-5 bg-gray-600"
+          style={{ mask: 'url(/hakkında.svg) no-repeat center / contain', WebkitMask: 'url(/hakkında.svg) no-repeat center / contain' }}
+        />
+      ),
       onClick: () => {
         onClose();
         onManageAccounts();
