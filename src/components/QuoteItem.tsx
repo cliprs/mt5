@@ -1,11 +1,14 @@
 import React from 'react';
 import { Quote } from '../data/mockData';
+import { useAccounts } from '../context/AccountsContext';
+import { getDisplaySymbol } from '../utils/symbol';
 
 interface QuoteItemProps {
   quote: Quote;
 }
 
 const QuoteItem: React.FC<QuoteItemProps> = ({ quote }) => {
+  const { selectedAccount } = useAccounts();
   const formatPrice = (price: number) => {
     // Determine decimal places
     let decimalPlaces = 5;
@@ -41,7 +44,7 @@ const QuoteItem: React.FC<QuoteItemProps> = ({ quote }) => {
   return (
     <div className="flex items-center justify-between px-4 py-3 border-b border-gray-50 active:bg-gray-50 transition-colors">
       <div className="flex flex-col gap-0">
-        <span className="text-[16px] font-bold text-black leading-tight">{quote.symbol}</span>
+        <span className="text-[16px] font-bold text-black leading-tight">{getDisplaySymbol(quote.symbol, selectedAccount)}</span>
         <span className="text-[12px] text-gray-400 font-normal leading-tight">{quote.time || '18:55:04'}</span>
       </div>
 

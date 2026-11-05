@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { HistoryDeal } from '../data/transactions';
+import { useAccounts } from '../context/AccountsContext';
+import { getDisplaySymbol } from '../utils/symbol';
 
 interface HistoryItemProps {
   deal: HistoryDeal;
@@ -7,6 +9,7 @@ interface HistoryItemProps {
 }
 
 const HistoryItem: React.FC<HistoryItemProps> = ({ deal, accountNo }) => {
+  const { selectedAccount } = useAccounts();
   const [isOpen, setIsOpen] = useState(false);
   const isProfit = deal.profit >= 0;
   const profitColor = isProfit ? 'text-mt5-blue' : 'text-mt5-red';
@@ -135,7 +138,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ deal, accountNo }) => {
         <div className="flex flex-col">
             {/* Symbol & Type/Volume Row */}
             <div className="flex items-baseline">
-                <span className="text-black font-bold text-[15px] leading-none tracking-tight">{deal.symbol},</span>
+                <span className="text-black font-bold text-[15px] leading-none tracking-tight">{getDisplaySymbol(deal.symbol, selectedAccount)},</span>
                 <span className={`ml-1 text-[15px] font-medium ${typeColor} lowercase leading-none tracking-tight`}>
                     {dealTypeTR} {deal.volume.toFixed(2)}
                 </span>

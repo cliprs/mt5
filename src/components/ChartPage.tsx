@@ -1,12 +1,15 @@
 import React from 'react';
+import { useAccounts } from '../context/AccountsContext';
+import { getDisplaySymbol } from '../utils/symbol';
 
 const ChartPage: React.FC = () => {
+  const { selectedAccount } = useAccounts();
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] bg-white relative overflow-hidden">
       {/* Chart Overlay Info */}
       <div className="absolute top-4 left-4 z-10 flex flex-col gap-0">
         <div className="flex items-center gap-2">
-          <span className="text-[#0055b3] font-bold text-[13px]">XAUUSD</span>
+          <span className="text-[#0055b3] font-bold text-[13px]">{getDisplaySymbol('XAUUSD', selectedAccount)}</span>
           <span className="text-[#0055b3] text-[13px]">M1</span>
         </div>
         <div className="flex flex-col">
