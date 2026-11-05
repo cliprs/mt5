@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { HistoryDeal } from '../data/transactions';
 import { AccountProfile, defaultAccounts } from '../data/accounts';
 import { supabase } from '../lib/supabase';
@@ -36,7 +36,7 @@ interface AccountsContextValue {
     ticketId: string,
     payload: { volume: number; openPrice: number; closePrice: number; openTime: string; closeTime: string }
   ) => Promise<boolean>;
-  updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string }) => Promise<void>;
+  updateAccountDetails: (accountId: string, payload: { name?: string; accountNo?: string; server?: string; logo?: string }) => Promise<void>;
   addAccount: (payload: { name: string; accountNo: string; server: string; broker?: string }) => Promise<string>;
   setAccounts: React.Dispatch<React.SetStateAction<AccountProfile[]>>;
   isLoading: boolean;
@@ -111,6 +111,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [accounts, setAccounts] = useState<AccountProfile[]>(defaultAccounts);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAccountId, setSelectedAccountId] = useState<string>('');
+  const hadCloudData = useRef(false);
 
   // 1. Sadece Supabase'den yükle (ilk açılış)
   useEffect(() => {
@@ -119,6 +120,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const cloudData = await fetchCloudAccounts();
       if (cloudData) {
         console.log('Supabase: Veri bulundu, senkronize ediliyor...');
+        hadCloudData.current = true;
         setAccounts(cloudData);
       } else {
         console.log('Supabase: Veri bulunamadı veya hata oluştu, varsayılanlar kullanılıyor.');
@@ -153,6 +155,12 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     mutator: (current: AccountProfile[]) => AccountProfile[]
   ): Promise<AccountProfile[]> => {
     const latest = await fetchCloudAccounts();
+    // Bulutta veri varken okuma başarısız olursa yerel (muhtemelen eski) state ile
+    // üzerine yazmak veri kaybettirir; bu durumda kaydı iptal et.
+    if (!latest && hadCloudData.current) {
+      throw new Error('Bulut verisi okunamadı, kayıt iptal edildi.');
+    }
+    if (latest) hadCloudData.current = true;
     const base = latest ?? accounts;
     const result = mutator(base);
     setAccounts(result);
@@ -235,7 +243,7 @@ export const AccountsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return found;
   };
 
-  const updateAccountDetails = async (id: string, data: any) => {
+  const updateAccountDetails = async (id: string, data: { name?: string; accountNo?: string; server?: string; logo?: string }) => {
     await mutateAccounts((prev) => prev.map((acc) => (acc.id === id ? { ...acc, ...data } : acc)));
   };
 

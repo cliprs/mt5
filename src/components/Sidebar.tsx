@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAccounts } from '../context/AccountsContext';
+import { getAccountLogo } from '../utils/logo';
 import { IoSettingsOutline, IoHelpCircleOutline } from 'react-icons/io5';
 
 interface SidebarProps {
@@ -125,7 +126,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
       >
         <div className="p-4 pt-6">
           <div className="flex items-start gap-4">
-            <img src="/pepperstone.svg" alt="Pepperstone Logo" className="w-14 h-14 object-contain -ml-1" />
+            <img
+              src={selectedAccount ? getAccountLogo(selectedAccount) : '/pepperstone.svg'}
+              alt={selectedAccount?.broker ?? 'Logo'}
+              className="w-14 h-14 object-contain -ml-1"
+            />
             <div className="flex flex-col">
               <span className="text-black font-normal text-[16px] leading-tight">
                 {selectedAccount?.name ?? 'Hesap seçilmedi'}

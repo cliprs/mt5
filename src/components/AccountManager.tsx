@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAccounts, COMMISSION_PER_LOT } from '../context/AccountsContext';
 import { IoTrashOutline, IoChevronDown } from 'react-icons/io5';
+import { PRESET_LOGOS, getAccountLogo, resizeImageToDataUrl } from '../utils/logo';
 
 const joinDateTime = (parts: { date: string; h: string; m: string; s: string }) => {
   if (!parts.date) return '';
@@ -127,6 +128,23 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
     });
     setStatusMessage('Yeni hesap oluşturuldu.');
     setNewAccountForm({ name: '', accountNo: '', server: '' });
+  };
+
+  const handleLogoChange = async (logo: string | undefined) => {
+    if (!selectedAccountId) return;
+    try {
+      await updateAccountDetails(selectedAccountId, { logo });
+      setStatusMessage(logo ? 'Logo güncellendi.' : 'Varsayılan logoya dönüldü.');
+    } catch (e) { setStatusMessage('Hata: Logo kaydedilemedi.'); }
+  };
+
+  const handleLogoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+    try {
+      await handleLogoChange(await resizeImageToDataUrl(file));
+    } catch (e) { setStatusMessage('Hata: Görsel okunamadı.'); }
   };
 
   const handleEditTradeChange = (field: keyof typeof editForm, value: string) => {
@@ -322,6 +340,39 @@ const AccountManager: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ is
                 <input className="w-full rounded-xl bg-gray-100 border-none px-4 py-3 text-[13px] font-bold" value={accountForm.server} onChange={e => setAccountForm({...accountForm, server: e.target.value})} placeholder="SUNUCU (BROKER)" />
                 <button onClick={() => updateAccountDetails(selectedAccountId!, accountForm)} className="w-full py-3 rounded-xl text-[13px] font-black bg-black text-white shadow-lg">BİLGİLERİ KAYDET</button>
               </div>
+              {selectedAccount && (
+                <div className="space-y-3">
+                  <h3 className="text-[12px] font-bold text-gray-400 uppercase tracking-tight">Hesap Logosu</h3>
+                  <div className="flex items-center gap-3 p-3 rounded-2xl bg-gray-50 border border-gray-100">
+                    <img src={getAccountLogo(selectedAccount)} alt="Mevcut logo" className="w-12 h-12 rounded-xl object-contain bg-white shrink-0" />
+                    <div className="min-w-0">
+                      <div className="text-[13px] font-bold text-black truncate">{selectedAccount.accountNo}</div>
+                      <div className="text-[11px] text-gray-500 font-medium">{selectedAccount.logo ? 'Özel logo' : 'Varsayılan logo'}</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    {PRESET_LOGOS.map((preset) => (
+                      <button
+                        key={preset.src}
+                        type="button"
+                        onClick={() => handleLogoChange(preset.src)}
+                        className={`flex flex-col items-center gap-1 p-2 rounded-xl border-2 ${selectedAccount.logo === preset.src ? 'border-blue-500 bg-blue-50' : 'border-gray-100 bg-white'}`}
+                      >
+                        <img src={preset.src} alt={preset.label} className="w-10 h-10 object-contain" />
+                        <span className="text-[10px] font-bold text-gray-600">{preset.label}</span>
+                      </button>
+                    ))}
+                    <label className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl border-2 border-dashed border-gray-300 bg-white cursor-pointer">
+                      <span className="text-[20px] leading-none text-gray-400">+</span>
+                      <span className="text-[10px] font-bold text-gray-600">Görsel Yükle</span>
+                      <input type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+                    </label>
+                  </div>
+                  {selectedAccount.logo && (
+                    <button type="button" onClick={() => handleLogoChange(undefined)} className="w-full py-2.5 rounded-xl text-[12px] font-black bg-gray-200 text-gray-600">VARSAYILAN LOGOYA DÖN</button>
+                  )}
+                </div>
+              )}
               <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 space-y-3">
                 <h3 className="text-[12px] font-bold text-amber-800 uppercase tracking-tight">İşlem Düzelt</h3>
                 <form onSubmit={handleLoadTicket} className="flex gap-2">

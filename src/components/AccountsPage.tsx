@@ -1,17 +1,11 @@
 import React from 'react';
 import { useAccounts } from '../context/AccountsContext';
-import { AccountProfile } from '../data/accounts';
 import { calculateBalance } from '../utils/balance';
+import { getAccountLogo } from '../utils/logo';
 import { IoAppsOutline, IoNotificationsOutline } from 'react-icons/io5';
 
 const formatMoney = (val: number) =>
   val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-const getBrokerLogo = (acc: AccountProfile) => {
-  const s = `${acc.broker} ${acc.server}`.toLowerCase();
-  if (s.includes('pepperstone')) return '/pepperstone.svg';
-  return '/fxpro-logo.svg';
-};
 
 interface AccountsPageProps {
   onAddAccount: () => void;
@@ -40,7 +34,7 @@ const AccountsPage: React.FC<AccountsPageProps> = ({ onAddAccount }) => {
   return (
     <div className="flex flex-col w-full pb-24 bg-mt5-bg min-h-screen">
       <div className="bg-white mx-3 mt-3 rounded-2xl p-5 flex flex-col items-center text-center shadow-sm">
-        <img src={getBrokerLogo(selected)} alt={selected.broker} className="w-14 h-14 rounded-xl object-contain mb-3" />
+        <img src={getAccountLogo(selected)} alt={selected.broker} className="w-14 h-14 rounded-xl object-contain mb-3" />
         <div className="text-[17px] font-bold text-black">{selected.name}</div>
         <div className="text-[13px] text-mt5-blue font-medium mt-0.5">{selected.broker}</div>
         <div className="text-[12px] text-gray-500 mt-2">
@@ -65,7 +59,7 @@ const AccountsPage: React.FC<AccountsPageProps> = ({ onAddAccount }) => {
               onClick={() => selectAccount(acc.id)}
               className="bg-white rounded-2xl p-4 flex items-center gap-3 text-left shadow-sm"
             >
-              <img src={getBrokerLogo(acc)} alt={acc.broker} className="w-10 h-10 rounded-lg object-contain shrink-0" />
+              <img src={getAccountLogo(acc)} alt={acc.broker} className="w-10 h-10 rounded-lg object-contain shrink-0" />
               <div className="flex-1 min-w-0">
                 <div className="text-[14px] font-bold text-black truncate">{acc.name}</div>
                 <div className="text-[11px] text-gray-500 truncate">

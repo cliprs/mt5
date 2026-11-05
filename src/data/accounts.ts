@@ -6,6 +6,7 @@ export interface AccountProfile {
   broker: string;
   accountNo: string;
   server: string;
+  logo?: string;
   history: HistoryDeal[];
 }
 
