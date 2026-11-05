@@ -125,11 +125,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
         }`}
       >
         <div className="p-4 pt-6">
-          <div className="flex items-start gap-4">
-            <img
-              src={selectedAccount ? getAccountLogo(selectedAccount) : '/pepperstone.svg'}
-              alt={selectedAccount?.broker ?? 'Logo'}
-              className="w-12 h-12 object-contain -ml-1"
+          {/* Logo, isim + hesap numarası satırlarının yüksekliğine uyar */}
+          <div className="grid grid-cols-[auto_1fr] gap-x-3">
+            <div
+              role="img"
+              aria-label={selectedAccount?.broker ?? 'Logo'}
+              className="self-stretch aspect-square bg-contain bg-center bg-no-repeat"
+              style={{ backgroundImage: `url("${selectedAccount ? getAccountLogo(selectedAccount) : '/pepperstone.svg'}")` }}
             />
             <div className="flex flex-col">
               <span className="text-black font-normal text-[16px] leading-tight">
@@ -138,6 +140,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onManageAccounts, on
               <span className="text-gray-500 text-[13px] font-normal mt-0.5">
                 {selectedAccount ? `${selectedAccount.accountNo} - ${selectedAccount.server}` : '---'}
               </span>
+            </div>
+            <div className="col-start-2 flex flex-col">
               <button
                 type="button"
                 onClick={() => {
